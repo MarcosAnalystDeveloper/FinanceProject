@@ -17,4 +17,10 @@
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\" />
+    <Folder Include="Elements\Input\" />
+    <Folder Include="Elements\Text\" />
+  </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 
 namespace FinanceProject.Elements.Button;
 
-public class ButtonElement : BaseElement
+public partial class ButtonElement : BaseElement
 {
     public ButtonElement() { }
 }

@@ -1,7 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Media;
 
-namespace FinanceProject.Elements.Button;
+namespace FinanceProject.Elements;
 
 public partial class ButtonElement
 {
@@ -20,6 +20,15 @@ public partial class ButtonElement
     {
         get => GetValue(TextFontColorProperty);
         set => SetValue(TextFontColorProperty, value);
+    }
+    #endregion
+
+    #region FontFamily
+    public static readonly StyledProperty<FontFamily> TextFontFamilyProperty = AvaloniaProperty.Register<ButtonElement, FontFamily>(nameof(TextFontFamily));
+    public FontFamily TextFontFamily
+    {
+        get => GetValue(TextFontFamilyProperty);
+        set => SetValue(TextFontFamilyProperty, value);
     }
     #endregion
 

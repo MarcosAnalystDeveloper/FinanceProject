@@ -1,14 +1,13 @@
 ﻿using Avalonia;
 using Avalonia.Media;
-using FinanceProject.Elements.Button;
 
-namespace FinanceProject.Elements.Input;
+namespace FinanceProject.Elements;
 
 public partial class InputElement
 {
     #region Text
 
-    public static readonly StyledProperty<string> TextProperty = AvaloniaProperty.Register<ButtonElement, string>(nameof(Text));
+    public static readonly StyledProperty<string> TextProperty = AvaloniaProperty.Register<InputElement, string>(nameof(Text));
     public string Text
     {
         get => GetValue(TextProperty);
@@ -16,7 +15,7 @@ public partial class InputElement
     }
 
     #region FontColor
-    public static readonly StyledProperty<IBrush> TextFontColorProperty = AvaloniaProperty.Register<ButtonElement, IBrush>(nameof(TextFontColor));
+    public static readonly StyledProperty<IBrush> TextFontColorProperty = AvaloniaProperty.Register<InputElement, IBrush>(nameof(TextFontColor));
     public IBrush TextFontColor
     {
         get => GetValue(TextFontColorProperty);
@@ -25,7 +24,7 @@ public partial class InputElement
     #endregion
 
     #region FontWeight
-    public static readonly StyledProperty<FontWeight> TextFontWeightProperty = AvaloniaProperty.Register<ButtonElement, FontWeight>(nameof(TextFontWeight));
+    public static readonly StyledProperty<FontWeight> TextFontWeightProperty = AvaloniaProperty.Register<InputElement, FontWeight>(nameof(TextFontWeight));
     public FontWeight TextFontWeight
     {
         get => GetValue(TextFontWeightProperty);
@@ -34,7 +33,7 @@ public partial class InputElement
     #endregion
 
     #region FontSize
-    public static readonly StyledProperty<int> TextFontSizeProperty = AvaloniaProperty.Register<ButtonElement, int>(nameof(TextFontSize));
+    public static readonly StyledProperty<int> TextFontSizeProperty = AvaloniaProperty.Register<InputElement, int>(nameof(TextFontSize));
     public int TextFontSize
     {
         get => GetValue(TextFontSizeProperty);
@@ -43,7 +42,7 @@ public partial class InputElement
     #endregion
 
     #region ActiveColor
-    public static readonly StyledProperty<IBrush> FontActiveColorProperty = AvaloniaProperty.Register<ButtonElement, IBrush>(nameof(FontActiveColor));
+    public static readonly StyledProperty<IBrush> FontActiveColorProperty = AvaloniaProperty.Register<InputElement, IBrush>(nameof(FontActiveColor));
     public IBrush FontActiveColor
     {
         get => GetValue(FontActiveColorProperty);
@@ -52,7 +51,7 @@ public partial class InputElement
     #endregion
 
     #region HoverColor
-    public static readonly StyledProperty<IBrush> FontHoverColorProperty = AvaloniaProperty.Register<ButtonElement, IBrush>(nameof(FontHoverColor));
+    public static readonly StyledProperty<IBrush> FontHoverColorProperty = AvaloniaProperty.Register<InputElement, IBrush>(nameof(FontHoverColor));
     public IBrush FontHoverColor
     {
         get => GetValue(FontHoverColorProperty);
@@ -61,7 +60,7 @@ public partial class InputElement
     #endregion
 
     #region PositionX
-    public static readonly StyledProperty<double> TextPositionXProperty = AvaloniaProperty.Register<ButtonElement, double>(nameof(TextPositionX));
+    public static readonly StyledProperty<double> TextPositionXProperty = AvaloniaProperty.Register<InputElement, double>(nameof(TextPositionX));
     public double TextPositionX
     {
         get => GetValue(TextPositionXProperty);
@@ -70,7 +69,7 @@ public partial class InputElement
     #endregion
 
     #region PositionY
-    public static readonly StyledProperty<double> TextPositionYProperty = AvaloniaProperty.Register<ButtonElement, double>(nameof(TextPositionY));
+    public static readonly StyledProperty<double> TextPositionYProperty = AvaloniaProperty.Register<InputElement, double>(nameof(TextPositionY));
     public double TextPositionY
     {
         get => GetValue(TextPositionYProperty);
@@ -82,7 +81,7 @@ public partial class InputElement
 
     #region Value
 
-    public static readonly StyledProperty<string> ValueTextProperty = AvaloniaProperty.Register<ButtonElement, string>(nameof(ValueText));
+    public static readonly StyledProperty<string> ValueTextProperty = AvaloniaProperty.Register<InputElement, string>(nameof(ValueText));
     public string ValueText
     {
         get => GetValue(ValueTextProperty);
@@ -90,7 +89,7 @@ public partial class InputElement
     }
 
     #region ContainerWidth
-    public static readonly StyledProperty<double> ValueContainerWidthProperty = AvaloniaProperty.Register<ButtonElement, double>(nameof(ValueContainerWidth));
+    public static readonly StyledProperty<double> ValueContainerWidthProperty = AvaloniaProperty.Register<InputElement, double>(nameof(ValueContainerWidth));
     public double ValueContainerWidth
     {
         get => GetValue(ValueContainerWidthProperty);
@@ -99,7 +98,7 @@ public partial class InputElement
     #endregion
 
     #region ContainerHeight
-    public static readonly StyledProperty<double> ValueContainerHeightProperty = AvaloniaProperty.Register<ButtonElement, double>(nameof(ValueContainerHeight));
+    public static readonly StyledProperty<double> ValueContainerHeightProperty = AvaloniaProperty.Register<InputElement, double>(nameof(ValueContainerHeight));
     public double ValueContainerHeight
     {
         get => GetValue(ValueContainerHeightProperty);
@@ -108,7 +107,7 @@ public partial class InputElement
     #endregion
 
     #region FontColor
-    public static readonly StyledProperty<IBrush> ValueFontColorProperty = AvaloniaProperty.Register<ButtonElement, IBrush>(nameof(ValueFontColor));
+    public static readonly StyledProperty<IBrush> ValueFontColorProperty = AvaloniaProperty.Register<InputElement, IBrush>(nameof(ValueFontColor));
     public IBrush ValueFontColor
     {
         get => GetValue(ValueFontColorProperty);
@@ -117,7 +116,7 @@ public partial class InputElement
     #endregion
 
     #region FontWeight
-    public static readonly StyledProperty<FontWeight> ValueFontWeightProperty = AvaloniaProperty.Register<ButtonElement, FontWeight>(nameof(ValueFontWeight));
+    public static readonly StyledProperty<FontWeight> ValueFontWeightProperty = AvaloniaProperty.Register<InputElement, FontWeight>(nameof(ValueFontWeight));
     public FontWeight ValueFontWeight
     {
         get => GetValue(ValueFontWeightProperty);
@@ -126,7 +125,7 @@ public partial class InputElement
     #endregion
 
     #region FontSize
-    public static readonly StyledProperty<int> ValueFontSizeProperty = AvaloniaProperty.Register<ButtonElement, int>(nameof(ValueFontSize));
+    public static readonly StyledProperty<int> ValueFontSizeProperty = AvaloniaProperty.Register<InputElement, int>(nameof(ValueFontSize));
     public int ValueFontSize
     {
         get => GetValue(ValueFontSizeProperty);
@@ -135,7 +134,7 @@ public partial class InputElement
     #endregion
 
     #region ActiveColor
-    public static readonly StyledProperty<IBrush> ValueFontActiveColorProperty = AvaloniaProperty.Register<ButtonElement, IBrush>(nameof(ValueFontActiveColor));
+    public static readonly StyledProperty<IBrush> ValueFontActiveColorProperty = AvaloniaProperty.Register<InputElement, IBrush>(nameof(ValueFontActiveColor));
     public IBrush ValueFontActiveColor
     {
         get => GetValue(ValueFontActiveColorProperty);
@@ -144,7 +143,7 @@ public partial class InputElement
     #endregion
 
     #region HoverColor
-    public static readonly StyledProperty<IBrush> ValueFontHoverColorProperty = AvaloniaProperty.Register<ButtonElement, IBrush>(nameof(ValueFontHoverColor));
+    public static readonly StyledProperty<IBrush> ValueFontHoverColorProperty = AvaloniaProperty.Register<InputElement, IBrush>(nameof(ValueFontHoverColor));
     public IBrush ValueFontHoverColor
     {
         get => GetValue(ValueFontHoverColorProperty);
@@ -153,7 +152,7 @@ public partial class InputElement
     #endregion
 
     #region PositionX
-    public static readonly StyledProperty<double> ValuePositionXProperty = AvaloniaProperty.Register<ButtonElement, double>(nameof(ValuePositionX));
+    public static readonly StyledProperty<double> ValuePositionXProperty = AvaloniaProperty.Register<InputElement, double>(nameof(ValuePositionX));
     public double ValuePositionX
     {
         get => GetValue(ValuePositionXProperty);
@@ -162,7 +161,7 @@ public partial class InputElement
     #endregion
 
     #region PositionY
-    public static readonly StyledProperty<double> ValuePositionYProperty = AvaloniaProperty.Register<ButtonElement, double>(nameof(ValuePositionY));
+    public static readonly StyledProperty<double> ValuePositionYProperty = AvaloniaProperty.Register<InputElement, double>(nameof(ValuePositionY));
     public double ValuePositionY
     {
         get => GetValue(ValuePositionYProperty);
@@ -174,7 +173,7 @@ public partial class InputElement
 
     #region Icon
 
-    public static readonly StyledProperty<string> IconProperty = AvaloniaProperty.Register<ButtonElement, string>(nameof(Icon));
+    public static readonly StyledProperty<string> IconProperty = AvaloniaProperty.Register<InputElement, string>(nameof(Icon));
     public string Icon
     {
         get => GetValue(IconProperty);
@@ -182,7 +181,7 @@ public partial class InputElement
     }
 
     #region IconColor
-    public static readonly StyledProperty<IBrush> IconColorProperty = AvaloniaProperty.Register<ButtonElement, IBrush>(nameof(IconColor));
+    public static readonly StyledProperty<IBrush> IconColorProperty = AvaloniaProperty.Register<InputElement, IBrush>(nameof(IconColor));
     public IBrush IconColor
     {
         get => GetValue(IconColorProperty);
@@ -191,7 +190,7 @@ public partial class InputElement
     #endregion
 
     #region IconSize
-    public static readonly StyledProperty<int> IconSizeProperty = AvaloniaProperty.Register<ButtonElement, int>(nameof(IconSize));
+    public static readonly StyledProperty<int> IconSizeProperty = AvaloniaProperty.Register<InputElement, int>(nameof(IconSize));
     public int IconSize
     {
         get => GetValue(IconSizeProperty);
@@ -200,7 +199,7 @@ public partial class InputElement
     #endregion
 
     #region PositionX
-    public static readonly StyledProperty<double> IconPositionXProperty = AvaloniaProperty.Register<ButtonElement, double>(nameof(IconPositionX));
+    public static readonly StyledProperty<double> IconPositionXProperty = AvaloniaProperty.Register<InputElement, double>(nameof(IconPositionX));
     public double IconPositionX
     {
         get => GetValue(IconPositionXProperty);
@@ -209,7 +208,7 @@ public partial class InputElement
     #endregion
 
     #region PositionY
-    public static readonly StyledProperty<double> IconPositionYProperty = AvaloniaProperty.Register<ButtonElement, double>(nameof(IconPositionY));
+    public static readonly StyledProperty<double> IconPositionYProperty = AvaloniaProperty.Register<InputElement, double>(nameof(IconPositionY));
     public double IconPositionY
     {
         get => GetValue(IconPositionYProperty);

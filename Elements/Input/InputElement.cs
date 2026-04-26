@@ -1,6 +1,4 @@
-﻿using FinanceProject.Elements.Base;
-
-namespace FinanceProject.Elements.Input;
+﻿namespace FinanceProject.Elements;
 
 public partial class InputElement : BaseElement
 {

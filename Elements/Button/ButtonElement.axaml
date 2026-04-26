@@ -1,4 +1,58 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <!-- Add Resources Here -->
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:element="using:FinanceProject.Elements">
+
+	<ControlTheme x:Key="ButtonElementTheme" TargetType="element:ButtonElement">
+		<Setter Property="Template">
+			<ControlTemplate>
+				<Canvas>
+					<Border x:Name="bd"
+							Background="{TemplateBinding BackgroundColor}"
+							BorderBrush="{TemplateBinding BorderColor}"
+							BorderThickness="{TemplateBinding BorderThickness}"
+							CornerRadius="{TemplateBinding CornerRadius}"
+							Width="{TemplateBinding Width}"
+							Height="{TemplateBinding Height}"
+							BoxShadow="">
+
+						<TextBlock x:Name="txt"
+								   Text="{TemplateBinding Text}"
+								   Foreground="{TemplateBinding TextFontColor}"
+								   FontFamily="{TemplateBinding TextFontFamily}"
+								   FontSize="{TemplateBinding TextFontSize}"
+								   FontWeight="{TemplateBinding TextFontWeight}"
+								   Canvas.Left="{TemplateBinding TextPositionX}"
+								   Canvas.Right="{TemplateBinding TextPositionY}" />
+					</Border>
+				</Canvas>
+			</ControlTemplate>
+		</Setter>
+
+		<Style Selector="^:pointerover /template/ Border#bd">
+			<Setter Property="Background" Value="{TemplateBinding HoverColor}" />
+			<Setter Property="BorderBrush" Value="{TemplateBinding BorderHoverColor}" />
+			<Setter Property="RenderTransform" Value="scale(0.95)" />
+
+			<Style Selector="^ /template/ TextBlock#txt">
+				<Setter Property="Foreground" Value="{Binding $parent[element:ButtonElement].FontHoverColor, RelativeSource={RelativeSource TemplatedParent}}" />
+			</Style>
+		</Style>
+
+		<Style Selector="^:pointerpressed /template/ Border#bd">
+			<Setter Property="Background" Value="{TemplateBinding ActiveColor}" />
+			<Setter Property="BorderBrush" Value="{TemplateBinding BorderActiveColor}" />
+			<Setter Property="RenderTransform" Value="scale(0.9)" />
+
+			<Style Selector="^ /template/ TextBlock#txt">
+				<Setter Property="Foreground" Value="{Binding $parent[element:ButtonElement].FontActiveColor, RelativeSource={RelativeSource TemplatedParent}}" />
+			</Style>
+		</Style>
+
+		<Setter Property="Transitions">
+			<Transitions>
+				<TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.075" Easing="CubicEaseOut"/>
+			</Transitions>
+		</Setter>
+
+	</ControlTheme>
 </ResourceDictionary>

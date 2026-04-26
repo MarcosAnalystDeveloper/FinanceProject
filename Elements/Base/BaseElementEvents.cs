@@ -3,7 +3,7 @@ using Avalonia.Controls.Primitives;
 using Avalonia.Input;
 using System;
 
-namespace FinanceProject.Elements.Base;
+namespace FinanceProject.Elements;
 
 public partial class BaseElement
 {

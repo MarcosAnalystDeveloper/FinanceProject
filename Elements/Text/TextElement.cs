@@ -1,6 +1,4 @@
-﻿using FinanceProject.Elements.Base;
-
-namespace FinanceProject.Elements.Text;
+﻿namespace FinanceProject.Elements;
 
 public partial class TextElement : BaseElement
 {

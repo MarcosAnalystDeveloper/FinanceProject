@@ -1,6 +1,4 @@
-﻿using FinanceProject.Elements.Base;
-
-namespace FinanceProject.Elements.Button;
+﻿namespace FinanceProject.Elements;
 
 public partial class ButtonElement : BaseElement
 {

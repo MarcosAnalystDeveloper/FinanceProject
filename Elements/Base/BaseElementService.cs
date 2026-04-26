@@ -1,4 +1,4 @@
-﻿namespace FinanceProject.Elements.Base;
+﻿namespace FinanceProject.Elements;
 
 public partial class BaseElement
 {

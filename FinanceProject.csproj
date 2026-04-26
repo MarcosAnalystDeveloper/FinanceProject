@@ -21,4 +21,10 @@
   <ItemGroup>
     <Folder Include="Assets\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Pages\Login\PageLogin.axaml.cs">
+      <DependentUpon>PageLogin.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
 </Project>

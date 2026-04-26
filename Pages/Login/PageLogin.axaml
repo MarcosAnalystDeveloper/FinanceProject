@@ -1,0 +1,23 @@
+<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d"
+		x:Class="FinanceProject.PageLogin"
+		Title=""
+		Width="800"
+		Height="450"
+		WindowState="Normal"
+		WindowDecorations="None"
+		Background="Transparent"
+		TransparencyLevelHint="Transparent"
+		WindowStartupLocation="CenterScreen">
+
+	<Border Name="mainBorder" CornerRadius="8" Background="#FFFFFF">
+		<Grid RowDefinitions="20,*">
+			<Border Background="#7FD9F9">
+			</Border>
+		</Grid>
+	</Border>
+
+</Window>

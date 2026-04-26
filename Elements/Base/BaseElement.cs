@@ -1,6 +1,6 @@
 ﻿using Avalonia.Controls.Primitives;
 
-namespace FinanceProject.Elements.Base;
+namespace FinanceProject.Elements;
 
 public partial class BaseElement : TemplatedControl
 {

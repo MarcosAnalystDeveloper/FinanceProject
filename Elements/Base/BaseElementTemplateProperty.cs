@@ -1,8 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Media;
-using FinanceProject.Elements.Button;
 
-namespace FinanceProject.Elements.Base;
+namespace FinanceProject.Elements;
 
 public partial class BaseElement
 {

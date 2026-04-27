@@ -23,6 +23,15 @@ public partial class InputElement
     }
     #endregion
 
+    #region FontFamily
+    public static readonly StyledProperty<FontFamily> TextFontFamilyProperty = AvaloniaProperty.Register<TextElement, FontFamily>(nameof(TextFontFamily));
+    public FontFamily TextFontFamily
+    {
+        get => GetValue(TextFontFamilyProperty);
+        set => SetValue(TextFontFamilyProperty, value);
+    }
+    #endregion
+
     #region FontWeight
     public static readonly StyledProperty<FontWeight> TextFontWeightProperty = AvaloniaProperty.Register<InputElement, FontWeight>(nameof(TextFontWeight));
     public FontWeight TextFontWeight

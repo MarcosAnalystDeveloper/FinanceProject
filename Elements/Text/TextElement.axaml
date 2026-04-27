@@ -1,0 +1,51 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:element="using:FinanceProject.Elements">
+ 
+    	<ControlTheme x:Key="TextElementTheme" TargetType="element:TextElement">
+		<Setter Property="Template">
+			<ControlTemplate>
+				<Border x:Name="bd"
+						Background="{TemplateBinding BackgroundColor}"
+						BorderBrush="{TemplateBinding BorderColor}"
+						BorderThickness="{TemplateBinding BorderThickness}"
+						CornerRadius="{TemplateBinding CornerRadius}"
+						Width="{TemplateBinding Width}"
+						Height="{TemplateBinding Height}"
+						BoxShadow="">
+					<Canvas>
+						<TextBlock x:Name="txt"
+								   Text="{TemplateBinding Text}"
+								   Foreground="{TemplateBinding TextFontColor}"
+								   FontFamily="{TemplateBinding TextFontFamily}"
+								   FontSize="{TemplateBinding TextFontSize}"
+								   FontWeight="{TemplateBinding TextFontWeight}"
+								   Canvas.Left="{TemplateBinding TextPositionX}"
+								   Canvas.Right="{TemplateBinding TextPositionY}" />
+					</Canvas>
+				</Border>
+			</ControlTemplate>
+		</Setter>
+
+		<Style Selector="^:pointerover /template/ Border#bd">
+			<Setter Property="Background" Value="{TemplateBinding HoverColor}" />
+			<Setter Property="BorderBrush" Value="{TemplateBinding BorderHoverColor}" />
+			<Setter Property="RenderTransform" Value="scale(0.95)" />
+
+			<Style Selector="^ /template/ TextBlock#txt">
+				<Setter Property="Foreground" Value="{Binding $parent[element:TextElement].FontHoverColor, RelativeSource={RelativeSource TemplatedParent}}" />
+			</Style>
+		</Style>
+
+		<Style Selector="^:pointerpressed /template/ Border#bd">
+			<Setter Property="Background" Value="{TemplateBinding ActiveColor}" />
+			<Setter Property="BorderBrush" Value="{TemplateBinding BorderActiveColor}" />
+			<Setter Property="RenderTransform" Value="scale(0.9)" />
+
+			<Style Selector="^ /template/ TextBlock#txt">
+				<Setter Property="Foreground" Value="{Binding $parent[element:TextElement].FontActiveColor, RelativeSource={RelativeSource TemplatedParent}}" />
+			</Style>
+		</Style>
+
+	</ControlTheme>
+</ResourceDictionary>

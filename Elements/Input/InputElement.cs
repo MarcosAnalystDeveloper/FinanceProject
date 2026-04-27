@@ -2,5 +2,5 @@
 
 public partial class InputElement : BaseElement
 {
-    public InputElement() { }
+    public InputElement() { InitializeBaseElement(nameof(InputElement)); }
 }

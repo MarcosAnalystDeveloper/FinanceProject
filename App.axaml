@@ -7,6 +7,8 @@
 	<ResourceDictionary>
 		<ResourceDictionary.MergedDictionaries>
 			<ResourceInclude Source="avares://FinanceProject/Elements/Button/ButtonElement.axaml" />
+			<ResourceInclude Source="avares://FinanceProject/Elements/Text/TextElement.axaml" />
+			<ResourceInclude Source="avares://FinanceProject/Elements/Input/InputElement.axaml" />
 		</ResourceDictionary.MergedDictionaries>
 	</ResourceDictionary>
 	</Application.Resources>

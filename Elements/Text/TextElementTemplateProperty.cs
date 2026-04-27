@@ -23,6 +23,15 @@ public partial class TextElement
     }
     #endregion
 
+    #region FontFamily
+    public static readonly StyledProperty<FontFamily> TextFontFamilyProperty = AvaloniaProperty.Register<TextElement, FontFamily>(nameof(TextFontFamily));
+    public FontFamily TextFontFamily
+    {
+        get => GetValue(TextFontFamilyProperty);
+        set => SetValue(TextFontFamilyProperty, value);
+    }
+    #endregion
+
     #region FontWeight
     public static readonly StyledProperty<FontWeight> TextFontWeightProperty = AvaloniaProperty.Register<TextElement, FontWeight>(nameof(TextFontWeight));
     public FontWeight TextFontWeight
@@ -59,7 +68,7 @@ public partial class TextElement
     }
     #endregion
 
-    #region PositionX
+    #region TextPositionX
     public static readonly StyledProperty<double> TextPositionXProperty = AvaloniaProperty.Register<TextElement, double>(nameof(TextPositionX));
     public double TextPositionX
     {
@@ -68,7 +77,7 @@ public partial class TextElement
     }
     #endregion
 
-    #region PositionY
+    #region TextPositionY
     public static readonly StyledProperty<double> TextPositionYProperty = AvaloniaProperty.Register<TextElement, double>(nameof(TextPositionY));
     public double TextPositionY
     {

@@ -2,5 +2,5 @@
 
 public partial class TextElement : BaseElement
 {
-    public TextElement() { }
+    public TextElement() { InitializeBaseElement(nameof(TextElement)); }
 }

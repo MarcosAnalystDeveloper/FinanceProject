@@ -1,6 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:element="using:FinanceProject.Elements"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d"
 		x:Class="FinanceProject.PageLogin"
@@ -16,7 +17,33 @@
 	<Border Name="mainBorder" CornerRadius="8" Background="#FFFFFF">
 		<Grid RowDefinitions="20,*">
 			<Border Background="#7FD9F9">
+				<StackPanel Orientation="Horizontal">
+					<element:ButtonElement
+					x:Name="btnMinimize"
+					Width="20"
+					Height="20"
+					Opacity="1"
+					Theme="{StaticResource ButtonElementTheme}"
+					TextFontColor="Black"
+					TextFontFamily="Arial"
+					TextFontSize="20"
+					TextFontWeight="500"
+					TextPositionX="5"
+					TextPositionY="5"
+					Text="S"
+					FontSize="20"
+					BackgroundColor="Transparent"/>
+				</StackPanel>
 			</Border>
+
+			<Border
+			Grid.Row="1"
+			Width="400"
+			Height="400"
+			HorizontalAlignment="Center"
+			VerticalAlignment="Center"
+			BoxShadow="2 2 10 0 #40000000"/>
+
 		</Grid>
 	</Border>
 

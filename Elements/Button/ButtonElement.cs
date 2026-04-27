@@ -2,5 +2,5 @@
 
 public partial class ButtonElement : BaseElement
 {
-    public ButtonElement() { }
+    public ButtonElement() { InitializeBaseElement(nameof(ButtonElement)); }
 }

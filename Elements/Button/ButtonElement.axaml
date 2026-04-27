@@ -5,16 +5,15 @@
 	<ControlTheme x:Key="ButtonElementTheme" TargetType="element:ButtonElement">
 		<Setter Property="Template">
 			<ControlTemplate>
-				<Canvas>
-					<Border x:Name="bd"
-							Background="{TemplateBinding BackgroundColor}"
-							BorderBrush="{TemplateBinding BorderColor}"
-							BorderThickness="{TemplateBinding BorderThickness}"
-							CornerRadius="{TemplateBinding CornerRadius}"
-							Width="{TemplateBinding Width}"
-							Height="{TemplateBinding Height}"
-							BoxShadow="">
-
+				<Border x:Name="bd"
+						Background="{TemplateBinding BackgroundColor}"
+						BorderBrush="{TemplateBinding BorderColor}"
+						BorderThickness="{TemplateBinding BorderThickness}"
+						CornerRadius="{TemplateBinding CornerRadius}"
+						Width="{TemplateBinding Width}"
+						Height="{TemplateBinding Height}"
+						BoxShadow="">
+					<Canvas>
 						<TextBlock x:Name="txt"
 								   Text="{TemplateBinding Text}"
 								   Foreground="{TemplateBinding TextFontColor}"
@@ -23,8 +22,8 @@
 								   FontWeight="{TemplateBinding TextFontWeight}"
 								   Canvas.Left="{TemplateBinding TextPositionX}"
 								   Canvas.Right="{TemplateBinding TextPositionY}" />
-					</Border>
-				</Canvas>
+					</Canvas>
+				</Border>
 			</ControlTemplate>
 		</Setter>
 

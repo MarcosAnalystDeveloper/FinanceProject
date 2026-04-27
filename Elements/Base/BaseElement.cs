@@ -4,8 +4,5 @@ namespace FinanceProject.Elements;
 
 public partial class BaseElement : TemplatedControl
 {
-    public BaseElement()
-    {
-        
-    }
+    public BaseElement() { }
 }

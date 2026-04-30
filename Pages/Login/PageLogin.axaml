@@ -5,45 +5,154 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d"
 		x:Class="FinanceProject.PageLogin"
-		Title=""
-		Width="800"
-		Height="450"
-		WindowState="Normal"
+		Title="PlanB"
+		Width="1920"
+		Height="1080"
+		WindowState="Maximized"
 		WindowDecorations="None"
 		Background="Transparent"
 		TransparencyLevelHint="Transparent"
 		WindowStartupLocation="CenterScreen">
 
-	<Border Name="mainBorder" CornerRadius="8" Background="#FFFFFF">
-		<Grid RowDefinitions="20,*">
-			<Border Background="#7FD9F9">
-				<StackPanel Orientation="Horizontal">
-					<element:ButtonElement
-					x:Name="btnMinimize"
-					Width="20"
-					Height="20"
-					Opacity="1"
-					Theme="{StaticResource ButtonElementTheme}"
-					TextFontColor="Black"
-					TextFontFamily="Arial"
-					TextFontSize="20"
-					TextFontWeight="500"
-					TextPositionX="5"
-					TextPositionY="5"
-					Text="S"
-					FontSize="20"
-					BackgroundColor="Transparent"/>
-				</StackPanel>
-			</Border>
+	<Border Name="mainBorder" Background="#FFFFFF">
+		<Grid RowDefinitions="*,20*">
+			<Grid ColumnDefinitions="20*,1*,1*,1*" Background="#7FD9F9">
 
-			<Border
-			Grid.Row="1"
-			Width="400"
-			Height="400"
-			HorizontalAlignment="Center"
-			VerticalAlignment="Center"
-			BoxShadow="2 2 10 0 #40000000"/>
+				<element:ButtonElement
+				x:Name="btnMinimize"
+				Grid.Column="1"
+				Theme="{StaticResource ButtonElementTheme}"
+				TextFontColor="Black"
+				TextFontFamily="Arial"
+				TextFontSize="20"
+				TextFontWeight="500"
+				TextPositionX="0"
+				TextPositionY="0"
+				Icon="{StaticResource minimize}"
+				IconSize="16"
+				IconPositionX="2"
+				IconPositionY="0"
+				BackgroundColor="Transparent"/>
 
+				<element:ButtonElement
+				x:Name="btnWindow"
+				Grid.Column="2"
+				Theme="{StaticResource ButtonElementTheme}"
+				TextFontColor="Black"
+				TextFontFamily="Arial"
+				TextFontSize="20"
+				TextFontWeight="500"
+				TextPositionX="5"
+				TextPositionY="5"
+				Icon="{StaticResource window}"
+				IconSize="16"
+				IconPositionX="2"
+				IconPositionY="0"
+				BackgroundColor="Transparent"/>
+
+				<element:ButtonElement
+				x:Name="btnClose"
+				Grid.Column="3"
+				Theme="{StaticResource ButtonElementTheme}"
+				TextFontColor="Black"
+				TextFontFamily="Arial"
+				TextFontSize="20"
+				TextFontWeight="500"
+				TextPositionX="5"
+				TextPositionY="5"
+				Icon="{StaticResource close}"
+				IconSize="16"
+				IconPositionX="2"
+				IconPositionY="0"
+				BackgroundColor="Transparent"/>
+			</Grid>
+
+			<Grid Grid.Row="1" RowDefinitions="*,10*,*" ColumnDefinitions="*,10*,*">
+				<Border
+				Grid.Column="1"
+				Grid.Row="1"
+				BorderBrush="#40000000"
+				BorderThickness="1"
+				BoxShadow="2 2 10 1 #40000000">
+					<StackPanel>
+						<element:InputElement
+						Width="300"
+						Height="50"
+						BackgroundColor="Azure"
+						BorderColor="Black"
+						BorderThickness="1"
+						CornerRadius="5"
+						Text="Email"
+						TextFontColor="Black"
+						TextFontFamily="Arial"
+						TextFontWeight="500"
+						TextFontSize="14"
+						ValueFontColor="Black"
+						ValueFontFamily="Arial"
+						ValueFontWeight="400"
+						ValueFontSize="12"
+						ValueContainerWidth="200"
+						ValueContainerHeight="25"
+						ValuePositionX="0"
+						ValuePositionY="20"
+						Theme="{StaticResource InputElementTheme}"/>
+
+						<element:InputElement
+						Width="300"
+						Height="100"
+						BackgroundColor="Azure"
+						BorderColor="Black"
+						BorderThickness="1"
+						CornerRadius="5"
+						Text="Senha"
+						TextFontColor="Black"
+						TextFontFamily="Arial"
+						TextFontWeight="500"
+						TextFontSize="14"
+						ValueFontColor="Black"
+						ValueFontFamily="Arial"
+						ValueFontWeight="400"
+						ValueFontSize="12"
+						ValueContainerWidth="200"
+						ValueContainerHeight="25"
+						ValuePositionX="0"
+						ValuePositionY="20"
+						Theme="{StaticResource InputElementTheme}"/>
+
+						<element:TextElement
+						x:Name="txtForgotPassword"
+						Height="40"
+						Width="200"
+						BackgroundColor="Transparent"
+						CornerRadius="5"
+						TextFontColor="Black"
+						TextFontFamily="Arial"
+						TextFontSize="20"
+						TextFontWeight="500"
+						TextPositionX="5"
+						TextPositionY="5"
+						Text="Esqueceu a senha?"
+						FontSize="20"
+						Theme="{StaticResource TextElementTheme}" />
+
+						<element:ButtonElement
+						x:Name="btnLogin"
+						Height="40"
+						Width="200"
+						BackgroundColor="Red"
+						CornerRadius="5"
+						TextFontColor="Black"
+						TextFontFamily="Arial"
+						TextFontSize="20"
+						TextFontWeight="500"
+						TextPositionX="5"
+						TextPositionY="5"
+						Text="Entrar"
+						FontSize="20"
+						Theme="{StaticResource ButtonElementTheme}" />
+					</StackPanel>
+				</Border>
+			</Grid>
 		</Grid>
 	</Border>
 

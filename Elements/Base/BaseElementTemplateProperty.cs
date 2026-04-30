@@ -91,8 +91,8 @@ public partial class BaseElement
     #endregion
 
     #region CornerRadius
-    public new static readonly StyledProperty<Thickness> CornerRadiusProperty = AvaloniaProperty.Register<BaseElement, Thickness>(nameof(CornerRadius));
-    public new Thickness CornerRadius
+    public new static readonly StyledProperty<CornerRadius> CornerRadiusProperty = AvaloniaProperty.Register<BaseElement, CornerRadius>(nameof(CornerRadius));
+    public new CornerRadius CornerRadius
     {
         get => GetValue(CornerRadiusProperty);
         set => SetValue(CornerRadiusProperty, value);

@@ -9,19 +9,26 @@
 						Background="{TemplateBinding BackgroundColor}"
 						BorderBrush="{TemplateBinding BorderColor}"
 						BorderThickness="{TemplateBinding BorderThickness}"
-						CornerRadius="{TemplateBinding CornerRadius}"
-						Width="{TemplateBinding Width}"
-						Height="{TemplateBinding Height}"
-						BoxShadow="">
+						CornerRadius="{TemplateBinding CornerRadius}">
 					<Canvas>
 						<TextBlock x:Name="txt"
 								   Text="{TemplateBinding Text}"
+								   Background="Transparent"
 								   Foreground="{TemplateBinding TextFontColor}"
 								   FontFamily="{TemplateBinding TextFontFamily}"
 								   FontSize="{TemplateBinding TextFontSize}"
 								   FontWeight="{TemplateBinding TextFontWeight}"
 								   Canvas.Left="{TemplateBinding TextPositionX}"
-								   Canvas.Right="{TemplateBinding TextPositionY}" />
+								   Canvas.Top="{TemplateBinding TextPositionY}" />
+
+						<PathIcon x:Name="ico"
+								  Background="Transparent"
+								  Data="{TemplateBinding Icon}"
+								  FontSize="{TemplateBinding IconSize}"
+								  Foreground="{TemplateBinding TextFontColor}"
+								  Canvas.Left="{TemplateBinding IconPositionX}"
+								  Canvas.Top="{TemplateBinding IconPositionY}" />
+
 					</Canvas>
 				</Border>
 			</ControlTemplate>

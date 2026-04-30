@@ -5,20 +5,23 @@ namespace FinanceProject;
 
 public partial class PageLogin : Window
 {
-    public PageLogin() 
+    public PageLogin()
     {
         InitializeComponent();
         InitializeEvents();
     }
 
-    private void InitializeEvents() 
+    private void InitializeEvents()
     {
         mainBorder.PointerPressed += MainBorder_PointerPressed;
     }
 
     private void MainBorder_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
     {
-        if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
-            this.BeginMoveDrag(e);
+        if (WindowState != WindowState.Maximized)
+        {
+            if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
+                this.BeginMoveDrag(e);
+        }
     }
 }

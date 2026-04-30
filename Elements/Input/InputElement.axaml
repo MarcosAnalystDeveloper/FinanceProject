@@ -4,12 +4,27 @@
 
 	<Design.PreviewWith>
 		<Border Padding="50" Background="#f0f0f0">
-			<element:InputElement Theme="{StaticResource InputElementTheme}"
-								  Text="E-MAIL"
-								  BackgroundColor="White"
-								  CornerRadius="10"
-								  FontFamily="Arial"
-								  Width="300"/>
+			<element:InputElement
+			Width="300"
+			Height="300"
+			BackgroundColor="Azure"
+			BorderColor="Black"
+			BorderThickness="1"
+			CornerRadius="5"
+			Text="Nome"
+			TextFontColor="Black"
+			TextFontFamily="Arial"
+			TextFontWeight="500"
+			TextFontSize="14"
+			ValueFontColor="Black"
+			ValueFontFamily="Arial"
+			ValueFontWeight="400"
+			ValueFontSize="12"
+			ValueContainerWidth="200"
+			ValueContainerHeight="25"
+			ValuePositionX="0"
+			ValuePositionY="20"
+			Theme="{StaticResource InputElementTheme}"/>
 		</Border>
 	</Design.PreviewWith>
 
@@ -17,13 +32,8 @@
 		<Setter Property="Template">
 			<ControlTemplate>
 				<Border x:Name="bd"
-						Background="{TemplateBinding BackgroundColor}"
-						BorderBrush="{TemplateBinding BorderColor}"
-						BorderThickness="{TemplateBinding BorderThickness}"
-						CornerRadius="{TemplateBinding CornerRadius}"
 						Width="{TemplateBinding Width}"
-						Height="{TemplateBinding Height}"
-						BoxShadow="">
+						Height="{TemplateBinding Height}">
 					<Canvas>
 						<TextBlock x:Name="txt"
 								   Text="{TemplateBinding Text}"
@@ -32,35 +42,27 @@
 								   FontSize="{TemplateBinding TextFontSize}"
 								   FontWeight="{TemplateBinding TextFontWeight}"
 								   Canvas.Left="{TemplateBinding TextPositionX}"
-								   Canvas.Right="{TemplateBinding TextPositionY}" />
+								   Canvas.Top="{TemplateBinding TextPositionY}" />
 
-					<!--	<TextBox x:Name="tbk"
-								 Theme="{StaticResource TextBoxStyle}"/>-->
+						<TextBox x:Name="tbk"
+								 Background="{TemplateBinding BackgroundColor}"
+								 BorderBrush="{TemplateBinding BorderColor}"
+								 BorderThickness="{TemplateBinding BorderThickness}"
+								 CornerRadius="{TemplateBinding CornerRadius}"
+								 Width="{TemplateBinding ValueContainerWidth}"
+								 Height="{TemplateBinding ValueContainerHeight}"
+								 Foreground="{TemplateBinding ValueFontColor}"
+								 FontFamily="{TemplateBinding ValueFontFamily}"
+								 FontSize="{TemplateBinding ValueFontSize}"
+								 FontWeight="{TemplateBinding ValueFontWeight}"
+								 Canvas.Left="{TemplateBinding ValuePositionX}"
+								 Canvas.Top="{TemplateBinding ValuePositionY}"
+								 Theme="{StaticResource TextBoxStyle}"/>
 
 					</Canvas>
 				</Border>
 			</ControlTemplate>
 		</Setter>
-
-		<Style Selector="^:pointerover /template/ Border#bd">
-			<Setter Property="Background" Value="{TemplateBinding HoverColor}" />
-			<Setter Property="BorderBrush" Value="{TemplateBinding BorderHoverColor}" />
-			<Setter Property="RenderTransform" Value="scale(0.95)" />
-
-			<Style Selector="^ /template/ TextBlock#txt">
-				<Setter Property="Foreground" Value="{Binding $parent[element:InputElement].FontHoverColor, RelativeSource={RelativeSource TemplatedParent}}" />
-			</Style>
-		</Style>
-
-		<Style Selector="^:pointerpressed /template/ Border#bd">
-			<Setter Property="Background" Value="{TemplateBinding ActiveColor}" />
-			<Setter Property="BorderBrush" Value="{TemplateBinding BorderActiveColor}" />
-			<Setter Property="RenderTransform" Value="scale(0.9)" />
-
-			<Style Selector="^ /template/ TextBlock#txt">
-				<Setter Property="Foreground" Value="{Binding $parent[element:InputElement].FontActiveColor, RelativeSource={RelativeSource TemplatedParent}}" />
-			</Style>
-		</Style>
 	</ControlTheme>
 
 
@@ -69,10 +71,6 @@
 		<Setter Property="Foreground" Value="#333333"/>
 		<Setter Property="BorderBrush" Value="#E0E0E0"/>
 		<Setter Property="BorderThickness" Value="1"/>
-		<Setter Property="CornerRadius" Value="8"/>
-		<Setter Property="Padding" Value="12,8"/>
-		<Setter Property="MinHeight" Value="45"/>
-		<Setter Property="VerticalContentAlignment" Value="Center"/>
 		<Setter Property="Template">
 			<ControlTemplate>
 				<DataValidationErrors>
@@ -82,11 +80,10 @@
 								BorderBrush="{TemplateBinding BorderBrush}"
 								BorderThickness="{TemplateBinding BorderThickness}"
 								CornerRadius="{TemplateBinding CornerRadius}"
-								Transitions="{TemplateBinding Transitions}">
+								ClipToBounds="True">
 
 							<Grid ColumnDefinitions="Auto,*,Auto">
-								<ContentPresenter Grid.Column="1"
-												  Content="{TemplateBinding InnerLeftContent}"/>
+								<ContentPresenter Grid.Column="1" Content="{TemplateBinding InnerLeftContent}"/>
 
 								<ScrollViewer Grid.Column="1"
 											  HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
@@ -103,11 +100,10 @@
 												   SelectionBrush="{TemplateBinding SelectionBrush}"
 												   SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
 												   CaretBrush="{TemplateBinding CaretBrush}"
-												   VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+												   VerticalAlignment="Center"/>
 								</ScrollViewer>
 
-								<ContentPresenter Grid.Column="2"
-												  Content="{TemplateBinding InnerRightContent}"/>
+								<ContentPresenter Grid.Column="2" Content="{TemplateBinding InnerRightContent}"/>
 							</Grid>
 						</Border>
 					</Panel>
@@ -116,7 +112,8 @@
 		</Setter>
 
 		<Style Selector="^:focus /template/ Border#PART_Border">
-			<Setter Property="BorderBrush" Value="#7FD9F9"/> <Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="BorderBrush" Value="#7FD9F9"/>
+			<Setter Property="BorderThickness" Value="2"/>
 			<Setter Property="Background" Value="White"/>
 		</Style>
 

@@ -90,8 +90,8 @@ public partial class ButtonElement
 
     #region Icon
 
-    public static readonly StyledProperty<string> IconProperty = AvaloniaProperty.Register<ButtonElement, string>(nameof(Icon));
-    public string Icon
+    public static readonly StyledProperty<StreamGeometry> IconProperty = AvaloniaProperty.Register<ButtonElement, StreamGeometry>(nameof(Icon));
+    public StreamGeometry Icon
     {
         get => GetValue(IconProperty);
         set => SetValue(IconProperty, value);

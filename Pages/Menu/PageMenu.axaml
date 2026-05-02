@@ -1,0 +1,74 @@
+<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:element="using:FinanceProject.Elements"
+		xmlns:pg="using:FinanceProject"
+		mc:Ignorable="d"
+		x:Class="FinanceProject.PageMenu"
+		x:DataType="pg:PageMenu"
+		Title="Menu"
+		Width="840"
+		Height="500"
+		WindowState="Maximized"
+		WindowDecorations="None"
+		Background="Transparent"
+		TransparencyLevelHint="Transparent"
+		WindowStartupLocation="CenterScreen" >
+
+
+	<SplitView IsPaneOpen="{Binding IsPaneOpen, Mode=TwoWay}"
+			   OpenPaneLength="300"
+			   CompactPaneLength="48"
+			   DisplayMode="CompactInline"
+			   PaneBackground="#1e1e1e"
+			   Background="#1e1e1e">
+		<SplitView.Pane>
+			<StackPanel Spacing="5" Margin="5">
+				<element:ButtonElement
+				x:Name="btnMenu"
+				Width="25"
+				Height="25"
+				BackgroundColor="Transparent"
+				Margin="5,5,0,0"
+				HorizontalAlignment="Left"
+				TextFontColor="#FFFFFF"
+				TextFontFamily="Roboto"
+				TextFontSize="5"
+				TextFontWeight="Bold"
+				TextPositionX="0"
+				TextPositionY="0"
+				Icon="{StaticResource menu}"
+				IconPositionX="2"
+				IconPositionY="2"
+				IconSize="20"
+				Theme="{StaticResource ButtonElementTheme}"/>
+				<ListBox Background="#1e1e1e">
+					<ListBoxItem Padding="0" Margin="5,5,0,0">
+						<element:ButtonElement
+						Height="30"
+						Width="NaN"
+						BackgroundColor="Transparent"
+						Text="Home"
+						TextFontColor="#FFFFFF"
+						TextFontFamily="Roboto"
+						TextFontSize="18"
+						TextFontWeight="500"
+						TextPositionX="35"
+						TextPositionY="4"
+						Icon="{StaticResource home}"
+						IconPositionX="2"
+						IconPositionY="5"
+						IconSize="20"
+						Theme="{StaticResource ButtonElementTheme}"/>
+					</ListBoxItem>
+				</ListBox>
+			</StackPanel>
+		</SplitView.Pane>
+
+		<SplitView.Content>
+			<Border CornerRadius="10,0,0,0" Background="#2d2d2d">
+			</Border>
+		</SplitView.Content>
+	</SplitView>
+</Window>

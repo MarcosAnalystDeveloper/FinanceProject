@@ -90,8 +90,8 @@ public partial class TextElement
 
     #region Icon
 
-    public static readonly StyledProperty<string> IconProperty = AvaloniaProperty.Register<TextElement, string>(nameof(Icon));
-    public string Icon
+    public static readonly StyledProperty<StreamGeometry> IconProperty = AvaloniaProperty.Register<TextElement, StreamGeometry>(nameof(Icon));
+    public StreamGeometry Icon
     {
         get => GetValue(IconProperty);
         set => SetValue(IconProperty, value);
@@ -107,8 +107,8 @@ public partial class TextElement
     #endregion
 
     #region IconSize
-    public static readonly StyledProperty<int> IconSizeProperty = AvaloniaProperty.Register<TextElement, int>(nameof(IconSize));
-    public int IconSize
+    public static readonly StyledProperty<double> IconSizeProperty = AvaloniaProperty.Register<TextElement, double>(nameof(IconSize));
+    public double IconSize
     {
         get => GetValue(IconSizeProperty);
         set => SetValue(IconSizeProperty, value);

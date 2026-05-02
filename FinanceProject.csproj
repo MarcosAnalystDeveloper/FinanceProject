@@ -16,6 +16,7 @@
       <IncludeAssets Condition="'$(Configuration)' != 'Debug'">None</IncludeAssets>
       <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,6 +26,9 @@
   <ItemGroup>
     <Compile Update="Pages\Login\PageLogin.axaml.cs">
       <DependentUpon>PageLogin.axaml</DependentUpon>
+    </Compile>
+    <Compile Update="Pages\Menu\PageMenu.axaml.cs">
+      <DependentUpon>PageMenu.axaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

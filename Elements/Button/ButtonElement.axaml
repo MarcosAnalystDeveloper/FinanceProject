@@ -9,11 +9,13 @@
 						Background="{TemplateBinding BackgroundColor}"
 						BorderBrush="{TemplateBinding BorderColor}"
 						BorderThickness="{TemplateBinding BorderThickness}"
-						CornerRadius="{TemplateBinding CornerRadius}">
+						CornerRadius="{TemplateBinding CornerRadius}"
+						Width="{TemplateBinding Width}"
+						Height="{TemplateBinding Height}"
+						BoxShadow="">
 					<Canvas>
 						<TextBlock x:Name="txt"
 								   Text="{TemplateBinding Text}"
-								   Background="Transparent"
 								   Foreground="{TemplateBinding TextFontColor}"
 								   FontFamily="{TemplateBinding TextFontFamily}"
 								   FontSize="{TemplateBinding TextFontSize}"
@@ -28,7 +30,6 @@
 								  Foreground="{TemplateBinding TextFontColor}"
 								  Canvas.Left="{TemplateBinding IconPositionX}"
 								  Canvas.Top="{TemplateBinding IconPositionY}" />
-
 					</Canvas>
 				</Border>
 			</ControlTemplate>
@@ -40,7 +41,7 @@
 			<Setter Property="RenderTransform" Value="scale(0.95)" />
 
 			<Style Selector="^ /template/ TextBlock#txt">
-				<Setter Property="Foreground" Value="{Binding $parent[element:ButtonElement].FontHoverColor, RelativeSource={RelativeSource TemplatedParent}}" />
+				<Setter Property="Foreground" Value="{Binding $parent[element:TextElement].FontHoverColor, RelativeSource={RelativeSource TemplatedParent}}" />
 			</Style>
 		</Style>
 
@@ -50,15 +51,9 @@
 			<Setter Property="RenderTransform" Value="scale(0.9)" />
 
 			<Style Selector="^ /template/ TextBlock#txt">
-				<Setter Property="Foreground" Value="{Binding $parent[element:ButtonElement].FontActiveColor, RelativeSource={RelativeSource TemplatedParent}}" />
+				<Setter Property="Foreground" Value="{Binding $parent[element:TextElement].FontActiveColor, RelativeSource={RelativeSource TemplatedParent}}" />
 			</Style>
 		</Style>
-
-		<Setter Property="Transitions">
-			<Transitions>
-				<TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.075" Easing="CubicEaseOut"/>
-			</Transitions>
-		</Setter>
 
 	</ControlTheme>
 </ResourceDictionary>

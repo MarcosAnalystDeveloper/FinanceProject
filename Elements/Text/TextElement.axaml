@@ -1,8 +1,8 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 					xmlns:element="using:FinanceProject.Elements">
- 
-    	<ControlTheme x:Key="TextElementTheme" TargetType="element:TextElement">
+
+	<ControlTheme x:Key="TextElementTheme" TargetType="element:TextElement">
 		<Setter Property="Template">
 			<ControlTemplate>
 				<Border x:Name="bd"
@@ -22,6 +22,14 @@
 								   FontWeight="{TemplateBinding TextFontWeight}"
 								   Canvas.Left="{TemplateBinding TextPositionX}"
 								   Canvas.Right="{TemplateBinding TextPositionY}" />
+
+						<PathIcon x:Name="ico"
+								  Background="Transparent"
+								  Data="{TemplateBinding Icon}"
+								  FontSize="{TemplateBinding IconSize}"
+								  Foreground="{TemplateBinding TextFontColor}"
+								  Canvas.Left="{TemplateBinding IconPositionX}"
+								  Canvas.Top="{TemplateBinding IconPositionY}" />
 					</Canvas>
 				</Border>
 			</ControlTemplate>

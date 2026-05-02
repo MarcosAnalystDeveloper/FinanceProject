@@ -107,8 +107,8 @@ public partial class ButtonElement
     #endregion
 
     #region IconSize
-    public static readonly StyledProperty<int> IconSizeProperty = AvaloniaProperty.Register<ButtonElement, int>(nameof(IconSize));
-    public int IconSize
+    public static readonly StyledProperty<double> IconSizeProperty = AvaloniaProperty.Register<ButtonElement, double>(nameof(IconSize));
+    public double IconSize
     {
         get => GetValue(IconSizeProperty);
         set => SetValue(IconSizeProperty, value);

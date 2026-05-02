@@ -1,9 +1,8 @@
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 
 namespace FinanceProject;
 
-public partial class PageLogin : Window
+public partial class PageLogin : BasePage
 {
     public PageLogin()
     {

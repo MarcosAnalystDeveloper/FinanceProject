@@ -6,6 +6,7 @@
 		<Setter Property="Template">
 			<ControlTemplate>
 				<Border x:Name="bd"
+						HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
 						Background="{TemplateBinding BackgroundColor}"
 						BorderBrush="{TemplateBinding BorderColor}"
 						BorderThickness="{TemplateBinding BorderThickness}"

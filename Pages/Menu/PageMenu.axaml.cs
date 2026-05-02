@@ -1,8 +1,14 @@
+using Avalonia.Controls;
+using System;
+using System.Collections.ObjectModel;
+
 namespace FinanceProject;
 
 public partial class PageMenu : BasePage
 {
     #region Properties  
+    public ObservableCollection<TabItemTemplate> ListTabItem { get; } = new() { new TabItemTemplate(typeof(HomeContext)) };
+
     private bool _isPaneOpen = true;
     public bool IsPaneOpen
     {
@@ -12,6 +18,20 @@ public partial class PageMenu : BasePage
             if (_isPaneOpen != value)
             {
                 _isPaneOpen = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    private UserControl _currentPage = new HomeContext();
+    public UserControl CurrentPage
+    {
+        get => _currentPage;
+        set
+        {
+            if (_currentPage != value)
+            {
+                _currentPage = value;
                 OnPropertyChanged();
             }
         }
@@ -35,4 +55,16 @@ public partial class PageMenu : BasePage
         btnMenu.PointerPressed += btnMenu_PointerPressed;
     }
     #endregion
+}
+
+public class TabItemTemplate
+{
+    public string TabName { get; }
+    public Type ModelType { get; }
+
+    public TabItemTemplate(Type type)
+    {
+        ModelType = type;
+        TabName = ModelType.Name.Replace("Context", "");
+    }
 }

@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="Assets\" />
+    <Folder Include="Pages\Context\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -43,31 +43,34 @@
 				IconPositionY="2"
 				IconSize="20"
 				Theme="{StaticResource ButtonElementTheme}"/>
-				<ListBox Background="#1e1e1e">
-					<ListBoxItem Padding="0" Margin="5,5,0,0">
-						<element:ButtonElement
-						Height="30"
-						Width="NaN"
-						BackgroundColor="Transparent"
-						Text="Home"
-						TextFontColor="#FFFFFF"
-						TextFontFamily="Roboto"
-						TextFontSize="18"
-						TextFontWeight="500"
-						TextPositionX="35"
-						TextPositionY="4"
-						Icon="{StaticResource home}"
-						IconPositionX="2"
-						IconPositionY="5"
-						IconSize="20"
-						Theme="{StaticResource ButtonElementTheme}"/>
-					</ListBoxItem>
+				<ListBox ItemsSource="{Binding ListTabItem}" Background="#1e1e1e">
+					<ListBox.ItemTemplate>
+						<DataTemplate DataType="{x:Type pg:TabItemTemplate}">
+							<element:ButtonElement
+							Height="30"
+							Width="NaN"
+							BackgroundColor="Transparent"
+							Text="{Binding TabName}"
+							TextFontColor="#FFFFFF"
+							TextFontFamily="Roboto"
+							TextFontSize="18"
+							TextFontWeight="500"
+							TextPositionX="35"
+							TextPositionY="4"
+							Icon="{StaticResource home}"
+							IconPositionX="2"
+							IconPositionY="5"
+							IconSize="20"
+							Theme="{StaticResource ButtonElementTheme}"/>
+						</DataTemplate>
+					</ListBox.ItemTemplate>
 				</ListBox>
 			</StackPanel>
 		</SplitView.Pane>
 
 		<SplitView.Content>
 			<Border CornerRadius="10,0,0,0" Background="#2d2d2d">
+				<TransitioningContentControl Content="{Binding CurrentPage, Mode=TwoWay}"/>
 			</Border>
 		</SplitView.Content>
 	</SplitView>

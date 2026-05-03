@@ -3,6 +3,7 @@
 					xmlns:element="using:FinanceProject.Elements">
 
 	<ControlTheme x:Key="ButtonElementTheme" TargetType="element:ButtonElement">
+		<Setter Property="Cursor" Value="Hand"/>
 		<Setter Property="Template">
 			<ControlTemplate>
 				<Border x:Name="bd"

@@ -115,6 +115,15 @@ public partial class InputElement
     }
     #endregion
 
+    #region Watermark
+    public static readonly StyledProperty<string> ValueWatermarkProperty = AvaloniaProperty.Register<InputElement, string>(nameof(ValueWatermark));
+    public string ValueWatermark
+    {
+        get => GetValue(ValueWatermarkProperty);
+        set => SetValue(ValueWatermarkProperty, value);
+    }
+    #endregion
+
     #region FontColor
     public static readonly StyledProperty<IBrush> ValueFontColorProperty = AvaloniaProperty.Register<InputElement, IBrush>(nameof(ValueFontColor));
     public IBrush ValueFontColor
@@ -191,8 +200,8 @@ public partial class InputElement
 
     #region Icon
 
-    public static readonly StyledProperty<string> IconProperty = AvaloniaProperty.Register<InputElement, string>(nameof(Icon));
-    public string Icon
+    public static readonly StyledProperty<StreamGeometry> IconProperty = AvaloniaProperty.Register<InputElement, StreamGeometry>(nameof(Icon));
+    public StreamGeometry Icon
     {
         get => GetValue(IconProperty);
         set => SetValue(IconProperty, value);
@@ -208,8 +217,8 @@ public partial class InputElement
     #endregion
 
     #region IconSize
-    public static readonly StyledProperty<int> IconSizeProperty = AvaloniaProperty.Register<InputElement, int>(nameof(IconSize));
-    public int IconSize
+    public static readonly StyledProperty<double> IconSizeProperty = AvaloniaProperty.Register<InputElement, double>(nameof(IconSize));
+    public double IconSize
     {
         get => GetValue(IconSizeProperty);
         set => SetValue(IconSizeProperty, value);

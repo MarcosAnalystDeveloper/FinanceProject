@@ -5,155 +5,138 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d"
 		x:Class="FinanceProject.PageLogin"
+		Icon="avares://FinanceProject/Assets/icon.png"
 		Title="PlanB"
 		Width="1920"
 		Height="1080"
-		WindowState="Maximized"
+		WindowState="FullScreen"
 		WindowDecorations="None"
 		Background="Transparent"
-		TransparencyLevelHint="Transparent"
-		WindowStartupLocation="CenterScreen">
+		TransparencyLevelHint="Transparent">
 
-	<Border Name="mainBorder" Background="#FFFFFF">
-		<Grid RowDefinitions="*,20*">
-			<Grid ColumnDefinitions="20*,1*,1*,1*" Background="#7FD9F9">
+	<Grid>
+		<Image Source="avares://FinanceProject/Assets/backgroundLogin.png" Stretch="UniformToFill" />
 
-				<element:ButtonElement
-				x:Name="btnMinimize"
-				Grid.Column="1"
-				Theme="{StaticResource ButtonElementTheme}"
-				TextFontColor="Black"
-				TextFontFamily="Arial"
-				TextFontSize="20"
-				TextFontWeight="500"
-				TextPositionX="0"
-				TextPositionY="0"
-				Icon="{StaticResource minimize}"
-				IconSize="16"
-				IconPositionX="2"
-				IconPositionY="0"
-				BackgroundColor="Transparent"/>
+		<Grid RowDefinitions="55, *">
 
-				<element:ButtonElement
-				x:Name="btnWindow"
-				Grid.Column="2"
-				Theme="{StaticResource ButtonElementTheme}"
-				TextFontColor="Black"
-				TextFontFamily="Arial"
-				TextFontSize="20"
-				TextFontWeight="500"
-				TextPositionX="5"
-				TextPositionY="5"
-				Icon="{StaticResource window}"
-				IconSize="16"
-				IconPositionX="2"
-				IconPositionY="0"
-				BackgroundColor="Transparent"/>
+			<Grid Background="Transparent" ColumnDefinitions="Auto, *, Auto">
 
-				<element:ButtonElement
-				x:Name="btnClose"
-				Grid.Column="3"
-				Theme="{StaticResource ButtonElementTheme}"
-				TextFontColor="Black"
-				TextFontFamily="Arial"
-				TextFontSize="20"
-				TextFontWeight="500"
-				TextPositionX="5"
-				TextPositionY="5"
-				Icon="{StaticResource close}"
-				IconSize="16"
-				IconPositionX="2"
-				IconPositionY="0"
-				BackgroundColor="Transparent"/>
+				<StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="15,0,0,0" Spacing="10">
+					<Border Width="46" Height="46" Background="White" CornerRadius="23" BoxShadow="0 2 10 0 #20000000" Padding="6">
+						<Image Source="avares://FinanceProject/Assets/logo.png" Width="40" Height="40" Stretch="Fill"/>
+					</Border>
+					<TextBlock Text="Acompanhamento Financeiro" FontWeight="SemiBold" FontSize="14" Foreground="White" VerticalAlignment="Center"/>
+				</StackPanel>
+
+				<StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8">
+					<element:ButtonElement x:Name="btnMinimize" Width="30" Height="30" BackgroundColor="Transparent" TextFontWeight="100" TextFontSize="1" TextFontColor="#FFFFFF" Icon="{StaticResource minimize}" IconSize="14" Theme="{StaticResource ButtonElementTheme}"/>
+					<element:ButtonElement x:Name="btnClose" Width="30" Height="30" BackgroundColor="Transparent" TextFontWeight="100" TextFontSize="1" TextFontColor="#FFFFFF" Icon="{StaticResource close}" IconSize="14" Theme="{StaticResource ButtonElementTheme}"/>
+				</StackPanel>
 			</Grid>
 
-			<Grid Grid.Row="1" RowDefinitions="*,10*,*" ColumnDefinitions="*,10*,*">
-				<Border
-				Grid.Column="1"
-				Grid.Row="1"
-				BorderBrush="#40000000"
-				BorderThickness="1"
-				BoxShadow="2 2 10 1 #40000000">
-					<StackPanel>
+			<Grid Grid.Row="1">
+
+				<Border Width="400" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,150,0" Background="White" CornerRadius="12" Padding="40,40,40,30" BoxShadow="0 8 30 0 #30000000">
+
+					<StackPanel Spacing="15">
+
+						<TextBlock Text="Bem-vindo(a) ao Login" FontSize="26" FontWeight="Bold" Foreground="#111111" HorizontalAlignment="Center"/>
+						<TextBlock Text="Preencha os campos abaixo para acessar." FontSize="14" Foreground="#666666" HorizontalAlignment="Center" Margin="0,-5,0,10"/>
+
 						<element:InputElement
-						Width="300"
-						Height="50"
-						BackgroundColor="Azure"
-						BorderColor="Black"
+						x:Name="inputEmail"
+						Width="320" Height="65"
+						BackgroundColor="#F9F9F9"
+						BorderColor="#DDDDDD"
 						BorderThickness="1"
-						CornerRadius="5"
+						CornerRadius="6"
 						Text="Email"
-						TextFontColor="Black"
-						TextFontFamily="Arial"
-						TextFontWeight="500"
-						TextFontSize="14"
-						ValueFontColor="Black"
-						ValueFontFamily="Arial"
-						ValueFontWeight="400"
+						ValueWatermark="Digite seu email aqui..."
+						TextFontFamily="Roboto"
+						TextFontSize="12"
+						TextFontWeight="600"
+						TextFontColor="#555555"
+						ValueContainerWidth="320"
+						ValueContainerHeight="38"
+						ValueFontFamily="Roboto"
 						ValueFontSize="12"
-						ValueContainerWidth="200"
-						ValueContainerHeight="25"
+						ValueFontWeight="400"
+						ValueFontColor="#555555"
 						ValuePositionX="0"
 						ValuePositionY="20"
 						Theme="{StaticResource InputElementTheme}"/>
 
 						<element:InputElement
-						Width="300"
-						Height="100"
-						BackgroundColor="Azure"
-						BorderColor="Black"
+						x:Name="inputPassword"
+						Width="320" Height="65"
+						BackgroundColor="#F9F9F9"
+						BorderColor="#DDDDDD"
 						BorderThickness="1"
-						CornerRadius="5"
+						CornerRadius="6"
 						Text="Senha"
-						TextFontColor="Black"
-						TextFontFamily="Arial"
-						TextFontWeight="500"
-						TextFontSize="14"
-						ValueFontColor="Black"
-						ValueFontFamily="Arial"
-						ValueFontWeight="400"
+						ValueWatermark="Digite seu senha aqui..."
+						TextFontFamily="Roboto"
+						TextFontSize="12"
+						TextFontWeight="600"
+						TextFontColor="#555555"
+						ValueContainerWidth="320"
+						ValueContainerHeight="38"
+						ValueFontFamily="Roboto"
 						ValueFontSize="12"
-						ValueContainerWidth="200"
-						ValueContainerHeight="25"
+						ValueFontWeight="400"
+						ValueFontColor="#555555"
 						ValuePositionX="0"
 						ValuePositionY="20"
 						Theme="{StaticResource InputElementTheme}"/>
 
-						<element:TextElement
-						x:Name="txtForgotPassword"
-						Height="40"
-						Width="200"
-						BackgroundColor="Transparent"
-						CornerRadius="5"
-						TextFontColor="Black"
-						TextFontFamily="Arial"
-						TextFontSize="20"
-						TextFontWeight="500"
-						TextPositionX="5"
-						TextPositionY="5"
-						Text="Esqueceu a senha?"
-						FontSize="20"
-						Theme="{StaticResource TextElementTheme}" />
+						<TextBlock Text="Esqueceu a senha?" Foreground="#40A1F6" FontSize="12" Cursor="Hand" HorizontalAlignment="Left" Margin="0,-5,0,5"/>
 
 						<element:ButtonElement
 						x:Name="btnLogin"
-						Height="40"
-						Width="200"
-						BackgroundColor="Red"
-						CornerRadius="5"
-						TextFontColor="Black"
-						TextFontFamily="Arial"
-						TextFontSize="20"
-						TextFontWeight="500"
-						TextPositionX="5"
-						TextPositionY="5"
+						Width="320" Height="40"
+						BackgroundColor="#63B3ED"
+						ActiveColor="#63B3ED"
+						HoverColor="#63B3ED"
+						CornerRadius="6"
 						Text="Entrar"
-						FontSize="20"
+						TextFontSize="16"
+						TextFontWeight="400"
+						TextFontFamily="Roboto"
+						TextFontColor="#FFFFFF"
+						TextPositionX="135"
+						TextPositionY="8"
 						Theme="{StaticResource ButtonElementTheme}" />
+
+						<Grid ColumnDefinitions="*, Auto, *" Margin="0,5">
+							<Separator Grid.Column="0" Background="#EEEEEE"/>
+							<TextBlock Grid.Column="1" Text="Ou" FontSize="12" Foreground="#999999" Margin="10,0"/>
+							<Separator Grid.Column="2" Background="#EEEEEE"/>
+						</Grid>
+
+						<Grid ColumnDefinitions="*, 15, *">
+							<element:ButtonElement
+							Grid.Column="0" Height="38"
+							TextFontWeight="400"
+							BackgroundColor="#F7FAFC" BorderColor="#E2E8F0" BorderThickness="1" CornerRadius="6"
+							Text="Google" TextFontColor="#4A5568" TextFontSize="13"
+							Theme="{StaticResource ButtonElementTheme}"/>
+
+							<element:ButtonElement
+							Grid.Column="2" Height="38"
+							TextFontWeight="400"
+							BackgroundColor="#F7FAFC" BorderColor="#E2E8F0" BorderThickness="1" CornerRadius="6"
+							Text="Microsoft" TextFontColor="#4A5568" TextFontSize="13"
+							Theme="{StaticResource ButtonElementTheme}"/>
+						</Grid>
+
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="5" Margin="0,15,0,0">
+							<TextBlock Text="Não tem uma conta?" FontSize="12" Foreground="#718096"/>
+							<TextBlock Text="Criar uma" FontSize="12" Foreground="#40A1F6" Cursor="Hand"/>
+						</StackPanel>
+
 					</StackPanel>
 				</Border>
 			</Grid>
 		</Grid>
-	</Border>
-
+	</Grid>
 </Window>

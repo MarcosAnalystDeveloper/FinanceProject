@@ -7,14 +7,14 @@
 		mc:Ignorable="d"
 		x:Class="FinanceProject.PageMenu"
 		x:DataType="pg:PageMenu"
-		Title="Menu"
-		Width="840"
-		Height="500"
-		WindowState="Maximized"
+		Icon="avares://FinanceProject/Assets/icon.png"
+		Title="PlanB"
+		Width="1920"
+		Height="1080"
+		WindowState="FullScreen"
 		WindowDecorations="None"
 		Background="Transparent"
-		TransparencyLevelHint="Transparent"
-		WindowStartupLocation="CenterScreen" >
+		TransparencyLevelHint="Transparent">
 
 
 	<SplitView IsPaneOpen="{Binding IsPaneOpen, Mode=TwoWay}"

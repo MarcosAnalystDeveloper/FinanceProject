@@ -24,6 +24,10 @@
 			ValueContainerHeight="25"
 			ValuePositionX="0"
 			ValuePositionY="20"
+			Icon="{DynamicResource eye}"
+			IconSize="15"
+			IconPositionX="175"
+			IconPositionY="20"
 			Theme="{StaticResource InputElementTheme}"/>
 		</Border>
 	</Design.PreviewWith>
@@ -49,6 +53,7 @@
 								 BorderBrush="{TemplateBinding BorderColor}"
 								 BorderThickness="{TemplateBinding BorderThickness}"
 								 CornerRadius="{TemplateBinding CornerRadius}"
+								 Watermark="{TemplateBinding ValueWatermark}"
 								 Width="{TemplateBinding ValueContainerWidth}"
 								 Height="{TemplateBinding ValueContainerHeight}"
 								 Foreground="{TemplateBinding ValueFontColor}"
@@ -58,6 +63,14 @@
 								 Canvas.Left="{TemplateBinding ValuePositionX}"
 								 Canvas.Top="{TemplateBinding ValuePositionY}"
 								 Theme="{StaticResource TextBoxStyle}"/>
+
+						<PathIcon x:Name="ico"
+								  Background="Transparent"
+								  Data="{TemplateBinding Icon}"
+								  Width="{TemplateBinding IconSize}"
+								  Foreground="{TemplateBinding TextFontColor}"
+								  Canvas.Left="{TemplateBinding IconPositionX}"
+								  Canvas.Top="{TemplateBinding IconPositionY}" />
 
 					</Canvas>
 				</Border>
@@ -88,21 +101,34 @@
 								<ScrollViewer Grid.Column="1"
 											  HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
 											  VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
-									<TextPresenter x:Name="PART_TextPresenter"
-												   Text="{TemplateBinding Text, Mode=TwoWay}"
-												   CaretIndex="{TemplateBinding CaretIndex}"
-												   SelectionStart="{TemplateBinding SelectionStart}"
-												   SelectionEnd="{TemplateBinding SelectionEnd}"
-												   TextAlignment="{TemplateBinding TextAlignment}"
-												   TextWrapping="{TemplateBinding TextWrapping}"
-												   PasswordChar="{TemplateBinding PasswordChar}"
-												   RevealPassword="{TemplateBinding RevealPassword}"
-												   SelectionBrush="{TemplateBinding SelectionBrush}"
-												   SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
-												   CaretBrush="{TemplateBinding CaretBrush}"
-												   VerticalAlignment="Center"/>
-								</ScrollViewer>
+									<Panel>
+										<TextBlock x:Name="PART_Watermark"
+												   Margin="5 0 0 0"
+												   Text="{TemplateBinding Watermark}"
+												   Foreground="{TemplateBinding Foreground}"
+												   FontFamily="{TemplateBinding FontFamily}"
+												   FontWeight="{TemplateBinding FontWeight}"
+												   FontSize="{TemplateBinding FontSize}"
+												   IsHitTestVisible="False"
+												   VerticalAlignment="Center"
+												   IsVisible="{TemplateBinding Text, Converter={x:Static StringConverters.IsNullOrEmpty}}"/>
 
+										<TextPresenter x:Name="PART_TextPresenter"
+													   Margin="5 0 0 0"
+													   Text="{TemplateBinding Text, Mode=TwoWay}"
+													   CaretIndex="{TemplateBinding CaretIndex}"
+													   SelectionStart="{TemplateBinding SelectionStart}"
+													   SelectionEnd="{TemplateBinding SelectionEnd}"
+													   TextAlignment="{TemplateBinding TextAlignment}"
+													   TextWrapping="{TemplateBinding TextWrapping}"
+													   PasswordChar="{TemplateBinding PasswordChar}"
+													   RevealPassword="{TemplateBinding RevealPassword}"
+													   SelectionBrush="{TemplateBinding SelectionBrush}"
+													   SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+													   CaretBrush="{TemplateBinding CaretBrush}"
+													   VerticalAlignment="Center"/>
+									</Panel>
+								</ScrollViewer>
 								<ContentPresenter Grid.Column="2" Content="{TemplateBinding InnerRightContent}"/>
 							</Grid>
 						</Border>

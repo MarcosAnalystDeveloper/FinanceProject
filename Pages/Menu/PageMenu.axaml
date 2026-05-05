@@ -1,10 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:element="using:FinanceProject.Elements"
 		xmlns:pg="using:FinanceProject"
-		mc:Ignorable="d"
+		xmlns:element="using:FinanceProject.Elements"
 		x:Class="FinanceProject.PageMenu"
 		x:DataType="pg:PageMenu"
 		Icon="avares://FinanceProject/Assets/icon.png"
@@ -16,61 +13,70 @@
 		Background="Transparent"
 		TransparencyLevelHint="Transparent">
 
-
-	<SplitView IsPaneOpen="{Binding IsPaneOpen, Mode=TwoWay}"
-			   OpenPaneLength="300"
-			   CompactPaneLength="48"
+	<SplitView IsPaneOpen="{Binding IsPaneOpen}"
+			   OpenPaneLength="200"
+			   CompactPaneLength="70"
 			   DisplayMode="CompactInline"
-			   PaneBackground="#1e1e1e"
-			   Background="#1e1e1e">
+			   PaneBackground="#1A1C26">
+
 		<SplitView.Pane>
-			<StackPanel Spacing="5" Margin="5">
-				<element:ButtonElement
-				x:Name="btnMenu"
-				Width="25"
-				Height="25"
-				BackgroundColor="Transparent"
-				Margin="5,5,0,0"
-				HorizontalAlignment="Left"
-				TextFontColor="#FFFFFF"
-				TextFontFamily="Roboto"
-				TextFontSize="5"
-				TextFontWeight="Bold"
-				TextPositionX="0"
-				TextPositionY="0"
-				Icon="{StaticResource menu}"
-				IconPositionX="2"
-				IconPositionY="2"
-				IconSize="20"
-				Theme="{StaticResource ButtonElementTheme}"/>
-				<ListBox ItemsSource="{Binding ListTabItem}" Background="#1e1e1e">
+			<Grid RowDefinitions="Auto, *, Auto">
+				<element:ButtonElement x:Name="btnMenu"
+									   Width="40" Height="40"
+									   Margin="15"
+									   BackgroundColor="Transparent"
+									   IconSize="24"
+									   FontFamily="Roboto"
+									   TextFontWeight="100"
+									   TextFontSize="1"
+									   TextFontColor="#FFFFFF"
+									   Icon="{StaticResource menu}"
+									   Theme="{StaticResource ButtonElementTheme}"/>
+
+				<ListBox Grid.Row="1" ItemsSource="{Binding ListTabItem}"
+						 Background="Transparent" BorderThickness="0">
+					<ListBox.Styles>
+						<Style Selector="ListBoxItem">
+							<Setter Property="Padding" Value="10 5"/>
+							<Setter Property="Background" Value="Transparent"/>
+						</Style>
+						<!-- Estilização do item selecionado no Menu -->
+						<Style Selector="ListBoxItem:selected /template/ ContentPresenter">
+							<Setter Property="Background" Value="#252836"/>
+							<Setter Property="CornerRadius" Value="8"/>
+						</Style>
+					</ListBox.Styles>
+
 					<ListBox.ItemTemplate>
 						<DataTemplate DataType="{x:Type pg:TabItemTemplate}">
-							<element:ButtonElement
-							Height="30"
-							Width="NaN"
-							BackgroundColor="Transparent"
-							Text="{Binding TabName}"
-							TextFontColor="#FFFFFF"
-							TextFontFamily="Roboto"
-							TextFontSize="18"
-							TextFontWeight="500"
-							TextPositionX="35"
-							TextPositionY="4"
-							Icon="{StaticResource home}"
-							IconPositionX="2"
-							IconPositionY="5"
-							IconSize="20"
-							Theme="{StaticResource ButtonElementTheme}"/>
+							<StackPanel Orientation="Horizontal" Spacing="15" Height="40">
+								<PathIcon Data="{StaticResource home}" Foreground="#6366F1" Width="20"/>
+								<TextBlock Text="{Binding TabName}" VerticalAlignment="Center"
+										   Foreground="White" FontSize="16" IsVisible="{Binding $parent[SplitView].IsPaneOpen}"/>
+							</StackPanel>
 						</DataTemplate>
 					</ListBox.ItemTemplate>
 				</ListBox>
-			</StackPanel>
+
+				<!-- Botão Sair no Rodapé -->
+				<element:ButtonElement Grid.Row="2"
+									   Height="40" Width="40"
+									   Margin="15"
+									   BackgroundColor="Transparent"
+									   Text="Sair"
+									   FontFamily="Roboto"
+									   TextFontWeight="100"
+									   TextFontSize="1"
+									   Icon="{StaticResource logout}"
+									   TextFontColor="#FFFFFF"
+									   Theme="{StaticResource ButtonElementTheme}"/>
+			</Grid>
 		</SplitView.Pane>
 
 		<SplitView.Content>
-			<Border CornerRadius="10,0,0,0" Background="#2d2d2d">
-				<TransitioningContentControl Content="{Binding CurrentPage, Mode=TwoWay}"/>
+			<!-- Área onde os UserControls aparecerão -->
+			<Border CornerRadius="20,0,0,0" Background="#11131A" Margin="0">
+				<TransitioningContentControl Content="{Binding CurrentPage}"/>
 			</Border>
 		</SplitView.Content>
 	</SplitView>

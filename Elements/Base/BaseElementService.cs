@@ -15,8 +15,8 @@ public partial class BaseElement
         ControlTheme theme = default!;
         if (Application.Current!.TryGetResource(nameStyle + "Theme", ThemeVariant.Default, out var result))
         {
-            if (result is ControlTheme temaEncontrado)
-                theme = temaEncontrado;
+            if (result is ControlTheme controlTheme)
+                theme = controlTheme;
         }
 
         return theme;

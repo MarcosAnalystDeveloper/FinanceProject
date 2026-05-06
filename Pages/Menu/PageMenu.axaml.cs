@@ -1,4 +1,9 @@
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Primitives;
+using Avalonia.Media;
+using Avalonia.Styling;
+using LiveChartsCore.Themes;
 using System;
 using System.Collections.ObjectModel;
 
@@ -7,7 +12,14 @@ namespace FinanceProject;
 public partial class PageMenu : BasePage
 {
     #region Properties  
-    public ObservableCollection<TabItemTemplate> ListTabItem { get; } = new() { new TabItemTemplate(typeof(HomeContext)) };
+    public string Token { get; set; } = string.Empty;
+    public ObservableCollection<TabItemTemplate> ListTabItem { get; } = new()
+    {
+        new TabItemTemplate("home", "Menu"),
+        new TabItemTemplate("menu", "Novo Salário"),
+        new TabItemTemplate("menu", "Nova Dispesa"),
+        new TabItemTemplate("settings", "Configurações")
+    };
 
     private bool _isPaneOpen = true;
     public bool IsPaneOpen
@@ -37,7 +49,6 @@ public partial class PageMenu : BasePage
         }
     }
     #endregion
-
     public PageMenu()
     {
         InitializeComponent();
@@ -59,12 +70,19 @@ public partial class PageMenu : BasePage
 
 public class TabItemTemplate
 {
-    public string TabName { get; }
-    public Type ModelType { get; }
+    public string Title { get; init; }
+    public StreamGeometry Icon { get; init; }
 
-    public TabItemTemplate(Type type)
+    public TabItemTemplate(string icon, string title)
     {
-        ModelType = type;
-        TabName = ModelType.Name.Replace("Context", "");
+        Title = title;
+        if (!string.IsNullOrEmpty(icon))
+        {
+            if (Application.Current!.TryFindResource(icon, ThemeVariant.Default, out var result))
+            {
+                if (result is StreamGeometry themeIcon)
+                    Icon = themeIcon;
+            }
+        }
     }
 }

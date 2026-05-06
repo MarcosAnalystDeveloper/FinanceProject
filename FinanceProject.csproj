@@ -19,6 +19,7 @@
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
 		<PackageReference Include="LiveChartsCore.SkiaSharpView" Version="2.0.2" />
 		<PackageReference Include="LiveChartsCore.SkiaSharpView.Avalonia" Version="2.0.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Authorization" Version="10.0.7" />
 		<PackageReference Include="ScottPlot.Avalonia" Version="5.1.58" />
 	</ItemGroup>
 
@@ -28,8 +29,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Compile Update="Pages\Login\PageLogin.axaml.cs">
-			<DependentUpon>PageLogin.axaml</DependentUpon>
+		<Compile Update="Pages\Login\PageLoginView.axaml.cs">
+			<DependentUpon>PageLoginView.axaml</DependentUpon>
 		</Compile>
 		<Compile Update="Pages\Menu\PageMenu.axaml.cs">
 			<DependentUpon>PageMenu.axaml</DependentUpon>

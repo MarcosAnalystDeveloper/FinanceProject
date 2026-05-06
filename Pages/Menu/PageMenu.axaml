@@ -26,6 +26,9 @@
 									   Margin="15"
 									   BackgroundColor="Transparent"
 									   IconSize="24"
+									   IconPositionY="9"
+									   IconPositionX="9"
+									   HorizontalAlignment="Left"
 									   FontFamily="Roboto"
 									   TextFontWeight="100"
 									   TextFontSize="1"
@@ -40,7 +43,6 @@
 							<Setter Property="Padding" Value="10 5"/>
 							<Setter Property="Background" Value="Transparent"/>
 						</Style>
-						<!-- Estilização do item selecionado no Menu -->
 						<Style Selector="ListBoxItem:selected /template/ ContentPresenter">
 							<Setter Property="Background" Value="#252836"/>
 							<Setter Property="CornerRadius" Value="8"/>
@@ -49,32 +51,32 @@
 
 					<ListBox.ItemTemplate>
 						<DataTemplate DataType="{x:Type pg:TabItemTemplate}">
-							<StackPanel Orientation="Horizontal" Spacing="15" Height="40">
-								<PathIcon Data="{StaticResource home}" Foreground="#6366F1" Width="20"/>
-								<TextBlock Text="{Binding TabName}" VerticalAlignment="Center"
-										   Foreground="White" FontSize="16" IsVisible="{Binding $parent[SplitView].IsPaneOpen}"/>
+							<StackPanel Orientation="Horizontal" Spacing="15" Margin="0 5 0 0" HorizontalAlignment="Left" Height="40">
+								<PathIcon Data="{Binding Icon}" Margin="8 0 0 0" Foreground="#6366F1" Width="28" Height="28"/>
+								<TextBlock Text="{Binding Title}" VerticalAlignment="Center"  Foreground="White" FontSize="16" IsVisible="{Binding $parent[SplitView].IsPaneOpen}"/>
 							</StackPanel>
 						</DataTemplate>
 					</ListBox.ItemTemplate>
 				</ListBox>
 
-				<!-- Botão Sair no Rodapé -->
 				<element:ButtonElement Grid.Row="2"
-									   Height="40" Width="40"
+									   Height="40" Width="100"
 									   Margin="15"
 									   BackgroundColor="Transparent"
 									   Text="Sair"
 									   FontFamily="Roboto"
 									   TextFontWeight="100"
 									   TextFontSize="1"
+									   IconPositionY="9"
+									   HorizontalAlignment="Center"
+									   IconPositionX="40"
 									   Icon="{StaticResource logout}"
-									   TextFontColor="#FFFFFF"
+									   TextFontColor="Red"
 									   Theme="{StaticResource ButtonElementTheme}"/>
 			</Grid>
 		</SplitView.Pane>
 
 		<SplitView.Content>
-			<!-- Área onde os UserControls aparecerão -->
 			<Border CornerRadius="20,0,0,0" Background="#11131A" Margin="0">
 				<TransitioningContentControl Content="{Binding CurrentPage}"/>
 			</Border>

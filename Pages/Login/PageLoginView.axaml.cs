@@ -1,15 +1,19 @@
 using Avalonia;
 using Avalonia.Controls;
+using FinanceProject.Pages.Login;
 using FinanceProject.Pages.Login.Model;
 
 namespace FinanceProject;
 
 public partial class PageLogin : BasePage
 {
+    public PageLoginViewModel LoginViewModel => (PageLoginViewModel)this.DataContext!;
+
     public PageLogin()
     {
         InitializeComponent();
         InitializeEvents();
+        DataContext = new PageLoginViewModel();
     }
 
     #region Events
@@ -34,22 +38,19 @@ public partial class PageLogin : BasePage
     }
     private void btnMinimize_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e) { this.WindowState = WindowState.Minimized; }
     private void btnClose_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e) { this.Close(); }
-    private async void btnLogin_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e) { ExecuteRequestGetUser(); }
+    private async void btnLogin_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e) { Execute_Login(); }
     #endregion
 
     #region Methods
-    private async void ExecuteRequestGetUser()
+    private async void Execute_Login()
     {
         if (!string.IsNullOrEmpty(inputEmail.Text) && !string.IsNullOrEmpty(inputPassword.Text))
         {
-            PageLoginViewModel viewModel = new PageLoginViewModel();
-            string? token = await viewModel.GetUser(inputEmail.Text, inputPassword.Text);
-            if (token is not null) 
-            {
-                PageMenu pageMenu = new PageMenu();
-                pageMenu.Show();
-                this.Close();
-            }
+            AuthenticationResult authentication = await LoginViewModel.Login();
+            PageMenu pageMenu = new PageMenu();
+            pageMenu.Token = authentication.Token;
+            pageMenu.Show();
+            this.Close();
         }
     }
 

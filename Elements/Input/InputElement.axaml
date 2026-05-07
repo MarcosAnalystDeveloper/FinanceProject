@@ -72,6 +72,14 @@
 								  Canvas.Left="{TemplateBinding IconPositionX}"
 								  Canvas.Top="{TemplateBinding IconPositionY}" />
 
+						<!--Adicionar o funcionamento de imagem-->
+						<!--<PathIcon x:Name="img"
+								  Background="Transparent"
+								  Data="{TemplateBinding Icon}"
+								  Width="{TemplateBinding IconSize}"
+								  Canvas.Left="{TemplateBinding IconPositionX}"
+								  Canvas.Top="{TemplateBinding IconPositionY}" />-->
+
 					</Canvas>
 				</Border>
 			</ControlTemplate>

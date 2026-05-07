@@ -1,9 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
-using Avalonia.Controls.Primitives;
 using Avalonia.Media;
 using Avalonia.Styling;
-using LiveChartsCore.Themes;
 using System;
 using System.Collections.ObjectModel;
 
@@ -11,17 +9,27 @@ namespace FinanceProject;
 
 public partial class PageMenu : BasePage
 {
+    public PageMenu()
+    {
+        InitializeComponent();
+        this.DataContext = this;
+        lbxDrawer.SelectedItem = lbxDrawer.Items[0];
+        hasFirstSelected = false;
+        InitializeEvents();
+    }
+
     #region Properties  
     public string Token { get; set; } = string.Empty;
     public ObservableCollection<TabItemTemplate> ListTabItem { get; } = new()
     {
-        new TabItemTemplate("home", "Menu"),
-        new TabItemTemplate("menu", "Novo Salário"),
-        new TabItemTemplate("menu", "Nova Dispesa"),
-        new TabItemTemplate("settings", "Configurações")
+        new TabItemTemplate("home", "Menu", typeof(HomeContext)),
+        new TabItemTemplate("savings", "Novo Salário", typeof(SalaryContext)),
+        new TabItemTemplate("receipt", "Nova Dispesa", typeof(ExpenseContext)),
+        new TabItemTemplate("settings", "Configurações", typeof(SettingsContext))
     };
+    public bool hasFirstSelected { get; set; } = true;
 
-    private bool _isPaneOpen = true;
+    private bool _isPaneOpen = false;
     public bool IsPaneOpen
     {
         get => _isPaneOpen;
@@ -49,31 +57,62 @@ public partial class PageMenu : BasePage
         }
     }
     #endregion
-    public PageMenu()
-    {
-        InitializeComponent();
-        this.DataContext = this;
-        InitializeEvents();
-    }
-
-    #region Events
-    private void btnMenu_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e) { IsPaneOpen = !IsPaneOpen; }
-    #endregion
 
     #region Methods
     private void InitializeEvents()
     {
+        lbxDrawer.SelectionChanged += LbxDrawer_SelectionChanged;
+        btnLogout.PointerPressed += btnLogout_PointerPressed;
         btnMenu.PointerPressed += btnMenu_PointerPressed;
     }
     #endregion
+
+    #region Events
+    private void btnLogout_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
+    {
+        PageLogin pageLogin = new PageLogin();
+        pageLogin.Show();
+        this.Close();
+    }
+    private void LbxDrawer_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (!hasFirstSelected)
+        {
+            if (sender is ListBox listBox)
+            {
+                if (listBox.SelectedItem is not null && listBox.SelectedItem is TabItemTemplate tabItemTemplate)
+                {
+                    switch (tabItemTemplate.PageType)
+                    {
+                        case Type t when t == typeof(HomeContext):
+                            CurrentPage = new HomeContext();
+                            break;
+                        case Type t when t == typeof(SalaryContext):
+                            CurrentPage = new SalaryContext();
+                            break;
+                        case Type t when t == typeof(ExpenseContext):
+                            CurrentPage = new ExpenseContext();
+                            break;
+                        case Type t when t == typeof(SettingsContext):
+                            CurrentPage = new SettingsContext();
+                            break;
+                    }
+                }
+            }
+        }
+    }
+    private void btnMenu_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e) { IsPaneOpen = !IsPaneOpen; }
+    #endregion
+
 }
 
 public class TabItemTemplate
 {
     public string Title { get; init; }
     public StreamGeometry Icon { get; init; }
+    public Type PageType { get; set; }
 
-    public TabItemTemplate(string icon, string title)
+    public TabItemTemplate(string icon, string title, Type type)
     {
         Title = title;
         if (!string.IsNullOrEmpty(icon))
@@ -84,5 +123,6 @@ public class TabItemTemplate
                     Icon = themeIcon;
             }
         }
+        PageType = type;
     }
 }

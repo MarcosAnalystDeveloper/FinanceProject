@@ -46,9 +46,9 @@ public partial class PageLogin : BasePage
     {
         if (!string.IsNullOrEmpty(inputEmail.Text) && !string.IsNullOrEmpty(inputPassword.Text))
         {
-            AuthenticationResult authentication = await LoginViewModel.Login();
+            //AuthenticationResult authentication = await LoginViewModel.Login();
             PageMenu pageMenu = new PageMenu();
-            pageMenu.Token = authentication.Token;
+            //pageMenu.Token = authentication.Token;
             pageMenu.Show();
             this.Close();
         }

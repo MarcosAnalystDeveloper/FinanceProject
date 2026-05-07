@@ -15,7 +15,7 @@ namespace FinanceProject
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                desktop.MainWindow = new PageMenu();
+                desktop.MainWindow = new PageLogin();
             }
 
             base.OnFrameworkInitializationCompleted();

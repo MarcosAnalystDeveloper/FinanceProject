@@ -13,11 +13,11 @@
 		Background="Transparent"
 		TransparencyLevelHint="Transparent">
 
-	<SplitView IsPaneOpen="{Binding IsPaneOpen}"
-			   OpenPaneLength="200"
-			   CompactPaneLength="70"
-			   DisplayMode="CompactInline"
-			   PaneBackground="#1A1C26">
+	<SplitView 	IsPaneOpen="{Binding IsPaneOpen}"
+				OpenPaneLength="200"
+				CompactPaneLength="70"
+				DisplayMode="CompactInline"
+				PaneBackground="#1A1C26">
 
 		<SplitView.Pane>
 			<Grid RowDefinitions="Auto, *, Auto">
@@ -36,11 +36,12 @@
 									   Icon="{StaticResource menu}"
 									   Theme="{StaticResource ButtonElementTheme}"/>
 
-				<ListBox Grid.Row="1" ItemsSource="{Binding ListTabItem}"
+				<ListBox x:Name="lbxDrawer" Grid.Row="1" ItemsSource="{Binding ListTabItem}"
 						 Background="Transparent" BorderThickness="0">
 					<ListBox.Styles>
 						<Style Selector="ListBoxItem">
 							<Setter Property="Padding" Value="10 5"/>
+							<Setter Property="Margin" Value="0 25 0 0 "/>
 							<Setter Property="Background" Value="Transparent"/>
 						</Style>
 						<Style Selector="ListBoxItem:selected /template/ ContentPresenter">
@@ -51,27 +52,29 @@
 
 					<ListBox.ItemTemplate>
 						<DataTemplate DataType="{x:Type pg:TabItemTemplate}">
-							<StackPanel Orientation="Horizontal" Spacing="15" Margin="0 5 0 0" HorizontalAlignment="Left" Height="40">
-								<PathIcon Data="{Binding Icon}" Margin="8 0 0 0" Foreground="#6366F1" Width="28" Height="28"/>
+							<StackPanel Orientation="Horizontal" Spacing="15" HorizontalAlignment="Left" Height="40">
+								<PathIcon Data="{Binding Icon}" Margin="11 -2 0 0" Foreground="#6366F1" Width="24" Height="24"/>
 								<TextBlock Text="{Binding Title}" VerticalAlignment="Center"  Foreground="White" FontSize="16" IsVisible="{Binding $parent[SplitView].IsPaneOpen}"/>
 							</StackPanel>
 						</DataTemplate>
 					</ListBox.ItemTemplate>
 				</ListBox>
 
-				<element:ButtonElement Grid.Row="2"
+				<element:ButtonElement x:Name="btnLogout" Grid.Row="2"
 									   Height="40" Width="100"
 									   Margin="15"
 									   BackgroundColor="Transparent"
 									   Text="Sair"
 									   FontFamily="Roboto"
 									   TextFontWeight="100"
-									   TextFontSize="1"
+									   TextFontSize="20"
 									   IconPositionY="9"
-									   HorizontalAlignment="Center"
-									   IconPositionX="40"
-									   Icon="{StaticResource logout}"
+									   IconPositionX="10"
+									   TextPositionY="5"
+									   TextPositionX="40"
 									   TextFontColor="Red"
+									   Icon="{StaticResource logout}"
+									   HorizontalAlignment="Center"
 									   Theme="{StaticResource ButtonElementTheme}"/>
 			</Grid>
 		</SplitView.Pane>

@@ -1,8 +1,6 @@
-﻿using Avalonia.Controls.Notifications;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
@@ -12,22 +10,15 @@ namespace FinanceProject.Pages.Login;
 public class PageLoginModel
 {
     private Uri BaseUrl { get; } = new Uri("http://localhost:8000/");
-    public static readonly JsonSerializerOptions JsonOptions = new()
-    {
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-    };
+
+    public static readonly JsonSerializerOptions JsonOptions = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
 
 
     public async Task<AuthenticationResult?> Authorization(string username, string password)
     {
         HttpClient client = new HttpClient() { BaseAddress = BaseUrl };
 
-        var dict = new Dictionary<string, string>
-        {
-            { "username", username },
-            { "password", password }
-        };
+        Dictionary<string, string> dict = new Dictionary<string, string> { { "username", username }, { "password", password } };
 
         var content = new FormUrlEncodedContent(dict);
         try
@@ -36,10 +27,7 @@ public class PageLoginModel
             var result = await response.Content.ReadAsStringAsync();
             return response.IsSuccessStatusCode ? JsonSerializer.Deserialize<AuthenticationResult>(result, JsonOptions) : null;
         }
-        catch (Exception e)
-        {
-            return null;
-        }
+        catch (Exception e) { return null; }
     }
 }
 

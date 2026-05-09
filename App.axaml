@@ -10,6 +10,7 @@
 				<ResourceInclude Source="avares://FinanceProject/Elements/Button/ButtonElement.axaml" />
 				<ResourceInclude Source="avares://FinanceProject/Elements/Text/TextElement.axaml" />
 				<ResourceInclude Source="avares://FinanceProject/Elements/Input/InputElement.axaml" />
+				<ResourceInclude Source="avares://FinanceProject/Elements/Loading/LoadingElement.axaml" />
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
 	</Application.Resources>

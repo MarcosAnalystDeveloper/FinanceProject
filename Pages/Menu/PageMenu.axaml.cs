@@ -14,9 +14,9 @@ public partial class PageMenu : BasePage
     {
         InitializeComponent();
         this.DataContext = this;
-        lbxDrawer.SelectedItem = lbxDrawer.Items[0];
-        ListBoxItem Item = (ListBoxItem)lbxDrawer.Items.Last()!;
-        Item.Margin = new(0,50,0,0);
+        lbxDrawer.SelectedItem = lbxDrawer.Items.First();
+        //TabItemTemplate Item = (TabItemTemplate)lbxDrawer.ite.Last();
+        //Item.Margin = new(0,50,0,0);
         hasFirstSelected = false;
         InitializeEvents();
     }

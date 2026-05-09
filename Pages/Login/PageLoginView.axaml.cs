@@ -61,9 +61,9 @@ public partial class PageLogin : BasePage
     {
         if (!string.IsNullOrEmpty(inputEmail.Value) & !string.IsNullOrEmpty(inputPassword.Value))
         {
-            LoadingOverlay.IsVisible = true;
-            AuthenticationResult? authentication = await LoginViewModel.Login();
-            LoadingOverlay.IsVisible = false;
+            loadingOverlay.IsVisible = true;
+            AuthenticationResult? authentication = await LoginViewModel.Login(inputEmail.Value, inputPassword.Value);
+            loadingOverlay.IsVisible = false;
             if (authentication is not null)
             {
                 PageMenu pageMenu = new PageMenu();
@@ -72,7 +72,7 @@ public partial class PageLogin : BasePage
                 this.Close();
             }
             else
-                _notificationManager.Show(new Notification("Erro", "Email ou Senha errados.", NotificationType.Error));
+                _notificationManager.Show(new Notification("Erro ao acessar", "Email ou Senha incorretos.", NotificationType.Error));
         }
         else
             _notificationManager.Show(new Notification("Campos vazios", "Preencha todos os campos para continuar.", NotificationType.Warning));

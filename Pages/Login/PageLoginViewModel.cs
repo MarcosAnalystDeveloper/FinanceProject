@@ -6,6 +6,8 @@ namespace FinanceProject.Pages.Login.Model;
 
 public class PageLoginViewModel : INotifyPropertyChanged
 {
+    private PageLoginModel LoginService = new();
+
     #region Interface
     public new event PropertyChangedEventHandler? PropertyChanged;
     protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
@@ -14,39 +16,6 @@ public class PageLoginViewModel : INotifyPropertyChanged
     }
     #endregion
 
-    #region Properties
-    private PageLoginModel LoginService = new();
-
-    private string _userName = string.Empty;
-    public string UserName
-    {
-        get => _userName;
-        set
-        {
-            if (_userName != value)
-            {
-                _userName = value;
-                OnPropertyChanged();
-            }
-        }
-    }
-
-    private string _password = string.Empty;
-    public string Password
-    {
-        get => _password;
-        set
-        {
-            if (_password != value)
-            {
-                _password = value;
-                OnPropertyChanged();
-            }
-        }
-    }
-    #endregion
-
     public PageLoginViewModel() { }
-
-    public async Task<AuthenticationResult?> Login() { return await LoginService.Authorization("userTest@example.com", "123"); }
+    public async Task<AuthenticationResult?> Login(string email, string pasword) { return await LoginService.Authorization(email, pasword); }
 }

@@ -90,13 +90,6 @@ public partial class InputElement
 
     #region Value
 
-    public static readonly StyledProperty<string> ValueTextProperty = AvaloniaProperty.Register<InputElement, string>(nameof(ValueText));
-    public string ValueText
-    {
-        get => GetValue(ValueTextProperty);
-        set => SetValue(ValueTextProperty, value);
-    }
-
     #region ContainerWidth
     public static readonly StyledProperty<double> ValueContainerWidthProperty = AvaloniaProperty.Register<InputElement, double>(nameof(ValueContainerWidth));
     public double ValueContainerWidth

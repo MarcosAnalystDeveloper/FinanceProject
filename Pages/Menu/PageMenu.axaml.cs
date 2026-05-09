@@ -4,6 +4,7 @@ using Avalonia.Media;
 using Avalonia.Styling;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace FinanceProject;
 
@@ -14,6 +15,8 @@ public partial class PageMenu : BasePage
         InitializeComponent();
         this.DataContext = this;
         lbxDrawer.SelectedItem = lbxDrawer.Items[0];
+        ListBoxItem Item = (ListBoxItem)lbxDrawer.Items.Last()!;
+        Item.Margin = new(0,50,0,0);
         hasFirstSelected = false;
         InitializeEvents();
     }

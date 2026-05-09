@@ -138,5 +138,51 @@
 				</Border>
 			</Grid>
 		</Grid>
+
+		<Grid Name="LoadingOverlay" IsVisible="False" Background="#AA000000">
+			<Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+
+				<Ellipse Width="90" Height="90"
+						 StrokeThickness="5"
+						 StrokeLineCap="Round"
+						 StrokeDashArray="0.9, 0.1">
+					<Ellipse.Stroke>
+						<ConicGradientBrush Center="50%,50%" Angle="60"> 
+						<GradientStop Offset="0" Color="Transparent" />
+							<GradientStop Offset="1" Color="#7FD9F9" />
+						</ConicGradientBrush>
+					</Ellipse.Stroke>
+
+					<Ellipse.Styles>
+						<Style Selector="Ellipse">
+							<Style.Animations>
+								<Animation Duration="0:0:1.0" IterationCount="Infinite" Easing="SineEaseInOut">
+									<KeyFrame KeyTime="0:0:0">
+										<Setter Property="RotateTransform.Angle" Value="0"/>
+									</KeyFrame>
+									<KeyFrame KeyTime="0:0:1.0">
+										<Setter Property="RotateTransform.Angle" Value="360"/>
+									</KeyFrame>
+								</Animation>
+							</Style.Animations>
+						</Style>
+					</Ellipse.Styles>
+					<Ellipse.RenderTransform>
+						<RotateTransform />
+					</Ellipse.RenderTransform>
+				</Ellipse>
+
+				<Border Width="56" Height="56"
+						Background="White"
+						CornerRadius="28"
+						BoxShadow="0 4 15 0 #40000000"
+						VerticalAlignment="Center"
+						HorizontalAlignment="Center">
+					<Image Source="avares://FinanceProject/Assets/logo.png" Margin="10" Stretch="Uniform"/>
+				</Border>
+
+			</Grid>
+		</Grid>
+
 	</Grid>
 </Window>

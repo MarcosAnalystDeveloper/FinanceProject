@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Avalonia.Controls.Notifications;
+using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text.Json;
@@ -9,7 +11,7 @@ namespace FinanceProject.Pages.Login;
 
 public class PageLoginModel
 {
-    private Uri BaseUrl { get; } = new Uri("https://localhost:800/");
+    private Uri BaseUrl { get; } = new Uri("http://localhost:8000/");
     public static readonly JsonSerializerOptions JsonOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -17,17 +19,28 @@ public class PageLoginModel
     };
 
 
-    public async Task<AuthenticationResult?> Authorization(string userName, string password)
+    public async Task<AuthenticationResult?> Authorization(string username, string password)
     {
         HttpClient client = new HttpClient() { BaseAddress = BaseUrl };
-        var response = await client.PostAsync("POST/token/", JsonContent.Create(new
+
+        var dict = new Dictionary<string, string>
         {
-            userName,
-            password
-        }));
-        var content = await response.Content.ReadAsStringAsync();
-        return response.IsSuccessStatusCode ? JsonSerializer.Deserialize<AuthenticationResult>(content, JsonOptions) : null;
+            { "username", username },
+            { "password", password }
+        };
+
+        var content = new FormUrlEncodedContent(dict);
+        try
+        {
+            var response = await client.PostAsync("login", content);
+            var result = await response.Content.ReadAsStringAsync();
+            return response.IsSuccessStatusCode ? JsonSerializer.Deserialize<AuthenticationResult>(result, JsonOptions) : null;
+        }
+        catch (Exception e)
+        {
+            return null;
+        }
     }
 }
 
-public record AuthenticationResult(string Token);
+public record AuthenticationResult(string acess_token);

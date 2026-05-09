@@ -1,8 +1,28 @@
 <UserControl xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="FinanceProject.SalaryContext">
-  Welcome to Avalonia!
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:element="using:FinanceProject.Elements"
+			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:Class="FinanceProject.SalaryContext">
+
+	<Grid>
+		<element:ButtonElement
+		x:Name="btnNewSalary"
+		Width="200" Height="50"
+		Margin="15"
+		BackgroundColor="#193178"
+		IconSize="24"
+		IconPositionY="9"
+		IconPositionX="9"
+		HorizontalAlignment="Left"
+		FontFamily="Arial"
+		Text="Novo Salário"
+		CornerRadius="15"
+		TextFontWeight="400"
+		TextFontSize="24"
+		TextFontColor="#FFFFFF"
+		Icon="{StaticResource add}"
+		Theme="{StaticResource ButtonElementTheme}"/>
+	</Grid>
 </UserControl>

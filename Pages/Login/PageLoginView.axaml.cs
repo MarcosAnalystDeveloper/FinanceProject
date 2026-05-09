@@ -1,5 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Controls.Notifications;
+using Avalonia.Interactivity;
 using FinanceProject.Pages.Login;
 using FinanceProject.Pages.Login.Model;
 
@@ -7,6 +9,7 @@ namespace FinanceProject;
 
 public partial class PageLogin : BasePage
 {
+    private WindowNotificationManager _notificationManager;
     public PageLoginViewModel LoginViewModel => (PageLoginViewModel)this.DataContext!;
 
     public PageLogin()
@@ -22,6 +25,18 @@ public partial class PageLogin : BasePage
         btnMinimize.PointerPressed += btnMinimize_PointerPressed;
         btnClose.PointerPressed += btnClose_PointerPressed;
         btnLogin.PointerPressed += btnLogin_PointerPressed;
+    }
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        if (Design.IsDesignMode)
+            return;
+
+        _notificationManager = new WindowNotificationManager(this)
+        {
+            Position = NotificationPosition.TopRight,
+            MaxItems = 2
+        };
     }
     protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
     {
@@ -44,15 +59,23 @@ public partial class PageLogin : BasePage
     #region Methods
     private async void Execute_Login()
     {
-        if (!string.IsNullOrEmpty(inputEmail.Text) && !string.IsNullOrEmpty(inputPassword.Text))
+        if (!string.IsNullOrEmpty(inputEmail.Value) & !string.IsNullOrEmpty(inputPassword.Value))
         {
-            //AuthenticationResult authentication = await LoginViewModel.Login();
-            PageMenu pageMenu = new PageMenu();
-            //pageMenu.Token = authentication.Token;
-            pageMenu.Show();
-            this.Close();
+            LoadingOverlay.IsVisible = true;
+            AuthenticationResult? authentication = await LoginViewModel.Login();
+            LoadingOverlay.IsVisible = false;
+            if (authentication is not null)
+            {
+                PageMenu pageMenu = new PageMenu();
+                pageMenu.Token = authentication.acess_token;
+                pageMenu.Show();
+                this.Close();
+            }
+            else
+                _notificationManager.Show(new Notification("Erro", "Email ou Senha errados.", NotificationType.Error));
         }
+        else
+            _notificationManager.Show(new Notification("Campos vazios", "Preencha todos os campos para continuar.", NotificationType.Warning));
     }
-
     #endregion
 }

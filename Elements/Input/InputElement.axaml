@@ -56,6 +56,7 @@
 								 Watermark="{TemplateBinding ValueWatermark}"
 								 Width="{TemplateBinding ValueContainerWidth}"
 								 Height="{TemplateBinding ValueContainerHeight}"
+								 Text="{Binding $parent[element:InputElement].Value, Mode=TwoWay}"
 								 Foreground="{TemplateBinding ValueFontColor}"
 								 FontFamily="{TemplateBinding ValueFontFamily}"
 								 FontSize="{TemplateBinding ValueFontSize}"
@@ -74,11 +75,11 @@
 
 						<!--Adicionar o funcionamento de imagem-->
 						<!--<PathIcon x:Name="img"
-								  Background="Transparent"
-								  Data="{TemplateBinding Icon}"
-								  Width="{TemplateBinding IconSize}"
-								  Canvas.Left="{TemplateBinding IconPositionX}"
-								  Canvas.Top="{TemplateBinding IconPositionY}" />-->
+						Background="Transparent"
+						Data="{TemplateBinding Icon}"
+						Width="{TemplateBinding IconSize}"
+						Canvas.Left="{TemplateBinding IconPositionX}"
+						Canvas.Top="{TemplateBinding IconPositionY}" />-->
 
 					</Canvas>
 				</Border>
@@ -123,7 +124,7 @@
 
 										<TextPresenter x:Name="PART_TextPresenter"
 													   Margin="5 0 0 0"
-													   Text="{TemplateBinding Text, Mode=TwoWay}"
+													   Text="{TemplateBinding Text}"
 													   CaretIndex="{TemplateBinding CaretIndex}"
 													   SelectionStart="{TemplateBinding SelectionStart}"
 													   SelectionEnd="{TemplateBinding SelectionEnd}"

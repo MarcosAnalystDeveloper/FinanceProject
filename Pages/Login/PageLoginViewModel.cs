@@ -48,5 +48,5 @@ public class PageLoginViewModel : INotifyPropertyChanged
 
     public PageLoginViewModel() { }
 
-    public async Task<AuthenticationResult?> Login() { return await LoginService.Authorization(UserName, Password); }
+    public async Task<AuthenticationResult?> Login() { return await LoginService.Authorization("userTest@example.com", "123"); }
 }

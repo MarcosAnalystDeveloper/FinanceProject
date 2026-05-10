@@ -1,7 +1,9 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Styling;
+using FinanceProject.Pages.Menu;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -10,19 +12,19 @@ namespace FinanceProject;
 
 public partial class PageMenu : BasePage
 {
+    public PageMenuViewModel MenuViewModel;
     public PageMenu()
     {
         InitializeComponent();
         this.DataContext = this;
         lbxDrawer.SelectedItem = lbxDrawer.Items.First();
-        //TabItemTemplate Item = (TabItemTemplate)lbxDrawer.ite.Last();
-        //Item.Margin = new(0,50,0,0);
         hasFirstSelected = false;
-        InitializeEvents();
+        InitializeEvents(); 
     }
 
     #region Properties  
-    public string Token { get; set; } = string.Empty;
+    public UserFinance Profile { get; set; }
+    public string Token { get; set; }
     public ObservableCollection<TabItemTemplate> ListTabItem { get; } = new()
     {
         new TabItemTemplate("home", "Menu", typeof(HomeContext)),
@@ -68,9 +70,24 @@ public partial class PageMenu : BasePage
         btnLogout.PointerPressed += btnLogout_PointerPressed;
         btnMenu.PointerPressed += btnMenu_PointerPressed;
     }
+    private async void InitializeUserProfile()
+    {
+        MenuViewModel = new PageMenuViewModel(Token);
+        UserFinance? user = await MenuViewModel.LoadUser();
+        if (user is not null)
+            Profile = user;
+    }
     #endregion
 
     #region Events
+    protected override void OnLoaded(RoutedEventArgs e)
+    {
+        base.OnLoaded(e);
+        if (Design.IsDesignMode)
+            return;
+
+        InitializeUserProfile();
+    }
     private void btnLogout_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
     {
         PageLogin pageLogin = new PageLogin();

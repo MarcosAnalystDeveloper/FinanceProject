@@ -2,18 +2,12 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace FinanceProject.Pages.Login;
 
-public class PageLoginModel
+public class PageLoginModel : ServiceModel
 {
-    private Uri BaseUrl { get; } = new Uri("http://localhost:8000/");
-
-    public static readonly JsonSerializerOptions JsonOptions = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
-
-
     public async Task<AuthenticationResult?> Authorization(string username, string password)
     {
         HttpClient client = new HttpClient() { BaseAddress = BaseUrl };

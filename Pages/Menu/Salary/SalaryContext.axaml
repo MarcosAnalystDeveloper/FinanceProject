@@ -3,26 +3,94 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:element="using:FinanceProject.Elements"
-			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 mc:Ignorable="d"
+			 xmlns:pg="using:FinanceProject"
+			 x:DataType="pg:SalaryContext"
+			 xmlns:models="using:FinanceProject.Transaction"
+			 d:DesignWidth="800"
+			 d:DesignHeight="450"
 			 x:Class="FinanceProject.SalaryContext">
 
-	<Grid>
+	<UserControl.Styles>
+		<Style Selector="DataGridColumnHeader">
+			<Setter Property="Background" Value="#F1F3F5"/>
+			<Setter Property="Foreground" Value="#6C757D"/>
+			<Setter Property="FontWeight" Value="SemiBold"/>
+			<Setter Property="FontSize" Value="13"/>
+			<Setter Property="Padding" Value="10,15"/>
+		</Style>
+
+		<Style Selector="DataGridCell">
+			<Setter Property="Height" Value="50"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+		</Style>
+	</UserControl.Styles>
+
+	<Grid RowDefinitions="Auto, *">
 		<element:ButtonElement
 		x:Name="btnNewSalary"
 		Width="200" Height="50"
 		Margin="15"
 		BackgroundColor="#193178"
+		HoverColor="#193178"
 		IconSize="24"
 		IconPositionY="9"
 		IconPositionX="9"
 		HorizontalAlignment="Left"
 		FontFamily="Arial"
-		Text="Novo Salário"
+		Text="Nova Renda"
 		CornerRadius="15"
 		TextFontWeight="400"
 		TextFontSize="24"
 		TextFontColor="#FFFFFF"
 		Icon="{StaticResource add}"
 		Theme="{StaticResource ButtonElementTheme}"/>
+
+		<DataGrid
+		Grid.Row="1"
+		ItemsSource="{Binding Salaries}"
+		AutoGenerateColumns="False"
+		CanUserResizeColumns="True"
+		GridLinesVisibility="None"
+		HeadersVisibility="Column"
+		SelectionMode="Single"
+		Background="White"
+		RowBackground="White" >
+
+			<DataGrid.Columns>
+				<DataGridCheckBoxColumn x:DataType="models:TransactionFinance" Width="50" />
+				<DataGridTextColumn x:DataType="models:TransactionFinance" IsReadOnly="True" Header="" Binding="{Binding Id}" Width="50" />
+				<DataGridTextColumn x:DataType="models:TransactionFinance" IsReadOnly="True" Header="Categoria" Binding="{Binding Category}" Width="*" />
+
+				<DataGridTemplateColumn Header="Quantia" Width="*" IsReadOnly="True">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate x:DataType="models:TransactionFinance">
+							<StackPanel Orientation="Horizontal" Spacing="10" VerticalAlignment="Center" Margin="5,0">
+								<TextBlock Text="{Binding Amount}" VerticalAlignment="Center" />
+							</StackPanel>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTextColumn x:DataType="models:TransactionFinance" IsReadOnly="True" Header="Data" Binding="{Binding Date}" Width="*" />
+				<DataGridTextColumn x:DataType="models:TransactionFinance" IsReadOnly="True" Header="Descrição" Binding="{Binding Description}" Width="*" />
+
+				<DataGridTemplateColumn Header="Editar/Deletar" Width="Auto">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate x:DataType="models:TransactionFinance">
+							<StackPanel Orientation="Horizontal" Spacing="8" Margin="10,0">
+								<Button Background="#5C6BC0" Width="32" Height="32" CornerRadius="4" Padding="0">
+									<PathIcon Data="{StaticResource edit}" Foreground="White" Width="14"/>
+								</Button>
+								<Button Background="#E57373" Width="32" Height="32" CornerRadius="4" Padding="0">
+									<PathIcon Data="{StaticResource trash}" Foreground="White" Width="14"/>
+								</Button>
+							</StackPanel>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+			</DataGrid.Columns>
+		</DataGrid>
 	</Grid>
+
 </UserControl>

@@ -80,7 +80,22 @@ public partial class SalaryContext : BaseContext
     {
         if (sender is Button btn && btn.DataContext is TransactionFinance transaction)
         {
-            //Fazer lógica para editar um Salário apos implementação do Back-End.
+            if (MainWindow is not null)
+            {
+                TransactionOverlay dialog = new TransactionOverlay();
+                Border? overlay = MainWindow.FindControl<Border>("DarkOverlay");
+                if (overlay is not null)
+                    overlay.IsVisible = true;
+
+                bool result = await dialog.ShowDialog<bool>(MainWindow);
+                if(result)
+                    _notificationManager.Show(new Notification("Sucesso", "Salário editado com sucesso.", NotificationType.Success));
+
+                RefleshListSalary();
+
+                if (overlay != null)
+                    overlay.IsVisible = false;
+            }
         }
     }
     private async void OnDeleteClick(object? sender, RoutedEventArgs e)

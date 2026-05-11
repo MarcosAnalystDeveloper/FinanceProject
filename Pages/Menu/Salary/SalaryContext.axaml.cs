@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
 using Avalonia.Interactivity;
 using Avalonia.VisualTree;
+using FinanceProject.Enum;
 using FinanceProject.Pages;
 using FinanceProject.Pages.Menu.Salary;
 using FinanceProject.Transaction;
@@ -53,28 +54,8 @@ public partial class SalaryContext : BaseContext
                 MaxItems = 2
             };
         }
-
         SalaryContextViewModel = new SalaryContextViewModel(Token);
         RefleshListSalary();
-    }
-    #endregion
-
-    #region Methods
-    private async void RefleshListSalary()
-    {
-        List<TransactionFinance>? listSalaries = await SalaryContextViewModel.LoadListSalary();
-        if (listSalaries is not null)
-        {
-            double salary = 0;
-            Salaries.Clear();
-            foreach (TransactionFinance transactionFinance in listSalaries)
-            {
-                salary += transactionFinance.Amount;
-                Salaries.Add(transactionFinance);
-            }
-
-            TotalSalary = $"R$ {salary}";
-        }
     }
     private async void OnEditClick(object? sender, RoutedEventArgs e)
     {
@@ -83,6 +64,9 @@ public partial class SalaryContext : BaseContext
             if (MainWindow is not null)
             {
                 TransactionOverlay dialog = new TransactionOverlay();
+                dialog.TransactionType = EnumTransactionType.Entrada;
+                dialog.CurrentTransaction = transaction;
+
                 Border? overlay = MainWindow.FindControl<Border>("DarkOverlay");
                 if (overlay is not null)
                     overlay.IsVisible = true;
@@ -125,6 +109,46 @@ public partial class SalaryContext : BaseContext
                 if (overlay != null)
                     overlay.IsVisible = false;
             }
+        }
+    }
+    private async void BtnNewSalary_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
+    {
+        if (MainWindow is not null)
+        {
+            TransactionOverlay dialog = new TransactionOverlay();
+            dialog.TransactionType = EnumTransactionType.Entrada;
+
+            Border? overlay = MainWindow.FindControl<Border>("DarkOverlay");
+            if (overlay is not null)
+                overlay.IsVisible = true;
+
+            bool result = await dialog.ShowDialog<bool>(MainWindow);
+            if (result)
+                _notificationManager.Show(new Notification("Sucesso", "Salário criado com sucesso.", NotificationType.Success));
+
+            RefleshListSalary();
+
+            if (overlay != null)
+                overlay.IsVisible = false;
+        }
+    }
+    #endregion
+
+    #region Methods
+    private async void RefleshListSalary()
+    {
+        List<TransactionFinance>? listSalaries = await SalaryContextViewModel.LoadListSalary();
+        if (listSalaries is not null)
+        {
+            double salary = 0;
+            Salaries.Clear();
+            foreach (TransactionFinance transactionFinance in listSalaries)
+            {
+                salary += transactionFinance.Amount;
+                Salaries.Add(transactionFinance);
+            }
+
+            TotalSalary = $"R$ {salary}";
         }
     }
     #endregion

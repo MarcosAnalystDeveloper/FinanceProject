@@ -60,6 +60,7 @@
 					CornerRadius="12"
 					TextFontWeight="DemiBold"
 					TextFontSize="24"
+					PointerPressed="BtnNewSalary_PointerPressed"
 					TextFontColor="#FFFFFF"
 					Icon="{StaticResource add}"
 					Theme="{StaticResource ButtonElementTheme}"/>

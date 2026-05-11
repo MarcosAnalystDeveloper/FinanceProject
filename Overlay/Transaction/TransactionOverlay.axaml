@@ -2,12 +2,18 @@
 		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:element="using:FinanceProject.Elements"
+		x:Class="FinanceProject.TransactionOverlay"
 		mc:Ignorable="d"
 		Title=""
 		Width="800"
-		Height="450"
+		Height="350"
 		Background="Transparent"
-		x:Class="FinanceProject.TransactionOverlay" >
+		WindowStartupLocation="CenterOwner"
+		CanResize="False"
+		TransparencyLevelHint="AcrylicBlur"
+		WindowDecorations="None"
+		ExtendClientAreaToDecorationsHint="True">
 
 	<Border Background="White" CornerRadius="12" BoxShadow="0 4 15 0 #40000000">
 
@@ -64,22 +70,43 @@
 						 VerticalContentAlignment="Center"/>
 			</StackPanel>
 
-			<StackPanel Orientation="Horizontal"
-						HorizontalAlignment="Right"
-						Spacing="15"
-						Margin="0,10,0,0">
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
 
-				<Button Content="Cancelar"
-						Background="Transparent"
-						Foreground="#666666"
-						VerticalAlignment="Center"/>
+				<element:ButtonElement
+				x:Name="btnCancel"
+				Width="180"
+				Height="60"
+				Margin="15"
+				BackgroundColor="#9da19e"
+				HoverColor="#787878"
+				HorizontalAlignment="Left"
+				FontFamily="Arial"
+				TextPositionX="45"
+				TextPositionY="14"
+				Text="Cancelar"
+				CornerRadius="20"
+				TextFontWeight="DemiBold"
+				TextFontSize="24"
+				TextFontColor="#FFFFFF"
+				Theme="{StaticResource ButtonElementTheme}"/>
 
-				<Button Content="Adicionar Renda"
-						Background="#4A90E2"
-						Foreground="White"
-						Padding="25,10"
-						CornerRadius="20"
-						FontWeight="SemiBold"/>
+				<element:ButtonElement
+				x:Name="btnNewOrUpdate"
+				Width="180"
+				Height="60"
+				Margin="15"
+				BackgroundColor="#4A90E2"
+				HoverColor="#1150ce"
+				HorizontalAlignment="Left"
+				FontFamily="Arial"
+				TextPositionX="26"
+				TextPositionY="14"
+				Text="Nova Renda"
+				CornerRadius="20"
+				TextFontWeight="DemiBold"
+				TextFontSize="24"
+				TextFontColor="#FFFFFF"
+				Theme="{StaticResource ButtonElementTheme}"/>
 			</StackPanel>
 
 		</StackPanel>

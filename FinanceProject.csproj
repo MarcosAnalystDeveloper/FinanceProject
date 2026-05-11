@@ -28,4 +28,10 @@
 	<ItemGroup>
 		<AvaloniaResource Include="Assets\**" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Overlay\NewTransaction\NewTransactionOverlay.axaml.cs">
+	    <DependentUpon>NewTransactionOverlay.axaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
 </Project>

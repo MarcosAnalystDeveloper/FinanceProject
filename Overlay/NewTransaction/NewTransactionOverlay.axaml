@@ -1,0 +1,89 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:element="using:FinanceProject.Elements"
+			 mc:Ignorable="d"
+			 Width="600"
+			 Height="300"
+			 Background="Transparent"
+			 x:Class="FinanceProject.NewSalaryOverlay">
+
+	<Border Background="White" CornerRadius="12" BoxShadow="0 4 15 0 #40000000">
+
+		<StackPanel Spacing="20" Margin="25">
+
+			<TextBlock Text="Adicionar Renda"
+					   HorizontalAlignment="Center"
+					   FontSize="18"
+					   FontWeight="SemiBold"
+					   Foreground="#333333"/>
+
+
+
+			<Grid ColumnDefinitions="*, *, *" ColumnSpacing="15">
+
+				<StackPanel Grid.Column="0" Spacing="5">
+					<TextBlock Text="Valor" FontWeight="Medium"/>
+					<TextBox Text="R$ 3.500,00"
+							 Height="40"
+							 CornerRadius="6"
+							 VerticalContentAlignment="Center">
+						<TextBox.InnerRightContent>
+							<PathIcon Data="{StaticResource calendar_regular}" Margin="0,0,10,0" Width="16"/>
+						</TextBox.InnerRightContent>
+					</TextBox>
+				</StackPanel>
+
+				<StackPanel Grid.Column="1" Spacing="5">
+					<TextBlock Text="Tipo" FontWeight="Medium"/>
+					<ComboBox HorizontalAlignment="Stretch"
+							  Height="40"
+							  CornerRadius="6"
+							  SelectedIndex="0">
+						<ComboBoxItem>Mensal</ComboBoxItem>
+						<ComboBoxItem>Eventual</ComboBoxItem>
+					</ComboBox>
+				</StackPanel>
+
+				<StackPanel Grid.Column="2" Spacing="5">
+					<TextBlock Text="Categoria" FontWeight="Medium"/>
+					<ComboBox HorizontalAlignment="Stretch"
+							  Height="40"
+							  CornerRadius="6"
+							  SelectedIndex="0">
+						<ComboBoxItem>Salário</ComboBoxItem>
+						<ComboBoxItem>Freelance</ComboBoxItem>
+					</ComboBox>
+				</StackPanel>
+			</Grid>
+
+			<StackPanel Spacing="5">
+				<TextBlock Text="Descrição" FontWeight="Medium" FontSize="14"/>
+				<TextBox Watermark="Ex: Salário Mensal TechCorp"
+						 Height="40"
+						 CornerRadius="6"
+						 VerticalContentAlignment="Center"/>
+			</StackPanel>
+
+			<StackPanel Orientation="Horizontal"
+						HorizontalAlignment="Right"
+						Spacing="15"
+						Margin="0,10,0,0">
+
+				<Button Content="Cancelar"
+						Background="Transparent"
+						Foreground="#666666"
+						VerticalAlignment="Center"/>
+
+				<Button Content="Adicionar Renda"
+						Background="#4A90E2"
+						Foreground="White"
+						Padding="25,10"
+						CornerRadius="20"
+						FontWeight="SemiBold"/>
+			</StackPanel>
+
+		</StackPanel>
+	</Border>
+</UserControl>

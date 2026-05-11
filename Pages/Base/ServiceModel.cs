@@ -8,5 +8,10 @@ public class ServiceModel
 {
     protected Uri BaseUrl { get; } = new Uri("http://localhost:8000/");
 
-    public static readonly JsonSerializerOptions JsonOptions = new() { PropertyNamingPolicy = JsonNamingPolicy.CamelCase, DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
+    public static readonly JsonSerializerOptions JsonOptions = new() 
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase, 
+        DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+        Converters = { new JsonStringEnumConverter() }
+    };
 }

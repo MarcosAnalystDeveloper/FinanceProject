@@ -108,7 +108,9 @@ public partial class PageMenu : BasePage
                             CurrentPage = new HomeContext();
                             break;
                         case Type t when t == typeof(SalaryContext):
-                            CurrentPage = new SalaryContext();
+                            SalaryContext salaryContext = new SalaryContext();
+                            salaryContext.Token = Token;
+                            CurrentPage = salaryContext;
                             break;
                         case Type t when t == typeof(ExpenseContext):
                             CurrentPage = new ExpenseContext();

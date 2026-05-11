@@ -1,0 +1,42 @@
+<Window xmlns="https://github.com/avaloniaui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d"
+		Width="350"
+		Height="180"
+		xmlns:element="using:FinanceProject.Elements"
+		x:Class="FinanceProject.PrincipalOverlay"
+		Title=""
+		WindowStartupLocation="CenterOwner"
+		CanResize="False"
+		Background="Transparent"
+		TransparencyLevelHint="AcrylicBlur"
+		WindowDecorations="None"
+		ExtendClientAreaToDecorationsHint="True" >
+
+	<Border Background="White" CornerRadius="15" Padding="20" BorderBrush="#EEE" BorderThickness="1">
+		<StackPanel Spacing="20" VerticalAlignment="Center">
+			<TextBlock Text="Deseja realmente excluir?" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center"/>
+			<TextBlock Text="Esta ação não poderá ser desfeita."  Foreground="Gray" HorizontalAlignment="Center"/>
+
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
+				<element:ButtonElement
+				x:Name="btnCancel"
+				Width="100"
+				Height="40"
+				CornerRadius="8"
+				BackgroundColor="#F1F3F5"
+				FontFamily="Roboto"
+				Text="Cancelar"
+				TextFontWeight="Medium"
+				TextFontSize="18"
+				TextFontColor="#000000"
+				Theme="{StaticResource ButtonElementTheme}"/>
+
+				<Button Content="Excluir" Name="BtnConfirm" Width="100"
+						Background="#E57373" Foreground="White" HorizontalContentAlignment="Center"/>
+			</StackPanel>
+		</StackPanel>
+	</Border>
+</Window>

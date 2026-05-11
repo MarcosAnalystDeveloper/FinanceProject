@@ -1,11 +1,13 @@
 using Avalonia.Controls;
+using Avalonia.Controls.Notifications;
 using Avalonia.Interactivity;
+using Avalonia.VisualTree;
 using FinanceProject.Pages;
 using FinanceProject.Pages.Menu.Salary;
 using FinanceProject.Transaction;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
+using System.Linq;
 
 namespace FinanceProject;
 
@@ -18,6 +20,7 @@ public partial class SalaryContext : BaseContext
     }
 
     #region Properties
+    public Window? MainWindow { get; set; }
     public string Token { get; set; }
     private string _totalSalary;
     public string TotalSalary
@@ -26,7 +29,7 @@ public partial class SalaryContext : BaseContext
         set
         {
             _totalSalary = value;
-            OnPropertyChanged(); 
+            OnPropertyChanged();
         }
     }
 
@@ -40,6 +43,16 @@ public partial class SalaryContext : BaseContext
         base.OnLoaded(e);
         if (Design.IsDesignMode)
             return;
+
+        MainWindow = this.GetVisualAncestors().FirstOrDefault(x => x is Window) as Window;
+        if (MainWindow is not null)
+        {
+            _notificationManager = new WindowNotificationManager(MainWindow)
+            {
+                Position = NotificationPosition.TopRight,
+                MaxItems = 2
+            };
+        }
 
         SalaryContextViewModel = new SalaryContextViewModel(Token);
         RefleshListSalary();
@@ -70,14 +83,33 @@ public partial class SalaryContext : BaseContext
             //Fazer lógica para editar um Salário apos implementação do Back-End.
         }
     }
-
     private async void OnDeleteClick(object? sender, RoutedEventArgs e)
     {
         if (sender is Button btn && btn.DataContext is TransactionFinance transaction)
         {
-            bool isDeleted = await SalaryContextViewModel.DeleteTransaction(transaction.Id);
-            if (isDeleted)
-                RefleshListSalary();
+            if (MainWindow is not null)
+            {
+                PrincipalOverlay dialog = new PrincipalOverlay();
+                Border? overlay = MainWindow.FindControl<Border>("DarkOverlay");
+                if (overlay is not null)
+                    overlay.IsVisible = true;
+
+                bool result = await dialog.ShowDialog<bool>(MainWindow);
+                if (result)
+                {
+                    bool isDeleted = await SalaryContextViewModel.DeleteTransaction(transaction.Id);
+                    if (isDeleted)
+                    {
+                        _notificationManager.Show(new Notification("Sucesso", "Salário deletado com sucesso.", NotificationType.Success));
+                        RefleshListSalary();
+                    }
+                    else
+                        _notificationManager.Show(new Notification("Erro ao deletar salário.", "Tente novamente.", NotificationType.Error));
+                }
+
+                if (overlay != null)
+                    overlay.IsVisible = false;
+            }
         }
     }
     #endregion

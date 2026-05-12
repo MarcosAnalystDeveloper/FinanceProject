@@ -66,6 +66,7 @@ public partial class SalaryContext : BaseContext
                 TransactionOverlay dialog = new TransactionOverlay();
                 dialog.TransactionType = EnumTransactionType.Entrada;
                 dialog.CurrentTransaction = transaction;
+                dialog.Token = Token;
 
                 Border? overlay = MainWindow.FindControl<Border>("DarkOverlay");
                 if (overlay is not null)
@@ -117,6 +118,7 @@ public partial class SalaryContext : BaseContext
         {
             TransactionOverlay dialog = new TransactionOverlay();
             dialog.TransactionType = EnumTransactionType.Entrada;
+            dialog.Token = Token;
 
             Border? overlay = MainWindow.FindControl<Border>("DarkOverlay");
             if (overlay is not null)

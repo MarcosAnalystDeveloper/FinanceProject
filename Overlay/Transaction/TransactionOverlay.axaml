@@ -3,7 +3,9 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:element="using:FinanceProject.Elements"
+		xmlns:pg="using:FinanceProject"
 		x:Class="FinanceProject.TransactionOverlay"
+		x:DataType="pg:TransactionOverlay"
 		mc:Ignorable="d"
 		Title=""
 		Width="800"
@@ -29,33 +31,16 @@
 
 				<StackPanel Grid.Column="0" Spacing="5">
 					<TextBlock Text="Valor" FontWeight="Medium"/>
-					<TextBox Text="R$ 3.500,00"
-							 Height="40"
-							 CornerRadius="6"
-							 VerticalContentAlignment="Center">
+					<TextBox Text="{Binding Amount}" Height="40" CornerRadius="6" VerticalContentAlignment="Center">
 						<TextBox.InnerRightContent>
 							<PathIcon Data="{StaticResource calendar_regular}" Margin="0,0,10,0" Width="16"/>
 						</TextBox.InnerRightContent>
 					</TextBox>
 				</StackPanel>
 
-				<StackPanel Grid.Column="1" Spacing="5">
-					<TextBlock Text="Tipo" FontWeight="Medium"/>
-					<ComboBox HorizontalAlignment="Stretch"
-							  Height="40"
-							  CornerRadius="6"
-							  SelectedIndex="0">
-						<ComboBoxItem>Mensal</ComboBoxItem>
-						<ComboBoxItem>Eventual</ComboBoxItem>
-					</ComboBox>
-				</StackPanel>
-
 				<StackPanel Grid.Column="2" Spacing="5">
 					<TextBlock Text="Categoria" FontWeight="Medium"/>
-					<ComboBox HorizontalAlignment="Stretch"
-							  Height="40"
-							  CornerRadius="6"
-							  SelectedIndex="0">
+					<ComboBox HorizontalAlignment="Stretch" Height="40" CornerRadius="6" SelectedIndex="0">
 						<ComboBoxItem>Salário</ComboBoxItem>
 						<ComboBoxItem>Freelance</ComboBoxItem>
 					</ComboBox>
@@ -64,10 +49,7 @@
 
 			<StackPanel Spacing="5">
 				<TextBlock Text="Descrição" FontWeight="Medium" FontSize="14"/>
-				<TextBox Watermark="Ex: Salário Mensal TechCorp"
-						 Height="40"
-						 CornerRadius="6"
-						 VerticalContentAlignment="Center"/>
+				<TextBox Watermark="Ex: Salário Mensal TechCorp" Height="40" CornerRadius="6" VerticalContentAlignment="Center"/>
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">

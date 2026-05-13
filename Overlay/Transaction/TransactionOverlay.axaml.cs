@@ -101,10 +101,9 @@ public partial class TransactionOverlay : BasePage
     private async void CreateTransaction()
     {
         string verb = TransactionType == EnumTransactionType.Entrada ? "salário" : "dispesa";
-
         if (CurrentTransaction is not null)
         {
-            bool result = await TransactionOverlayViewModel.EditedTransaction(CurrentTransaction);
+            bool result = await TransactionOverlayViewModel.EditedTransaction(CurrentTransaction.Id, Description, Amount, TransactionType.ToString(), Category.ToString().ToLower());
             if (!result)
                 _notificationManager.Show(new Notification($"Erro editar {verb}.", "Revise os campos e tente novamente.", NotificationType.Warning));
             else
@@ -112,7 +111,7 @@ public partial class TransactionOverlay : BasePage
         }
         else
         {
-            bool result = await TransactionOverlayViewModel.CreateTransaction(Description, Amount, TransactionType.ToString(), Category.ToString());
+            bool result = await TransactionOverlayViewModel.CreateTransaction(Description, Amount, TransactionType.ToString(), Category.ToString().ToLower());
             if (!result)
                 _notificationManager.Show(new Notification($"Erro criar {verb}.", "Revise os campos e tente novamente.", NotificationType.Warning));
             else

@@ -1,5 +1,7 @@
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
 using ScottPlot;
 using ScottPlot.Avalonia;
 using System.Collections.Generic;
@@ -8,6 +10,15 @@ namespace FinanceProject;
 
 public partial class HomeContext : UserControl
 {
+    public ISeries[] Series { get; set; } = new ISeries[]
+    {
+        new LineSeries<double>
+        {
+            Values = new double[] { 2,1,3,5,3,4,6},
+            Fill = null
+        }
+    };
+
     public HomeContext()
     {
         InitializeComponent();

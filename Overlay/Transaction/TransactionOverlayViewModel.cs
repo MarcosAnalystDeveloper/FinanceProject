@@ -14,6 +14,6 @@ public class TransactionOverlayViewModel : BaseViewModel
 
     #region Method
     public async Task<bool> CreateTransaction(string description, double amount, string type, string category) { return await ((TransactionOverlayModel)BaseService).CreateTransaction(description, amount, type, category); }
-    public async Task<bool> EditedTransaction(TransactionFinance transactionFinance) { return await ((TransactionOverlayModel)BaseService).EditTransaction(transactionFinance); }
+    public async Task<bool> EditedTransaction(long id, string description, double amount, string type, string category) { return await ((TransactionOverlayModel)BaseService).EditTransaction(id, description, amount, type, category); }
     #endregion
 }

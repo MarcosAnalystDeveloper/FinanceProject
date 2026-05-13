@@ -21,9 +21,11 @@ public class TransactionOverlayModel : ServiceModel
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenAuthorization);
             HttpResponseMessage? response = await client.PostAsync($"transactions/", JsonContent.Create(new
             {
-                description = description, amount = amount,
-                type = type, category = category
-            }, 
+                description = description,
+                amount = amount,
+                type = type,
+                category = category
+            },
             options: JsonOptions));
 
             string? result = await response.Content.ReadAsStringAsync();
@@ -34,19 +36,19 @@ public class TransactionOverlayModel : ServiceModel
             return false;
         }
     }
-    public async Task<bool> EditTransaction(TransactionFinance transactionFinance)
+    public async Task<bool> EditTransaction(long id, string description, double amount, string type, string category)
     {
         HttpClient client = new HttpClient() { BaseAddress = BaseUrl };
 
         try
         {
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", TokenAuthorization);
-            HttpResponseMessage? response = await client.PutAsync($"transactions/transactions/{transactionFinance.Id}", JsonContent.Create(new
+            HttpResponseMessage? response = await client.PutAsync($"transactions/transactions/{id}", JsonContent.Create(new
             {
-                description = transactionFinance.Description,
-                amount = transactionFinance.Amount,
-                type = transactionFinance.Type,
-                category = transactionFinance.Category
+                description = description,
+                amount = amount,
+                type = type,
+                category = category
             }, options: JsonOptions));
 
             string? result = await response.Content.ReadAsStringAsync();

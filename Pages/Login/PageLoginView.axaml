@@ -36,7 +36,7 @@
 
 			<Grid Grid.Row="1">
 
-				<Border Width="400" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,150,0" Background="White" CornerRadius="12" Padding="40,40,40,30" BoxShadow="0 8 30 0 #30000000">
+				<Border Width="500" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,150,0" Background="White" CornerRadius="12" Padding="40,40,40,30" BoxShadow="0 8 30 0 #30000000">
 
 					<StackPanel Spacing="15">
 
@@ -89,7 +89,7 @@
 						ValuePositionY="20"
 						Theme="{StaticResource InputElementTheme}"/>
 
-						<TextBlock Text="Esqueceu a senha?" Foreground="#40A1F6" FontSize="12" Cursor="Hand" HorizontalAlignment="Left" Margin="0,-5,0,5"/>
+						<TextBlock Text="Esqueceu a senha?" Foreground="#40A1F6" FontSize="12" Cursor="Hand" HorizontalAlignment="Left" Margin="50,-5,0,5"/>
 
 						<element:ButtonElement
 						x:Name="btnLogin"
@@ -113,21 +113,10 @@
 							<Separator Grid.Column="2" Background="#EEEEEE"/>
 						</Grid>
 
-						<Grid ColumnDefinitions="*, 15, *">
-							<element:ButtonElement
-							Grid.Column="0" Height="38"
-							TextFontWeight="400"
-							BackgroundColor="#F7FAFC" BorderColor="#E2E8F0" BorderThickness="1" CornerRadius="6"
-							Text="Google" TextFontColor="#4A5568" TextFontSize="13"
-							Theme="{StaticResource ButtonElementTheme}"/>
-
-							<element:ButtonElement
-							Grid.Column="2" Height="38"
-							TextFontWeight="400"
-							BackgroundColor="#F7FAFC" BorderColor="#E2E8F0" BorderThickness="1" CornerRadius="6"
-							Text="Microsoft" TextFontColor="#4A5568" TextFontSize="13"
-							Theme="{StaticResource ButtonElementTheme}"/>
-						</Grid>
+						<StackPanel Spacing="10" Orientation="Horizontal">
+							<Button Classes="btnGoogle" Width="200"/>
+							<Button Classes="btnMicrosoft" Width="200"/>
+						</StackPanel>
 
 						<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="5" Margin="0,15,0,0">
 							<TextBlock Text="Não tem uma conta?" FontSize="12" Foreground="#718096"/>

@@ -5,6 +5,7 @@ using Avalonia.Interactivity;
 using FinanceProject.Enum;
 using FinanceProject.Overlay.Transaction;
 using FinanceProject.Transaction;
+using System.Linq;
 
 namespace FinanceProject;
 
@@ -40,6 +41,8 @@ public partial class TransactionOverlay : BasePage
             Position = NotificationPosition.TopRight,
             MaxItems = 2
         };
+
+        InitializeComboBox();
     }
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -50,7 +53,6 @@ public partial class TransactionOverlay : BasePage
         btnCancel.PointerPressed += BtnCancel_PointerPressed;
         btnNewOrUpdate.PointerPressed += BtnConfirm_PointerPressed;
     }
-
     private void BtnConfirm_PointerPressed(object? sender, Avalonia.Interactivity.RoutedEventArgs e) { CreateTransaction(); }
     private void BtnCancel_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e) { Close(false); }
     #endregion
@@ -76,6 +78,11 @@ public partial class TransactionOverlay : BasePage
             else
                 Close(true);
         }
+    }
+    private void InitializeComboBox() 
+    {
+        var lista = EnumCategoryTransaction.GetValues(typeof(EnumCategoryTransaction)).Cast<EnumCategoryTransaction>().ToList();
+        comboBox.ItemsSource = lista;
     }
     #endregion
 }

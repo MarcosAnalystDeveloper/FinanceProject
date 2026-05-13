@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
 using Avalonia.Interactivity;
 using Avalonia.VisualTree;
+using FinanceProject.Enum;
 using FinanceProject.Pages;
 using FinanceProject.Pages.Menu.Expense;
 using FinanceProject.Transaction;
@@ -22,19 +23,19 @@ public partial class ExpenseContext : BaseContext
     #region Properties
     public Window? MainWindow { get; set; }
     public string Token { get; set; }
-    private string _totalSalary;
-    public string TotalSalary
+    private string _totalExpense;
+    public string TotalExpense
     {
-        get => _totalSalary;
+        get => _totalExpense;
         set
         {
-            _totalSalary = value;
+            _totalExpense = value;
             OnPropertyChanged();
         }
     }
 
     public ExpenseContextViewModel ExpenseContextViewModel;
-    public ObservableCollection<TransactionFinance> Salaries { get; set; } = new();
+    public ObservableCollection<TransactionFinance> Expenses { get; set; } = new();
     #endregion
 
     #region Events
@@ -55,32 +56,32 @@ public partial class ExpenseContext : BaseContext
         }
 
         ExpenseContextViewModel = new ExpenseContextViewModel(Token);
-        RefleshListSalary();
-    }
-    #endregion
-
-    #region Methods
-    private async void RefleshListSalary()
-    {
-        List<TransactionFinance>? listSalaries = await ExpenseContextViewModel.LoadListExpense();
-        if (listSalaries is not null)
-        {
-            double salary = 0;
-            Salaries.Clear();
-            foreach (TransactionFinance transactionFinance in listSalaries)
-            {
-                salary += transactionFinance.Amount;
-                Salaries.Add(transactionFinance);
-            }
-
-            TotalSalary = $"R$ {salary}";
-        }
+        RefleshListExpense();
     }
     private async void OnEditClick(object? sender, RoutedEventArgs e)
     {
         if (sender is Button btn && btn.DataContext is TransactionFinance transaction)
         {
-            //Fazer lógica para editar um Dispesa apos implementação do Back-End.
+            if (MainWindow is not null)
+            {
+                TransactionOverlay dialog = new TransactionOverlay();
+                dialog.TransactionType = EnumTransactionType.Saida;
+                dialog.CurrentTransaction = transaction;
+                dialog.Token = Token;
+
+                Border? overlay = MainWindow.FindControl<Border>("DarkOverlay");
+                if (overlay is not null)
+                    overlay.IsVisible = true;
+
+                bool result = await dialog.ShowDialog<bool>(MainWindow);
+                if (result)
+                    _notificationManager.Show(new Notification("Sucesso", "Dispesa editada com sucesso.", NotificationType.Success));
+
+                RefleshListExpense();
+
+                if (overlay != null)
+                    overlay.IsVisible = false;
+            }
         }
     }
     private async void OnDeleteClick(object? sender, RoutedEventArgs e)
@@ -101,7 +102,7 @@ public partial class ExpenseContext : BaseContext
                     if (isDeleted)
                     {
                         _notificationManager.Show(new Notification("Sucesso", "Dispesa deletado com sucesso.", NotificationType.Success));
-                        RefleshListSalary();
+                        RefleshListExpense();
                     }
                     else
                         _notificationManager.Show(new Notification("Erro ao deletar dispesa.", "Tente novamente.", NotificationType.Error));
@@ -110,6 +111,47 @@ public partial class ExpenseContext : BaseContext
                 if (overlay != null)
                     overlay.IsVisible = false;
             }
+        }
+    }
+    private async void BtnNewExpense_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
+    {
+        if (MainWindow is not null)
+        {
+            TransactionOverlay dialog = new TransactionOverlay();
+            dialog.TransactionType = EnumTransactionType.Saida;
+            dialog.Token = Token;
+
+            Border? overlay = MainWindow.FindControl<Border>("DarkOverlay");
+            if (overlay is not null)
+                overlay.IsVisible = true;
+
+            bool result = await dialog.ShowDialog<bool>(MainWindow);
+            if (result)
+                _notificationManager.Show(new Notification("Sucesso", "Dispesa criada com sucesso.", NotificationType.Success));
+
+            RefleshListExpense();
+
+            if (overlay != null)
+                overlay.IsVisible = false;
+        }
+    }
+    #endregion
+
+    #region Methods
+    private async void RefleshListExpense()
+    {
+        List<TransactionFinance>? listExpenses = await ExpenseContextViewModel.LoadListExpense();
+        if (listExpenses is not null)
+        {
+            double expense = 0;
+            Expenses.Clear();
+            foreach (TransactionFinance transactionFinance in listExpenses)
+            {
+                expense += transactionFinance.Amount;
+                Expenses.Add(transactionFinance);
+            }
+
+            TotalExpense = $"R$ {expense}";
         }
     }
     #endregion

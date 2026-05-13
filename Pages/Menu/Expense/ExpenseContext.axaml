@@ -35,7 +35,7 @@
 				<Grid ColumnDefinitions="* *">
 					<StackPanel>
 						<TextBlock Margin="5 25 0 0" Text="Soma das dispesas" Foreground="#1150CE" FontWeight="Bold" FontSize="18"/>
-						<TextBlock Margin="5 5 0 0" Text="{Binding TotalSalary, Mode=TwoWay}" Foreground="#fcba03" FontSize="28" FontWeight="Bold"/>
+						<TextBlock Margin="5 5 0 0" Text="{Binding TotalExpense, Mode=TwoWay}" Foreground="#fcba03" FontSize="28" FontWeight="Bold"/>
 					</StackPanel>
 					<PathIcon Grid.Column="1" Data="{StaticResource wallet}" Foreground="#fcba03" Height="50" Width="50"/>
 				</Grid>
@@ -62,6 +62,7 @@
 					TextFontWeight="DemiBold"
 					TextFontSize="24"
 					TextFontColor="#FFFFFF"
+						PointerPressed="BtnNewExpense_PointerPressed"
 					Icon="{StaticResource add}"
 					Theme="{StaticResource ButtonElementTheme}"/>
 				</StackPanel>
@@ -70,7 +71,7 @@
 
 		<Border Grid.Row="1" Margin="0 50 0 0" Background="#FFFFFF" CornerRadius="12" Padding="5" BoxShadow="0 8 30 0 #30000000">
 			<DataGrid
-			ItemsSource="{Binding Salaries, Mode=TwoWay}"
+			ItemsSource="{Binding Expenses, Mode=TwoWay}"
 			AutoGenerateColumns="False"
 			CanUserResizeColumns="True"
 			GridLinesVisibility="None"

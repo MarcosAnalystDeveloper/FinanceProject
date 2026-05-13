@@ -8,7 +8,7 @@
 		x:DataType="pg:TransactionOverlay"
 		mc:Ignorable="d"
 		Title=""
-		Width="800"
+		Width="600"
 		Height="350"
 		Background="Transparent"
 		WindowStartupLocation="CenterOwner"
@@ -27,7 +27,7 @@
 					   FontWeight="SemiBold"
 					   Foreground="#333333"/>
 
-			<Grid ColumnDefinitions="*, *, *" ColumnSpacing="15">
+			<Grid ColumnDefinitions="*, *" ColumnSpacing="15">
 
 				<StackPanel Grid.Column="0" Spacing="5">
 					<TextBlock Text="Valor" FontWeight="Medium"/>
@@ -40,16 +40,13 @@
 
 				<StackPanel Grid.Column="2" Spacing="5">
 					<TextBlock Text="Categoria" FontWeight="Medium"/>
-					<ComboBox HorizontalAlignment="Stretch" Height="40" CornerRadius="6" SelectedIndex="0">
-						<ComboBoxItem>Salário</ComboBoxItem>
-						<ComboBoxItem>Freelance</ComboBoxItem>
-					</ComboBox>
+					<ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" Height="40" CornerRadius="6" SelectedIndex="0" SelectedItem="{Binding Category}"/>
 				</StackPanel>
 			</Grid>
 
 			<StackPanel Spacing="5">
 				<TextBlock Text="Descrição" FontWeight="Medium" FontSize="14"/>
-				<TextBox Watermark="Ex: Salário Mensal TechCorp" Height="40" CornerRadius="6" VerticalContentAlignment="Center"/>
+				<TextBox Watermark="Ex: Salário Mensal TechCorp" Text="{Binding Description}" Height="40" CornerRadius="6" VerticalContentAlignment="Center"/>
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">

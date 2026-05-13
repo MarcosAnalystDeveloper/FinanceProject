@@ -17,9 +17,48 @@ public partial class TransactionOverlay : BasePage
     public string Token { get; set; }
     public string ButtonTextAddOrUpdate { get; set; } = string.Empty;
     public TransactionFinance? CurrentTransaction;
-    public string Category { get; set; }
-    public double Amount { get; set; }
-    public string Description { get; set; }
+
+    private EnumCategoryTransaction _category;
+    public EnumCategoryTransaction Category
+    {
+        get => _category;
+        set
+        {
+            if (_category != value)
+            {
+                _category = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    private double _amount;
+    public double Amount
+    {
+        get => _amount;
+        set
+        {
+            if (_amount != value)
+            {
+                _amount = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    private string _description;
+    public string Description
+    {
+        get => _description;
+        set
+        {
+            if (_description != value)
+            {
+                _description = value;
+                OnPropertyChanged();
+            }
+        }
+    }
     #endregion
 
     public TransactionOverlay()
@@ -43,6 +82,7 @@ public partial class TransactionOverlay : BasePage
         };
 
         InitializeComboBox();
+        InitializeTransaction();
     }
     protected override void OnApplyTemplate(TemplateAppliedEventArgs e)
     {
@@ -72,17 +112,26 @@ public partial class TransactionOverlay : BasePage
         }
         else
         {
-            bool result = await TransactionOverlayViewModel.CreateTransaction(Description, Amount, TransactionType.ToString(), Category);
+            bool result = await TransactionOverlayViewModel.CreateTransaction(Description, Amount, TransactionType.ToString(), Category.ToString());
             if (!result)
                 _notificationManager.Show(new Notification($"Erro criar {verb}.", "Revise os campos e tente novamente.", NotificationType.Warning));
             else
                 Close(true);
         }
     }
-    private void InitializeComboBox() 
+    private void InitializeComboBox()
     {
         var lista = EnumCategoryTransaction.GetValues(typeof(EnumCategoryTransaction)).Cast<EnumCategoryTransaction>().ToList();
         comboBox.ItemsSource = lista;
+    }
+    private void InitializeTransaction()
+    {
+        if (CurrentTransaction is not null)
+        {
+            Amount = CurrentTransaction.Amount;
+            Category = CurrentTransaction.Category;
+            Description = CurrentTransaction.Description;
+        }
     }
     #endregion
 }

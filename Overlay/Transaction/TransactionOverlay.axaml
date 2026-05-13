@@ -31,7 +31,7 @@
 
 				<StackPanel Grid.Column="0" Spacing="5">
 					<TextBlock Text="Valor" FontWeight="Medium"/>
-					<TextBox Text="{Binding Amount}" Height="40" CornerRadius="6" VerticalContentAlignment="Center">
+					<TextBox Text="{Binding Amount, Mode=TwoWay}" Height="40" CornerRadius="6" VerticalContentAlignment="Center">
 						<TextBox.InnerRightContent>
 							<PathIcon Data="{StaticResource calendar_regular}" Margin="0,0,10,0" Width="16"/>
 						</TextBox.InnerRightContent>
@@ -40,13 +40,13 @@
 
 				<StackPanel Grid.Column="2" Spacing="5">
 					<TextBlock Text="Categoria" FontWeight="Medium"/>
-					<ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" Height="40" CornerRadius="6" SelectedIndex="0" SelectedItem="{Binding Category}"/>
+					<ComboBox x:Name="comboBox" HorizontalAlignment="Stretch" Height="40" CornerRadius="6" SelectedIndex="0" SelectedItem="{Binding Category, Mode=TwoWay}"/>
 				</StackPanel>
 			</Grid>
 
 			<StackPanel Spacing="5">
 				<TextBlock Text="Descrição" FontWeight="Medium" FontSize="14"/>
-				<TextBox Watermark="Ex: Salário Mensal TechCorp" Text="{Binding Description}" Height="40" CornerRadius="6" VerticalContentAlignment="Center"/>
+				<TextBox Watermark="Ex: Salário Mensal TechCorp" Text="{Binding Description, Mode=TwoWay}" Height="40" CornerRadius="6" VerticalContentAlignment="Center"/>
 			</StackPanel>
 
 			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">

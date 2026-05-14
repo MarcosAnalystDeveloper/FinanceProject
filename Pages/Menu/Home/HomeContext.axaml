@@ -6,6 +6,7 @@
 			 d:DesignWidth="1000"
 			 d:DesignHeight="800"
 			 xmlns:element="using:FinanceProject.Elements"
+			 xmlns:models="using:FinanceProject"
 			 x:Class="FinanceProject.HomeContext"
 			 xmlns:pg="using:FinanceProject"
 			 x:DataType="pg:HomeContext">
@@ -44,7 +45,7 @@
 				</StackPanel>
 
 				<StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="15" VerticalAlignment="Center">
-					<Border Background="White" BorderThickness="1" BorderBrush="#000000" CornerRadius="25" Padding="15,5">
+					<Border Background="White" CornerRadius="25" Padding="15,5">
 						<StackPanel Orientation="Horizontal" Spacing="10">
 							<PathIcon Data="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" Width="18" Foreground="#A3AED0"/>
 							<TextBox Width="200" Watermark="Pesquisar..." BorderThickness="0" Background="Transparent"/>
@@ -67,7 +68,7 @@
 					<StackPanel>
 						<TextBlock Text="Maior renda" Classes="Label"/>
 						<TextBlock Text="{Binding HigherSalary, Mode=TwoWay}" FontSize="24" Classes="Value" Margin="0,5"/>
-						<TextBlock Text="▲ 2.4%" Foreground="#05CD99" FontSize="11" FontWeight="Bold"/>
+						<TextBlock Text="{Binding PercentageSalary, Mode=TwoWay}" Foreground="#05CD99" FontSize="11" FontWeight="Bold"/>
 					</StackPanel>
 				</Border>
 
@@ -75,7 +76,7 @@
 					<StackPanel>
 						<TextBlock Text="Maior dispesa" Classes="Label"/>
 						<TextBlock Text="{Binding HigherExpense, Mode=TwoWay}" FontSize="24" Classes="Value" Margin="0,5"/>
-						<TextBlock Text="▼ 0.8%" Foreground="#EE5D50" FontSize="11" FontWeight="Bold"/>
+						<TextBlock Text="{Binding PercentageExpanse, Mode=TwoWay}" Foreground="#EE5D50" FontSize="11" FontWeight="Bold"/>
 					</StackPanel>
 				</Border>
 
@@ -88,52 +89,36 @@
 			</Grid>
 
 			<Grid ColumnDefinitions="*, 320">
-
-				<!-- LISTA DE HISTÓRICO -->
 				<Border Grid.Column="0" Classes="Card" Margin="0,0,20,0" VerticalAlignment="Top">
 					<StackPanel>
 						<Grid ColumnDefinitions="*, Auto" Margin="0,0,0,25">
 							<TextBlock Text="Histórico" FontSize="22" FontWeight="Bold" Foreground="#1B2559"/>
 							<Button Grid.Column="1" Content="Ver todos" Background="Transparent" Foreground="#4318FF" FontWeight="Bold"/>
 						</Grid>
-
-						<!-- Linhas do Histórico -->
-						<StackPanel Spacing="20">
-							<!-- Item 1 -->
-							<Grid ColumnDefinitions="50, *, Auto, Auto">
-								<Border Width="45" Height="45" Background="#F4F7FE" CornerRadius="12">
-									<PathIcon Data="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" Width="20" Foreground="#4318FF"/>
-								</Border>
-								<StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="15,0">
-									<TextBlock Text="Rendimento CDB Inter" FontWeight="Bold" Foreground="#1B2559"/>
-									<TextBlock Text="Investimento • Hoje, 10:42 AM" Classes="Label"/>
-								</StackPanel>
-								<TextBlock Grid.Column="2" Text="+ R$ 450,00" Foreground="#05CD99" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,30,0"/>
-								<TextBlock Grid.Column="3" Text="Processado" Classes="Label" VerticalAlignment="Center"/>
-							</Grid>
-
-							<Separator Background="#F0F0F0" Height="1"/>
-
-							<!-- Item 2 -->
-							<Grid ColumnDefinitions="50, *, Auto, Auto">
-								<Border Width="45" Height="45" Background="#F4F7FE" CornerRadius="12">
-									<PathIcon Data="M21 18H3V6h18v12zm-2-2V8H5v8h14z" Width="20" Foreground="#4318FF"/>
-								</Border>
-								<StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="15,0">
-									<TextBlock Text="Fatura Cartão Black" FontWeight="Bold" Foreground="#1B2559"/>
-									<TextBlock Text="Cartão de Crédito • Ontem, 12:42 PM" Classes="Label"/>
-								</StackPanel>
-								<TextBlock Grid.Column="2" Text="- R$ 4.200,50" Foreground="#EE5D50" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,30,0"/>
-								<TextBlock Grid.Column="3" Text="Processado" Classes="Label" VerticalAlignment="Center"/>
-							</Grid>
-						</StackPanel>
+						<ListBox
+						ItemsSource="{Binding ListTransaction}"
+						Background="Transparent"
+						BorderThickness="0">
+							<ListBox.ItemTemplate>
+								<DataTemplate>
+									<Grid ColumnDefinitions="50, *, Auto, Auto">
+										<Border Width="45" Height="45" Background="#F4F7FE" CornerRadius="12">
+											<PathIcon Data="{Binding IconItem}" Width="20" Foreground="#4318FF"/>
+										</Border>
+										<StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="15,0">
+											<TextBlock Text="{Binding Title}" FontWeight="Bold" Foreground="#1B2559"/>
+											<TextBlock Text="{Binding Description}" Margin="0 5 0 0" Classes="Label"/>
+										</StackPanel>
+										<TextBlock Grid.Column="2" Text="{Binding Value}" Foreground="{Binding BacgroundValue}" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,30,0"/>
+										<TextBlock Grid.Column="3" Text="Processado" Classes="Label" VerticalAlignment="Center"/>
+									</Grid>
+								</DataTemplate>
+							</ListBox.ItemTemplate>
+						</ListBox>
 					</StackPanel>
 				</Border>
 
-				<!-- COLUNA DA DIREITA (ORÇAMENTO E PRÓXIMOS) -->
 				<StackPanel Grid.Column="1" Spacing="20">
-
-					<!-- Widget Orçamento -->
 					<Border Classes="Card">
 						<StackPanel>
 							<TextBlock Text="Orçamento Mensal" FontSize="16" FontWeight="Bold" Foreground="#1B2559" Margin="0,0,0,20"/>

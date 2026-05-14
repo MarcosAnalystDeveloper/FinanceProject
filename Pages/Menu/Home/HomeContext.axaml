@@ -65,25 +65,24 @@
 				<!-- Cards de Bancos/Investimentos -->
 				<Border Grid.Column="0" Classes="Card" Margin="0,0,15,0">
 					<StackPanel>
-						<TextBlock Text="Itaú Personnalité" Classes="Label"/>
-						<TextBlock Text="R$ 45.200,00" Classes="Value" Margin="0,5"/>
+						<TextBlock Text="Maior renda" Classes="Label"/>
+						<TextBlock Text="{Binding HigherSalary, Mode=TwoWay}" FontSize="24" Classes="Value" Margin="0,5"/>
 						<TextBlock Text="▲ 2.4%" Foreground="#05CD99" FontSize="11" FontWeight="Bold"/>
 					</StackPanel>
 				</Border>
 
 				<Border Grid.Column="1" Classes="Card" Margin="0,0,15,0">
 					<StackPanel>
-						<TextBlock Text="XP Investimentos" Classes="Label"/>
-						<TextBlock Text="R$ 85.000,30" Classes="Value" Margin="0,5"/>
+						<TextBlock Text="Maior dispesa" Classes="Label"/>
+						<TextBlock Text="{Binding HigherExpense, Mode=TwoWay}" FontSize="24" Classes="Value" Margin="0,5"/>
 						<TextBlock Text="▼ 0.8%" Foreground="#EE5D50" FontSize="11" FontWeight="Bold"/>
 					</StackPanel>
 				</Border>
 
-				<!-- CARD AZUL DE DESTAQUE (SALDO TOTAL) -->
 				<Border Grid.Column="4" Background="#4318FF" CornerRadius="20" Padding="25">
 					<StackPanel VerticalAlignment="Center">
-						<TextBlock Text="R$ 142.850,30" Foreground="White" FontSize="26" FontWeight="Bold" Margin="0,8"/>
-						<TextBlock Text="SALDO TOTAL" Foreground="White" Opacity="0.8" FontSize="11" FontWeight="Bold" LetterSpacing="1"/>
+						<TextBlock Text="{Binding BalanceTotal, Mode=TwoWay}" Foreground="White" FontSize="26" FontWeight="Bold" Margin="0,8"/>
+						<TextBlock Text="SALDO ATUAL" Foreground="White" Opacity="0.8" FontSize="16" FontWeight="Bold" LetterSpacing="1"/>
 					</StackPanel>
 				</Border>
 			</Grid>

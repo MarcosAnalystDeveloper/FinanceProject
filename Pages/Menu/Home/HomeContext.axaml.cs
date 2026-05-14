@@ -3,14 +3,20 @@ using Avalonia.Interactivity;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
+using FinanceProject.Entities;
 using FinanceProject.Enum;
 using FinanceProject.Pages;
+using FinanceProject.Pages.Menu.Home;
+using FinanceProject.Pages.Menu.Salary;
 using FinanceProject.Transaction;
+using LiveChartsCore.Geo;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Transactions;
+using System.Threading.Tasks;
 
 namespace FinanceProject;
 
@@ -25,6 +31,7 @@ public partial class HomeContext : BaseContext
     #region Properties
     public string Token { get; set; }
     public UserFinance CurrentProfile { get; set; }
+    public HomeContextViewModel HomeContextViewModel;
     public ObservableCollection<TransactionItemMenu> ListTransaction { get; set; } = new();
 
     private Bitmap _photoUser;
@@ -129,18 +136,54 @@ public partial class HomeContext : BaseContext
     #endregion
 
     #region Events
-    protected override void OnLoaded(RoutedEventArgs e)
+    protected async override void OnLoaded(RoutedEventArgs e)
     {
         base.OnLoaded(e);
         if (Design.IsDesignMode)
             return;
 
-        LoadImage();
+        HomeContextViewModel = new HomeContextViewModel(Token);
+        await InitializeHomeContext();
     }
     #endregion
 
     #region Methods
-    public void LoadImage(string uri = "avares://FinanceProject/Assets/defaulPhotoUser.jpg")
+    private async Task InitializeHomeContext()
+    {
+        await InitializeListTransaction();
+        await LoadData();
+        await InitializePhotoUser();
+    }
+    private async Task LoadData()
+    {
+        SummaryFinance? summaryResult = await HomeContextViewModel.GetSummary();
+        if (summaryResult is not null)
+        {
+            BalanceTotal = $"R$ {summaryResult.CurrentBalance}";
+        }
+    }
+    private async Task InitializeListTransaction()
+    {
+        List<TransactionFinance>? listResult = await HomeContextViewModel.LoadListTransactions();
+        if (listResult is not null)
+        {
+            ListTransaction.Clear();
+            List<TransactionItemMenu> listTransactions = (from i in listResult select new TransactionItemMenu(i)).ToList();
+            foreach (TransactionItemMenu item in listTransactions.OrderByDescending(t => t.TransactionDate).ToList())
+                ListTransaction.Add(item);
+
+            double higherSalary = listResult.Where(i => i.Type == EnumTransactionType.Entrada).Max(i => i.Amount);
+            double higherExpense = listResult.Where(i => i.Type == EnumTransactionType.Saida).Max(i => i.Amount);
+
+            HigherSalary = $"R$ {higherSalary}";
+            HigherExpense = $"R$ {higherExpense}";
+        }
+    }
+    private async Task InitializePhotoUser() 
+    {
+        LoadPhotoUser(default!);
+    }
+    public void LoadPhotoUser(string uri = "avares://FinanceProject/Assets/defaulPhotoUser.jpg")
     {
         var assets = AssetLoader.Open(new Uri(uri));
         PhotoUser = new Bitmap(assets);
@@ -152,7 +195,7 @@ public class TransactionItemMenu : INotifyPropertyChanged
 {
     public TransactionItemMenu(TransactionFinance transactionFinance)
     {
-        
+
     }
 
     #region Interface
@@ -207,6 +250,6 @@ public class TransactionItemMenu : INotifyPropertyChanged
     #endregion
 
     #region Methods
- 
+
     #endregion
 }

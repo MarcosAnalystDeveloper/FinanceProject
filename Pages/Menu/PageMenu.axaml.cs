@@ -18,7 +18,6 @@ public partial class PageMenu : BasePage
         InitializeComponent();
         this.DataContext = this;
         InitializeEvents();
-        lbxDrawer.SelectedItem = lbxDrawer.Items.First();
     }
 
     #region Properties  
@@ -83,6 +82,7 @@ public partial class PageMenu : BasePage
         if (Design.IsDesignMode)
             return;
 
+        lbxDrawer.SelectedItem = lbxDrawer.Items.First();
         InitializeUserProfile();
     }
     private void btnLogout_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)

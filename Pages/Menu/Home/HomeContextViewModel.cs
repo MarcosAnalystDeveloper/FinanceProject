@@ -1,5 +1,5 @@
-﻿using FinanceProject.Pages.Base;
-using FinanceProject.Pages.Menu.Salary;
+﻿using FinanceProject.Entities;
+using FinanceProject.Pages.Base;
 using FinanceProject.Transaction;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -14,5 +14,6 @@ public class HomeContextViewModel : BaseViewModel
         ((HomeContextModel)BaseService).TokenAuthorization = token;
     }
 
-    public async Task<List<TransactionFinance>?> LoadListTransactions() { return await ((SalaryContextModel)BaseService).GetAllTransactions(); }
+    public async Task<SummaryFinance?> GetSummary() { return await ((HomeContextModel)BaseService).GetSummary(); }
+    public async Task<List<TransactionFinance>?> LoadListTransactions() { return await ((HomeContextModel)BaseService).GetAllTransactions(); }
 }

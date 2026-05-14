@@ -30,7 +30,7 @@ public class HomeContextModel : ServiceModel
             return null;
         }
     }
-    public async Task<List<SummaryFinance>?> GetListSumary()
+    public async Task<SummaryFinance?> GetSummary()
     {
         HttpClient client = new HttpClient() { BaseAddress = BaseUrl };
 
@@ -40,7 +40,7 @@ public class HomeContextModel : ServiceModel
             HttpResponseMessage? response = await client.GetAsync("transactions/summary");
             string? result = await response.Content.ReadAsStringAsync();
 
-            return response.IsSuccessStatusCode ? JsonSerializer.Deserialize<List<SummaryFinance>>(result, JsonOptions) : null;
+            return response.IsSuccessStatusCode ? JsonSerializer.Deserialize<SummaryFinance>(result, JsonOptions) : null;
         }
         catch (Exception)
         {

@@ -2,6 +2,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.Notifications;
 using Avalonia.Interactivity;
 using Avalonia.VisualTree;
+using FinanceProject.Elements;
 using FinanceProject.Enum;
 using FinanceProject.Pages;
 using FinanceProject.Pages.Menu.Salary;
@@ -59,7 +60,7 @@ public partial class SalaryContext : BaseContext
     }
     private async void OnEdit_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
     {
-        if (sender is Button btn && btn.DataContext is TransactionFinance transaction)
+        if (sender is ButtonElement btn && btn.Parent!.DataContext is TransactionFinance transaction)
         {
             if (MainWindow is not null)
             {
@@ -85,7 +86,7 @@ public partial class SalaryContext : BaseContext
     }
     private async void OnDelete_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
     {
-        if (sender is Button btn && btn.DataContext is TransactionFinance transaction)
+        if (sender is ButtonElement btn && btn.Parent!.DataContext is TransactionFinance transaction)
         {
             if (MainWindow is not null)
             {

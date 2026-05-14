@@ -81,6 +81,28 @@ public partial class HomeContext : BaseContext
         }
     }
 
+    private string _descriptionProcessBar;
+    public string DescriptionProcessBar
+    {
+        get => _descriptionProcessBar;
+        set
+        {
+            _descriptionProcessBar = value;
+            OnPropertyChanged();
+        }
+    }
+
+    private double _percentageProcessBar;
+    public double PercentageProcessBar
+    {
+        get => _percentageProcessBar;
+        set
+        {
+            _percentageProcessBar = value;
+            OnPropertyChanged();
+        }
+    }
+
     private string _percentageSalary;
     public string PercentageSalary
     {
@@ -174,11 +196,25 @@ public partial class HomeContext : BaseContext
         if (summaryResult is not null)
         {
             BalanceTotal = $"R$ {summaryResult.CurrentBalance}";
+            SalaryTotal = $"R$ {summaryResult.TotalSalarys}";
+            ExpenseTotal = $"R$ {summaryResult.TotalExpanses}";
 
             double salary = double.Parse(HigherSalary.Replace("R$", "").Trim());
             double expense = double.Parse(HigherExpense.Replace("R$", "").Trim());
             PercentageSalary = $"▲ {((salary / summaryResult.TotalSalarys) * 100):F2}%";
             PercentageExpanse = $"▼ {((expense / summaryResult.TotalExpanses) * 100):F2}%";
+
+            PercentageProcessBar = ((summaryResult.TotalExpanses / summaryResult.TotalSalarys) * 100);
+            DescriptionProcessBar = $"{PercentageProcessBar:F2}% do limite";
+
+            if (PercentageProcessBar <= 30)
+                BacgroundProcessBar = Brush.Parse("#4318FF"); 
+            else if (PercentageProcessBar <= 50)
+                BacgroundProcessBar = Brush.Parse("#FFC107"); 
+            else if (PercentageProcessBar <= 80)
+                BacgroundProcessBar = Brush.Parse("#FF9800");
+            else
+                BacgroundProcessBar = Brush.Parse("#EE5D50");
         }
     }
     private async Task InitializeListTransaction()

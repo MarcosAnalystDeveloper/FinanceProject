@@ -124,12 +124,12 @@
 							<TextBlock Text="Orçamento Mensal" FontSize="16" FontWeight="Bold" Foreground="#1B2559" Margin="0,0,0,20"/>
 							<Grid ColumnDefinitions="*, Auto">
 								<TextBlock Text="Gasto" Classes="Label"/>
-								<TextBlock Grid.Column="1" Text="R$ 8.450,00" FontWeight="Bold" Foreground="#1B2559"/>
+								<TextBlock Grid.Column="1" Text="{Binding ExpenseTotal, Mode=TwoWay}" FontWeight="Bold" Foreground="#1B2559"/>
 							</Grid>
-							<ProgressBar Value="65" Height="10" CornerRadius="5" Margin="0,15" Foreground="#4318FF" Background="#F4F7FE"/>
+							<ProgressBar Value="{Binding PercentageProcessBar, Mode=TwoWay}" Height="10" CornerRadius="5" Margin="0,15" Foreground="{Binding BacgroundProcessBar, Mode=TwoWay}" Background="#F4F7FE"/>
 							<Grid ColumnDefinitions="*, Auto">
-								<TextBlock Text="65% do limite" Classes="Label"/>
-								<TextBlock Grid.Column="1" Text="R$ 13.000,00" Classes="Label"/>
+								<TextBlock Text="{Binding DescriptionProcessBar, Mode=TwoWay}" Classes="Label"/>
+								<TextBlock Grid.Column="1" Text="{Binding SalaryTotal, Mode=TwoWay}" Classes="Label"/>
 							</Grid>
 						</StackPanel>
 					</Border>

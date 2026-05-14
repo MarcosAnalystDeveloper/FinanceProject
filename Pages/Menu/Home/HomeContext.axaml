@@ -2,60 +2,228 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 mc:Ignorable="d"
+			 d:DesignWidth="1000"
+			 d:DesignHeight="800"
 			 xmlns:element="using:FinanceProject.Elements"
-			 xmlns:lvc="using:LiveChartsCore.SkiaSharpView.Avalonia"
 			 x:Class="FinanceProject.HomeContext"
 			 xmlns:pg="using:FinanceProject"
 			 x:DataType="pg:HomeContext">
 
-	<ScrollViewer Padding="30">
-		<Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="*, *">
+	<UserControl.Styles>
+		<Style Selector="Border.Card">
+			<Setter Property="Background" Value="#FFFFFF"/>
+			<Setter Property="CornerRadius" Value="15"/>
+			<Setter Property="Padding" Value="20"/>
+			<Setter Property="BoxShadow" Value="0 4 15 0 #10000000"/>
+		</Style>
 
-			<StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,0,20">
-				<TextBlock Text="Olá, Usuário 1" FontSize="24" FontWeight="Bold" Foreground="White"/>
-				<TextBlock Text="Aqui está o resumo do seu mês." Foreground="#666666"/>
-			</StackPanel>
+		<Style Selector="TextBlock.Label">
+			<Setter Property="Foreground" Value="#A3AED0"/>
+			<Setter Property="FontFamily" Value="Arial"/>
+			<Setter Property="FontSize" Value="12"/>
+		</Style>
 
-			<Border  Grid.Row="1" Background="#FFFFFF" Width="400" Margin="0 10 0 0" CornerRadius="12" Height="130" Padding="5" BoxShadow="0 8 30 0 #30000000">
-				<StackPanel>
-					<TextBlock Text="Renda" Foreground="#7FD9F9" FontSize="14"/>
-					<TextBlock Text="R$ 15.000,00" Foreground="#000000" FontSize="28" FontWeight="Bold" Margin="0,10"/>
+		<Style Selector="TextBlock.Value">
+			<Setter Property="Foreground" Value="#1B2559"/>
+			<Setter Property="FontSize" Value="18"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+		</Style>
+	</UserControl.Styles>
+
+	<ScrollViewer>
+		<StackPanel Margin="40,30">
+
+			<Grid ColumnDefinitions="*, Auto" Margin="0,0,0,35">
+				<StackPanel HorizontalAlignment="Left">
+					<Border HorizontalAlignment="Left" BoxShadow="0 4 15 0 #10000000" CornerRadius="30" Width="60" Height="60">
+						<Image Source="avares://FinanceProject/Assets/logo.png" Stretch="Fill"/>
+					</Border>
+					<Separator Margin="0 10 40 0" />
+					<TextBlock Text="Atualizações de pagamentos e contas" Foreground="#A3AED0" Margin="0,5,0,0"/>
 				</StackPanel>
-			</Border>
 
-			<Border Grid.Row="1" Grid.Column="1"  Background="#FFFFFF" Width="400" Margin="0 10 0 0" CornerRadius="12" Height="130" Padding="5" BoxShadow="0 8 30 0 #30000000">
-				<StackPanel>
-					<TextBlock Text="Despesas" Foreground="#F87171" FontSize="14"/>
-					<TextBlock Text="R$ 4.200,00" Foreground="#000000" FontSize="28" FontWeight="Bold" Margin="0,10"/>
-				</StackPanel>
-			</Border>
-
-			
-			<Border Grid.Row="1" Grid.Column="1"  Background="#FFFFFF" Width="400" Margin="0 10 0 0" CornerRadius="12" Height="130" Padding="5" BoxShadow="0 8 30 0 #30000000">
-				<StackPanel>
-					<TextBlock Text="Saldo liquido" Foreground="#F87171" FontSize="14"/>
-					<TextBlock Text="R$ 4.200,00" Foreground="#000000" FontSize="28" FontWeight="Bold" Margin="0,10"/>
-				</StackPanel>
-			</Border>
-
-			<Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
-					Margin="10" Background="#1F222C" CornerRadius="15" Padding="20" MinHeight="400">
-				<Grid RowDefinitions="Auto, *">
-					<TextBlock Text="Análise Anual" FontWeight="SemiBold" Foreground="White" Margin="0,0,0,20"/>
-
-					<Rectangle Grid.Row="1" Fill="#2D303E" Opacity="0.5" />
-					<Grid RowDefinitions="Auto, *">
-
-						<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="20" HorizontalAlignment="Right" Margin="0,0,20,10">
-							<RadioButton x:Name="RbLinha" Content="Linha" IsChecked="True" Foreground="White"/>
-							<RadioButton x:Name="RbPizza" Content="Setores (Pizza)" Foreground="White"/>
+				<StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="15" VerticalAlignment="Center">
+					<Border Background="White" BorderThickness="1" BorderBrush="#000000" CornerRadius="25" Padding="15,5">
+						<StackPanel Orientation="Horizontal" Spacing="10">
+							<PathIcon Data="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" Width="18" Foreground="#A3AED0"/>
+							<TextBox Width="200" Watermark="Pesquisar..." BorderThickness="0" Background="Transparent"/>
 						</StackPanel>
+					</Border>
+					<Button Background="Transparent">
+						<PathIcon Data="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.89 2 2 2zm6-6v-5c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z" Foreground="#A3AED0"/>
+					</Button>
 
-					</Grid>
-				</Grid>
-			</Border>
+					<Border ClipToBounds="True" BorderThickness="1" BorderBrush="#A3AED0" BoxShadow="0 4 15 0 #10000000" CornerRadius="2" Width="50" Height="50">
+						<Image Source="{Binding PhotoUser, Mode=TwoWay}" Stretch="UniformToFill"/>
+					</Border>
+				</StackPanel>
+			</Grid>
 
-		</Grid>
+			<!-- SEÇÃO DE CARDS SUPERIORES -->
+			<Grid ColumnDefinitions="*, *, 5, 320" Margin="0,0,0,30">
+				<!-- Cards de Bancos/Investimentos -->
+				<Border Grid.Column="0" Classes="Card" Margin="0,0,15,0">
+					<StackPanel>
+						<TextBlock Text="Itaú Personnalité" Classes="Label"/>
+						<TextBlock Text="R$ 45.200,00" Classes="Value" Margin="0,5"/>
+						<TextBlock Text="▲ 2.4%" Foreground="#05CD99" FontSize="11" FontWeight="Bold"/>
+					</StackPanel>
+				</Border>
+
+				<Border Grid.Column="1" Classes="Card" Margin="0,0,15,0">
+					<StackPanel>
+						<TextBlock Text="XP Investimentos" Classes="Label"/>
+						<TextBlock Text="R$ 85.000,30" Classes="Value" Margin="0,5"/>
+						<TextBlock Text="▼ 0.8%" Foreground="#EE5D50" FontSize="11" FontWeight="Bold"/>
+					</StackPanel>
+				</Border>
+
+				<!-- CARD AZUL DE DESTAQUE (SALDO TOTAL) -->
+				<Border Grid.Column="4" Background="#4318FF" CornerRadius="20" Padding="25">
+					<StackPanel VerticalAlignment="Center">
+						<TextBlock Text="R$ 142.850,30" Foreground="White" FontSize="26" FontWeight="Bold" Margin="0,8"/>
+						<TextBlock Text="SALDO TOTAL" Foreground="White" Opacity="0.8" FontSize="11" FontWeight="Bold" LetterSpacing="1"/>
+					</StackPanel>
+				</Border>
+			</Grid>
+
+			<Grid ColumnDefinitions="*, 320">
+
+				<!-- LISTA DE HISTÓRICO -->
+				<Border Grid.Column="0" Classes="Card" Margin="0,0,20,0" VerticalAlignment="Top">
+					<StackPanel>
+						<Grid ColumnDefinitions="*, Auto" Margin="0,0,0,25">
+							<TextBlock Text="Histórico" FontSize="22" FontWeight="Bold" Foreground="#1B2559"/>
+							<Button Grid.Column="1" Content="Ver todos" Background="Transparent" Foreground="#4318FF" FontWeight="Bold"/>
+						</Grid>
+
+						<!-- Linhas do Histórico -->
+						<StackPanel Spacing="20">
+							<!-- Item 1 -->
+							<Grid ColumnDefinitions="50, *, Auto, Auto">
+								<Border Width="45" Height="45" Background="#F4F7FE" CornerRadius="12">
+									<PathIcon Data="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" Width="20" Foreground="#4318FF"/>
+								</Border>
+								<StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="15,0">
+									<TextBlock Text="Rendimento CDB Inter" FontWeight="Bold" Foreground="#1B2559"/>
+									<TextBlock Text="Investimento • Hoje, 10:42 AM" Classes="Label"/>
+								</StackPanel>
+								<TextBlock Grid.Column="2" Text="+ R$ 450,00" Foreground="#05CD99" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,30,0"/>
+								<TextBlock Grid.Column="3" Text="Processado" Classes="Label" VerticalAlignment="Center"/>
+							</Grid>
+
+							<Separator Background="#F0F0F0" Height="1"/>
+
+							<!-- Item 2 -->
+							<Grid ColumnDefinitions="50, *, Auto, Auto">
+								<Border Width="45" Height="45" Background="#F4F7FE" CornerRadius="12">
+									<PathIcon Data="M21 18H3V6h18v12zm-2-2V8H5v8h14z" Width="20" Foreground="#4318FF"/>
+								</Border>
+								<StackPanel Grid.Column="1" VerticalAlignment="Center" Margin="15,0">
+									<TextBlock Text="Fatura Cartão Black" FontWeight="Bold" Foreground="#1B2559"/>
+									<TextBlock Text="Cartão de Crédito • Ontem, 12:42 PM" Classes="Label"/>
+								</StackPanel>
+								<TextBlock Grid.Column="2" Text="- R$ 4.200,50" Foreground="#EE5D50" FontWeight="Bold" VerticalAlignment="Center" Margin="0,0,30,0"/>
+								<TextBlock Grid.Column="3" Text="Processado" Classes="Label" VerticalAlignment="Center"/>
+							</Grid>
+						</StackPanel>
+					</StackPanel>
+				</Border>
+
+				<!-- COLUNA DA DIREITA (ORÇAMENTO E PRÓXIMOS) -->
+				<StackPanel Grid.Column="1" Spacing="20">
+
+					<!-- Widget Orçamento -->
+					<Border Classes="Card">
+						<StackPanel>
+							<TextBlock Text="Orçamento Mensal" FontSize="16" FontWeight="Bold" Foreground="#1B2559" Margin="0,0,0,20"/>
+							<Grid ColumnDefinitions="*, Auto">
+								<TextBlock Text="Gasto" Classes="Label"/>
+								<TextBlock Grid.Column="1" Text="R$ 8.450,00" FontWeight="Bold" Foreground="#1B2559"/>
+							</Grid>
+							<ProgressBar Value="65" Height="10" CornerRadius="5" Margin="0,15" Foreground="#4318FF" Background="#F4F7FE"/>
+							<Grid ColumnDefinitions="*, Auto">
+								<TextBlock Text="65% do limite" Classes="Label"/>
+								<TextBlock Grid.Column="1" Text="R$ 13.000,00" Classes="Label"/>
+							</Grid>
+						</StackPanel>
+					</Border>
+
+					<!-- Widget Próximos Pagamentos -->
+					<Border Classes="Card">
+						<StackPanel Spacing="18">
+							<TextBlock Text="Próximos Pagamentos" FontSize="16" FontWeight="Bold" Foreground="#1B2559"/>
+
+							<Grid ColumnDefinitions="Auto, *, Auto">
+								<PathIcon Data="M12 3L2 12h3v8h14v-8h3L12 3zm0 4.84L16.59 9h-9.18L12 7.84z" Width="18" Foreground="#A3AED0"/>
+								<StackPanel Grid.Column="1" Margin="12,0">
+									<TextBlock Text="Aluguel" FontWeight="SemiBold" FontSize="14"/>
+									<TextBlock Text="Amanhã" Foreground="#EE5D50" FontSize="11"/>
+								</StackPanel>
+								<TextBlock Grid.Column="2" Text="R$ 2.500,00" FontWeight="Bold"/>
+							</Grid>
+
+							<Button Content="Ver Calendário Completo" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center"
+									Background="#F4F7FE" Foreground="#4318FF" FontWeight="Bold" CornerRadius="12" Padding="10"/>
+						</StackPanel>
+					</Border>
+				</StackPanel>
+			</Grid>
+		</StackPanel>
 	</ScrollViewer>
 </UserControl>
+
+
+
+
+
+<!--<Grid RowDefinitions="Auto, Auto, *" ColumnDefinitions="5*, *">
+
+<StackPanel Grid.Row="0" Grid.Column="0" Margin="0,0,0,20">
+<TextBlock Text="Olá, Usuário 1" FontSize="24" FontWeight="Bold" Foreground="White"/>
+<TextBlock Text="Aqui está o resumo do seu mês." Foreground="#666666"/>
+</StackPanel>
+
+<Border  Grid.Row="1" Background="#FFFFFF" Width="400" Margin="0 10 0 0" CornerRadius="12" Height="130" Padding="5" BoxShadow="0 8 30 0 #30000000">
+<StackPanel>
+<TextBlock Text="Renda" Foreground="#7FD9F9" FontSize="14"/>
+<TextBlock Text="R$ 15.000,00" Foreground="#000000" FontSize="28" FontWeight="Bold" Margin="0,10"/>
+</StackPanel>
+</Border>
+
+<Border Grid.Row="1" Grid.Column="1"  Background="#FFFFFF" Width="400" Margin="0 10 0 0" CornerRadius="12" Height="130" Padding="5" BoxShadow="0 8 30 0 #30000000">
+<StackPanel>
+<TextBlock Text="Despesas" Foreground="#F87171" FontSize="14"/>
+<TextBlock Text="R$ 4.200,00" Foreground="#000000" FontSize="28" FontWeight="Bold" Margin="0,10"/>
+</StackPanel>
+</Border>
+
+
+<Border Grid.Row="1" Grid.Column="1"  Background="#FFFFFF" Width="400" Margin="0 10 0 0" CornerRadius="12" Height="130" Padding="5" BoxShadow="0 8 30 0 #30000000">
+<StackPanel>
+<TextBlock Text="Saldo liquido" Foreground="#F87171" FontSize="14"/>
+<TextBlock Text="R$ 4.200,00" Foreground="#000000" FontSize="28" FontWeight="Bold" Margin="0,10"/>
+</StackPanel>
+</Border>
+
+<Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+Margin="10" Background="#1F222C" CornerRadius="15" Padding="20" MinHeight="400">
+<Grid RowDefinitions="Auto, *">
+<TextBlock Text="Análise Anual" FontWeight="SemiBold" Foreground="White" Margin="0,0,0,20"/>
+
+<Rectangle Grid.Row="1" Fill="#2D303E" Opacity="0.5" />
+<Grid RowDefinitions="Auto, *">
+
+<StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="20" HorizontalAlignment="Right" Margin="0,0,20,10">
+<RadioButton x:Name="RbLinha" Content="Linha" IsChecked="True" Foreground="White"/>
+<RadioButton x:Name="RbPizza" Content="Setores (Pizza)" Foreground="White"/>
+</StackPanel>
+
+</Grid>
+</Grid>
+</Border>
+
+</Grid>-->
+<!--</ScrollViewer>
+</UserControl>-->

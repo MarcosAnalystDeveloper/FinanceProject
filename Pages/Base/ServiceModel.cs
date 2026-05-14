@@ -6,7 +6,7 @@ namespace FinanceProject.Pages;
 
 public class ServiceModel
 {
-    protected Uri BaseUrl { get; } = new Uri("http://localhost:8000/");
+    protected Uri BaseUrl { get; } = new Uri("http://localhost:9999/");
 
     public static readonly JsonSerializerOptions JsonOptions = new() 
     {

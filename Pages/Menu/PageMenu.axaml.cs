@@ -17,13 +17,11 @@ public partial class PageMenu : BasePage
     {
         InitializeComponent();
         this.DataContext = this;
+        InitializeEvents();
         lbxDrawer.SelectedItem = lbxDrawer.Items.First();
-        hasFirstSelected = false;
-        InitializeEvents(); 
     }
 
     #region Properties  
-    public UserFinance Profile { get; set; }
     public string Token { get; set; }
     public ObservableCollection<TabItemTemplate> ListTabItem { get; } = new()
     {
@@ -32,7 +30,6 @@ public partial class PageMenu : BasePage
         new TabItemTemplate("receipt", "Nova Dispesa", typeof(ExpenseContext)),
         new TabItemTemplate("settings", "Configurações", typeof(SettingsContext))
     };
-    public bool hasFirstSelected { get; set; } = true;
 
     private bool _isPaneOpen = false;
     public bool IsPaneOpen
@@ -48,7 +45,7 @@ public partial class PageMenu : BasePage
         }
     }
 
-    private UserControl _currentPage = new HomeContext();
+    private UserControl _currentPage;
     public UserControl CurrentPage
     {
         get => _currentPage;
@@ -74,8 +71,8 @@ public partial class PageMenu : BasePage
     {
         MenuViewModel = new PageMenuViewModel(Token);
         UserFinance? user = await MenuViewModel.LoadUser();
-        if (user is not null)
-            Profile = user;
+        if (user is not null && CurrentPage is HomeContext homeContext)
+            homeContext.CurrentProfile = user;
     }
     #endregion
 
@@ -96,31 +93,30 @@ public partial class PageMenu : BasePage
     }
     private void LbxDrawer_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
-        if (!hasFirstSelected)
+        if (sender is ListBox listBox)
         {
-            if (sender is ListBox listBox)
+            if (listBox.SelectedItem is not null && listBox.SelectedItem is TabItemTemplate tabItemTemplate)
             {
-                if (listBox.SelectedItem is not null && listBox.SelectedItem is TabItemTemplate tabItemTemplate)
+                switch (tabItemTemplate.PageType)
                 {
-                    switch (tabItemTemplate.PageType)
-                    {
-                        case Type t when t == typeof(HomeContext):
-                            CurrentPage = new HomeContext();
-                            break;
-                        case Type t when t == typeof(SalaryContext):
-                            SalaryContext salaryContext = new SalaryContext();
-                            salaryContext.Token = Token;
-                            CurrentPage = salaryContext;
-                            break;
-                        case Type t when t == typeof(ExpenseContext):
-                            ExpenseContext expenseContext = new ExpenseContext();
-                            expenseContext.Token = Token;
-                            CurrentPage = expenseContext;
-                            break;
-                        case Type t when t == typeof(SettingsContext):
-                            CurrentPage = new SettingsContext();
-                            break;
-                    }
+                    case Type t when t == typeof(HomeContext):
+                        HomeContext homeContext = new HomeContext();
+                        homeContext.Token = Token;
+                        CurrentPage = homeContext;
+                        break;
+                    case Type t when t == typeof(SalaryContext):
+                        SalaryContext salaryContext = new SalaryContext();
+                        salaryContext.Token = Token;
+                        CurrentPage = salaryContext;
+                        break;
+                    case Type t when t == typeof(ExpenseContext):
+                        ExpenseContext expenseContext = new ExpenseContext();
+                        expenseContext.Token = Token;
+                        CurrentPage = expenseContext;
+                        break;
+                    case Type t when t == typeof(SettingsContext):
+                        CurrentPage = new SettingsContext();
+                        break;
                 }
             }
         }

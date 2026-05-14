@@ -7,13 +7,12 @@ using FinanceProject.Entities;
 using FinanceProject.Enum;
 using FinanceProject.Pages;
 using FinanceProject.Pages.Menu.Home;
-using FinanceProject.Pages.Menu.Salary;
 using FinanceProject.Transaction;
-using LiveChartsCore.Geo;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -152,7 +151,7 @@ public partial class HomeContext : BaseContext
     {
         await InitializeListTransaction();
         await LoadData();
-        await InitializePhotoUser();
+        LoadPhotoUser();
     }
     private async Task LoadData()
     {
@@ -179,14 +178,22 @@ public partial class HomeContext : BaseContext
             HigherExpense = $"R$ {higherExpense}";
         }
     }
-    private async Task InitializePhotoUser() 
+    public void LoadPhotoUser()
     {
-        LoadPhotoUser(default!);
-    }
-    public void LoadPhotoUser(string uri = "avares://FinanceProject/Assets/defaulPhotoUser.jpg")
-    {
-        var assets = AssetLoader.Open(new Uri(uri));
+        Stream? assets = default;
+        string uri = "avares://FinanceProject/Assets/defaulPhotoUser.jpg";
+
+        //if (!string.IsNullOrEmpty(CurrentProfile.ProfilePicture))
+        //{
+        //    assets = AssetLoader.Open(new Uri(CurrentProfile.ProfilePicture)) ?? default;
+        //    if (assets is not null)
+        //        PhotoUser = new Bitmap(assets);
+        //    else 
+        //    {
+        assets = AssetLoader.Open(new Uri(uri));
         PhotoUser = new Bitmap(assets);
+        //    }
+        //}
     }
     #endregion
 }

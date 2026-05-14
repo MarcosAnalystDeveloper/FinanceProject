@@ -101,12 +101,41 @@
 						<DataGridTemplateColumn.CellTemplate >
 							<DataTemplate x:DataType="models:TransactionFinance">
 								<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="10" Margin="10,0">
-									<Button Click="OnEditClick" Background="#5C6BC0" Width="32" Height="32" CornerRadius="4" Padding="0">
-										<PathIcon Data="{StaticResource edit}" Foreground="White" Width="14"/>
-									</Button>
-									<Button Click="OnDeleteClick" Background="#E57373" Width="32" Height="32" CornerRadius="4" Padding="0">
-										<PathIcon Data="{StaticResource trash}" Foreground="White" Width="14"/>
-									</Button>
+									<element:ButtonElement
+									Width="32"
+									Height="32"
+									BackgroundColor="#1150ce"
+									HoverColor="#0b3997"
+									IconSize="14"
+									IconPositionY="5"
+									IconPositionX="7"
+									HorizontalAlignment="Left"
+									FontFamily="Arial"
+									CornerRadius="8"
+									TextFontWeight="DemiBold"
+									TextFontSize="1"
+									PointerPressed="OnEdit_PointerPressed"
+									TextFontColor="#FFFFFF"
+									Icon="{StaticResource edit}"
+									Theme="{StaticResource ButtonElementTheme}"/>
+
+									<element:ButtonElement
+									Width="32"
+									Height="32"
+									BackgroundColor="#d52536"
+									HoverColor="#b41c2b"
+									IconSize="14"
+									IconPositionY="5"
+									IconPositionX="7"
+									HorizontalAlignment="Left"
+									FontFamily="Arial"
+									CornerRadius="8"
+									TextFontWeight="DemiBold"
+									TextFontSize="1"
+									PointerPressed="OnDelete_PointerPressed"
+									TextFontColor="#FFFFFF"
+									Icon="{StaticResource trash}"
+									Theme="{StaticResource ButtonElementTheme}"/>
 								</StackPanel>
 							</DataTemplate>
 						</DataGridTemplateColumn.CellTemplate>

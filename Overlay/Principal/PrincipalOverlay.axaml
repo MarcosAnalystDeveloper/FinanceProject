@@ -4,7 +4,7 @@
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		mc:Ignorable="d"
 		Width="350"
-		Height="180"
+		Height="200"
 		xmlns:element="using:FinanceProject.Elements"
 		x:Class="FinanceProject.PrincipalOverlay"
 		Title=""
@@ -15,27 +15,51 @@
 		WindowDecorations="None"
 		ExtendClientAreaToDecorationsHint="True" >
 
-	<Border Background="White" CornerRadius="15" Padding="20" BorderBrush="#EEE" BorderThickness="1">
+	<Border Background="Transparent" Padding="5" BorderBrush="#EEE" BorderThickness="1">
 		<StackPanel Spacing="20" VerticalAlignment="Center">
-			<TextBlock Text="Deseja realmente excluir?" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center"/>
-			<TextBlock Text="Esta ação não poderá ser desfeita."  Foreground="Gray" HorizontalAlignment="Center"/>
 
-			<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
+			<TextBlock Margin="10 0 0 0" Text="Deseja realmente excluir?" FontSize="18" FontWeight="Bold" HorizontalAlignment="Left"/>
+
+			<Separator Margin="0 -4 0 0" Background="#e1e1e1"/>
+
+			<TextBlock Margin="10 0 0 0" Text="Esta ação não poderá ser desfeita."  Foreground="Gray" HorizontalAlignment="Left"/>
+
+			<Separator Margin="0 -4 0 0" Background="#e1e1e1"/>
+
+			<StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="20">
 				<element:ButtonElement
 				x:Name="btnCancel"
-				Width="100"
+				Width="120"
 				Height="40"
 				CornerRadius="8"
-				BackgroundColor="#F1F3F5"
+				BackgroundColor="#FFFFFF"
+				BorderThickness="1"
+				BorderColor="#64748b"
+				HoverColor="#ededed"
 				FontFamily="Roboto"
 				Text="Cancelar"
 				TextFontWeight="Medium"
+				TextPositionX="24"
+				TextPositionY="7"
 				TextFontSize="18"
-				TextFontColor="#000000"
+				TextFontColor="#64748b"
 				Theme="{StaticResource ButtonElementTheme}"/>
 
-				<Button Content="Excluir" Name="BtnConfirm" Width="100"
-						Background="#E57373" Foreground="White" HorizontalContentAlignment="Center"/>
+				<element:ButtonElement
+				x:Name="btnConfirm"
+				Width="120"
+				Height="40"
+				CornerRadius="8"
+				BackgroundColor="#d52536"
+				HoverColor="#b41c2b"
+				FontFamily="Roboto"
+				Text="Excluir"
+				TextFontWeight="Medium"
+				TextPositionX="33"
+				TextPositionY="7"
+				TextFontSize="18"
+				TextFontColor="#FFFFFF"
+				Theme="{StaticResource ButtonElementTheme}"/>
 			</StackPanel>
 		</StackPanel>
 	</Border>

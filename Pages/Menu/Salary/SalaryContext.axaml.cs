@@ -57,7 +57,7 @@ public partial class SalaryContext : BaseContext
         SalaryContextViewModel = new SalaryContextViewModel(Token);
         RefleshListSalary();
     }
-    private async void OnEditClick(object? sender, RoutedEventArgs e)
+    private async void OnEdit_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
     {
         if (sender is Button btn && btn.DataContext is TransactionFinance transaction)
         {
@@ -73,7 +73,7 @@ public partial class SalaryContext : BaseContext
                     overlay.IsVisible = true;
 
                 bool result = await dialog.ShowDialog<bool>(MainWindow);
-                if(result)
+                if (result)
                     _notificationManager.Show(new Notification("Sucesso", "Salário editado com sucesso.", NotificationType.Success));
 
                 RefleshListSalary();
@@ -83,7 +83,7 @@ public partial class SalaryContext : BaseContext
             }
         }
     }
-    private async void OnDeleteClick(object? sender, RoutedEventArgs e)
+    private async void OnDelete_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
     {
         if (sender is Button btn && btn.DataContext is TransactionFinance transaction)
         {

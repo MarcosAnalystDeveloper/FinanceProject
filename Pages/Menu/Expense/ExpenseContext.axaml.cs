@@ -58,7 +58,7 @@ public partial class ExpenseContext : BaseContext
         ExpenseContextViewModel = new ExpenseContextViewModel(Token);
         RefleshListExpense();
     }
-    private async void OnEditClick(object? sender, RoutedEventArgs e)
+    private async void OnEdit_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
     {
         if (sender is Button btn && btn.DataContext is TransactionFinance transaction)
         {
@@ -84,7 +84,7 @@ public partial class ExpenseContext : BaseContext
             }
         }
     }
-    private async void OnDeleteClick(object? sender, RoutedEventArgs e)
+    private async void OnDelete_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
     {
         if (sender is Button btn && btn.DataContext is TransactionFinance transaction)
         {

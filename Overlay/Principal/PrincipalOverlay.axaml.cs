@@ -18,7 +18,7 @@ public partial class PrincipalOverlay : Window
             return;
 
         btnCancel.PointerPressed += BtnCancel_PointerPressed;
-        BtnConfirm.Click += BtnConfirm_Click;
+        btnConfirm.PointerPressed += BtnConfirm_Click;
     }
 
     private void BtnConfirm_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e) { Close(true); }

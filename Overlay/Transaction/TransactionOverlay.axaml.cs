@@ -59,6 +59,20 @@ public partial class TransactionOverlay : BasePage
             }
         }
     }
+
+    private string _textButtonConfirm;
+    public string TextButtonConfirm
+    {
+        get => _textButtonConfirm;
+        set
+        {
+            if (_textButtonConfirm != value)
+            {
+                _textButtonConfirm = value;
+                OnPropertyChanged();
+            }
+        }
+    }
     #endregion
 
     public TransactionOverlay()

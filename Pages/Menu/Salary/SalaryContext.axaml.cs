@@ -21,7 +21,7 @@ public partial class SalaryContext : BaseContext
         this.DataContext = this;
     }
 
-    #region Properties
+    #region  Properties
     public Window? MainWindow { get; set; }
     public string Token { get; set; }
     private string _totalSalary;
@@ -68,6 +68,7 @@ public partial class SalaryContext : BaseContext
                 dialog.TransactionType = EnumTransactionType.Entrada;
                 dialog.CurrentTransaction = transaction;
                 dialog.Token = Token;
+                dialog.TextButtonConfirm = "Confirmar";
 
                 Border? overlay = MainWindow.FindControl<Border>("DarkOverlay");
                 if (overlay is not null)
@@ -120,6 +121,7 @@ public partial class SalaryContext : BaseContext
             TransactionOverlay dialog = new TransactionOverlay();
             dialog.TransactionType = EnumTransactionType.Entrada;
             dialog.Token = Token;
+            dialog.TextButtonConfirm = "Adicionar";
 
             Border? overlay = MainWindow.FindControl<Border>("DarkOverlay");
             if (overlay is not null)

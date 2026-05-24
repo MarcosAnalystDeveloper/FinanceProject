@@ -34,7 +34,7 @@
 			<Border Background="#FFFFFF" Width="400" Margin="0 10 0 0" CornerRadius="12" Height="130" Padding="5" BoxShadow="0 8 30 0 #30000000">
 				<Grid ColumnDefinitions="* *">
 					<StackPanel>
-						<TextBlock Margin="5 25 0 0" Text="Soma das Despesas" Foreground="#1150CE" FontWeight="Bold" FontSize="18"/>
+						<TextBlock Margin="5 25 0 0" Text="Soma das despesas" Foreground="#1150CE" FontWeight="Bold" FontSize="18"/>
 						<TextBlock Margin="5 5 0 0" Text="{Binding TotalExpense, Mode=TwoWay}" Foreground="#fcba03" FontSize="28" FontWeight="Bold"/>
 					</StackPanel>
 					<PathIcon Grid.Column="1" Data="{StaticResource wallet}" Foreground="#fcba03" Height="50" Width="50"/>

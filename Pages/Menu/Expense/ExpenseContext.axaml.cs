@@ -69,6 +69,7 @@ public partial class ExpenseContext : BaseContext
                 dialog.TransactionType = EnumTransactionType.Saida;
                 dialog.CurrentTransaction = transaction;
                 dialog.Token = Token;
+                dialog.TextButtonConfirm = "Confirmar";
 
                 Border? overlay = MainWindow.FindControl<Border>("DarkOverlay");
                 if (overlay is not null)
@@ -121,6 +122,7 @@ public partial class ExpenseContext : BaseContext
             TransactionOverlay dialog = new TransactionOverlay();
             dialog.TransactionType = EnumTransactionType.Saida;
             dialog.Token = Token;
+            dialog.TextButtonConfirm = "Adicionar";
 
             Border? overlay = MainWindow.FindControl<Border>("DarkOverlay");
             if (overlay is not null)

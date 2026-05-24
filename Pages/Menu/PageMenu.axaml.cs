@@ -26,7 +26,7 @@ public partial class PageMenu : BasePage
     {
         new TabItemTemplate("home", "Menu", typeof(HomeContext)),
         new TabItemTemplate("savings", "Novo Salário", typeof(SalaryContext)),
-        new TabItemTemplate("receipt", "Nova Dispesa", typeof(ExpenseContext)),
+        new TabItemTemplate("receipt", "Nova Despesa", typeof(ExpenseContext)),
         new TabItemTemplate("settings", "Configurações", typeof(SettingsContext))
     };
 

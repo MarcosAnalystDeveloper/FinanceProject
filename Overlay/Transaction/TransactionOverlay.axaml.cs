@@ -100,7 +100,7 @@ public partial class TransactionOverlay : BasePage
     #region Method
     private async void CreateTransaction()
     {
-        string verb = TransactionType == EnumTransactionType.Entrada ? "salário" : "dispesa";
+        string verb = TransactionType == EnumTransactionType.Entrada ? "salário" : "despesa";
         if (CurrentTransaction is not null)
         {
             bool result = await TransactionOverlayViewModel.EditedTransaction(CurrentTransaction.Id, Description, Amount, TransactionType.ToString().ToLower(), Category.ToString().ToLower());

@@ -76,7 +76,7 @@ public partial class ExpenseContext : BaseContext
 
                 bool result = await dialog.ShowDialog<bool>(MainWindow);
                 if (result)
-                    _notificationManager.Show(new Notification("Sucesso", "Dispesa editada com sucesso.", NotificationType.Success));
+                    _notificationManager.Show(new Notification("Sucesso", "Despesa editada com sucesso.", NotificationType.Success));
 
                 RefleshListExpense();
 
@@ -102,11 +102,11 @@ public partial class ExpenseContext : BaseContext
                     bool isDeleted = await ExpenseContextViewModel.DeleteTransaction(transaction.Id);
                     if (isDeleted)
                     {
-                        _notificationManager.Show(new Notification("Sucesso", "Dispesa deletado com sucesso.", NotificationType.Success));
+                        _notificationManager.Show(new Notification("Sucesso", "Despesa deletado com sucesso.", NotificationType.Success));
                         RefleshListExpense();
                     }
                     else
-                        _notificationManager.Show(new Notification("Erro ao deletar dispesa.", "Tente novamente.", NotificationType.Error));
+                        _notificationManager.Show(new Notification("Erro ao deletar despesa.", "Tente novamente.", NotificationType.Error));
                 }
 
                 if (overlay != null)
@@ -128,7 +128,7 @@ public partial class ExpenseContext : BaseContext
 
             bool result = await dialog.ShowDialog<bool>(MainWindow);
             if (result)
-                _notificationManager.Show(new Notification("Sucesso", "Dispesa criada com sucesso.", NotificationType.Success));
+                _notificationManager.Show(new Notification("Sucesso", "Despesa criada com sucesso.", NotificationType.Success));
 
             RefleshListExpense();
 

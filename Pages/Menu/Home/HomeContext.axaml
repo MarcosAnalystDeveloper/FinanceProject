@@ -74,7 +74,7 @@
 
 				<Border Grid.Column="1" Classes="Card" Margin="0,0,15,0">
 					<StackPanel>
-						<TextBlock Text="Maior dispesa" Classes="Label"/>
+						<TextBlock Text="Maior Despesa" Classes="Label"/>
 						<TextBlock Text="{Binding HigherExpense, Mode=TwoWay}" FontSize="24" Classes="Value" Margin="0,5"/>
 						<TextBlock Text="{Binding PercentageExpanse, Mode=TwoWay}" Foreground="#EE5D50" FontSize="11" FontWeight="Bold"/>
 					</StackPanel>
